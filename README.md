@@ -34,8 +34,10 @@ Guía de instalación con Docker para Mac
 - Correr contenedor:
 
   ```sh
-  $ docker run -p 8080:8080 --name selene_ui -t selene_ui
+  $ docker run -d -p 8080:8080 --name selene_ui -t selene_ui
   ```
+
+  Nota: -d Segundo plano, -p Puerto [docker-ports]
 
 ## Comandos de ayuda
 - Iniciar máquina:
@@ -110,3 +112,4 @@ Guía de instalación con Docker para Mac
 
 
 [docker-toolbox]: (https://docs.docker.com/machine/get-started/)
+[docker-ports]: (https://docs.docker.com/engine/installation/mac/#access-container-ports)
