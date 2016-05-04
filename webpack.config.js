@@ -24,6 +24,11 @@ var common = {
   module: {
     loaders: [
       {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass'],
+        include: PATHS.src
+      },
+      {
         test: /\.jsx?$/,
         loaders: ['babel?cacheDirectory'],
         include: PATHS.src

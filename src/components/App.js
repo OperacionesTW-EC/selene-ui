@@ -1,8 +1,19 @@
 import React from 'react';
+import Navbar from './layout/Navbar';
+import Footer from './layout/Footer';
+import Home from './Home';
 
 class App extends React.Component {
   render() {
-    return <h1>Hola mundo con clase</h1>
+    return (
+      <div>
+        <Navbar />
+        <section className="container">
+            {this.props.children || <Home/>}
+        </section>
+        <Footer />
+      </div>
+    )
   }
 }
 
