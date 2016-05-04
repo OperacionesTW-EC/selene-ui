@@ -3,6 +3,7 @@ import './styles/main.scss';
 
 import React from 'react';
 import {render} from 'react-dom';
-import App from './components/App';
+import {Router, hashHistory} from 'react-router';
+import routes from './config/routes';
 
-render(<App />, document.getElementById('app'));
+render(<Router history={hashHistory} routes={routes}/>, document.getElementById('app'));
