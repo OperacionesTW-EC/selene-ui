@@ -1,10 +1,11 @@
 import React from 'react';
+import Icon from './../helpers/Icon';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="container">
-        <p className="text-muted">@selene-ui</p>
+        <p className="text-muted text-center">ThoughtWorks <Icon icon="registered"/>  2016, Quito - Ecuador</p>
       </div>
     </footer>
   )

@@ -5,7 +5,7 @@ import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 import expectJSX from 'expect-jsx';
 
-expect.extend(expectJSX)
+expect.extend(expectJSX);
 
 import App from './../../components/App';
 import Navbar from './../../components/layout/Navbar';
@@ -40,6 +40,5 @@ describe('App Component', () => {
         );
         expect(output).toIncludeJSX(expected);
     });
-  
 
 });

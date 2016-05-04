@@ -6,7 +6,7 @@
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server",
     "build": "./node_modules/.bin/webpack -p",
-    "test": "mocha './src/**/*.spec.js' --compilers js:babel-core/register",
+    "test": "mocha --require './src/spec/setup.js' './src/**/*.spec.js' --compilers js:babel-core/register",
     "test-watch": "mocha -w './src/**/*.spec.js' --compilers js:babel-core/register"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
     "css-loader": "^0.23.1",
+    "enzyme": "^2.2.0",
     "expect": "^1.19.0",
     "expect-jsx": "^2.5.1",
     "file-loader": "^0.8.5",
@@ -35,13 +36,17 @@
     "node-sass": "^3.7.0",
     "react-addons-test-utils": "^15.0.2",
     "sass-loader": "^3.2.0",
+    "sinon": "^1.17.4",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.12.0"
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.1",
+    "jquery": "^2.2.3",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-router": "^2.4.0"

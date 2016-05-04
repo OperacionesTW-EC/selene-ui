@@ -1,3 +1,11 @@
+@import "./../../node_modules/font-awesome/css/font-awesome.min.css";
 @import "./overrides.scss";
+@import "./forms.scss";
 @import "./components/footer.scss";
+@import "./components/navbar.scss";
+@import "./components/home.scss";
+
+.margin{
+  margin-top: 10px;
+}
 

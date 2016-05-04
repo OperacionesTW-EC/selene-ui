@@ -1,0 +1,31 @@
+.navbar-default .navbar-nav>li>a{
+  color: white;
+  &:focus{
+    color: white;
+  }
+}
+.navbar-default{
+  background-color: #333;
+}
+.navbar-brand{
+  color: white !important;
+}
+
+.navigation {
+  color: white;
+  &:hover, &:active{
+    background-color: #E7E7E7;
+    a {
+      color: #333 !important;
+    }
+  }
+}
+
+a.nav-active, a.nav-active:focus{
+  background-color: #E7E7E7 !important;
+  color: #333 !important;
+}
+.nav-img{
+  display: inline !important;
+  margin-right: 10px;
+}
