@@ -1,6 +1,0 @@
-ui:
-  build: .
-  volumes:
-    - ./src:/code/src
-  ports:
-    - 8000:8000
