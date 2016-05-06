@@ -4,9 +4,10 @@
   "description": "TW Selene Fixed Asset React UI",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server",
-    "build": "./node_modules/.bin/webpack -p",
-    "test": "mocha --require './src/spec/setup.js' './src/**/*.spec.js' --compilers js:babel-core/register",
+    "start": "webpack-dev-server",
+    "build": "webpack -p",
+    "test": "mocha --require './src/spec/setup.js' './src/**/components/*.spec.js' --compilers js:babel-core/register",
+    "contract": "mocha --require './src/spec/setup.js' './src/**/contract/*.spec.js' --compilers js:babel-core/register",
     "test-watch": "mocha -w './src/**/*.spec.js' --compilers js:babel-core/register"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "expect-jsx": "^2.5.1",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.16.1",
+    "jsonschema": "^1.1.0",
     "mocha": "^2.4.5",
     "node-sass": "^3.7.0",
     "react-addons-test-utils": "^15.0.2",
@@ -47,6 +49,7 @@
     "bootstrap": "^3.3.6",
     "font-awesome": "^4.6.1",
     "jquery": "^2.2.3",
+    "q": "^1.4.1",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-router": "^2.4.0"

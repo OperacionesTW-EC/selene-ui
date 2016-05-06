@@ -20,9 +20,6 @@ class Navbar extends React.Component {
                             <li className="navigation">
                                 <Link to='devices' activeClassName={activeClassName}><Icon icon="desktop"/> Dispositivos</Link>
                             </li>
-                            <li className="navigation">
-                                <Link to='reportes' activeClassName={activeClassName}><Icon icon="print"/> Reportes</Link>
-                            </li>
                         </ul>
                     </div>
                 </div>
