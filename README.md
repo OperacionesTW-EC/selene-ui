@@ -113,3 +113,32 @@ Guía de instalación con Docker para Mac
 
 [docker-toolbox]: (https://docs.docker.com/machine/get-started/)
 [docker-ports]: (https://docs.docker.com/engine/installation/mac/#access-container-ports)
+
+
+##NPM
+
+- Instalar node y nvm
+```sh
+$ brew install node
+$ npm install -g nvm
+```
+Verificar la versión instalada
+```sh
+$ node --version
+```
+
+Descargar e instalar la versión de NVM
+```sh
+$ nvm download 4.3.2
+$ nvm build 4.3.2
+$ nvm install 4.3.2
+```
+
+Instalar las dependencias de nuestra aplicación
+
+Dentro del directorio ```selene-ui``` ejecuta
+
+```
+npm install
+npm start
+```
