@@ -49,6 +49,7 @@
     "bootstrap": "^3.3.6",
     "font-awesome": "^4.6.1",
     "jquery": "^2.2.3",
+    "jsdom": "^9.0.0",
     "q": "^1.4.1",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
