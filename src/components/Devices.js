@@ -1,25 +1,58 @@
 import React from 'react';
 import $ from 'jquery';
-class Devices extends React.Component{
+import PageTitle from './layout/PageTitle'
+import Constants from './../config/Constants'
+
+export default class Devices extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = { devices: [], error_message:'Error', show_error_message: false };
+        this.state = { devices: [], messages: {content:'', type:undefined} };
         this.renderRows = this.renderRows.bind(this);
         this.renderTable = this.renderTable.bind(this);
-        this.renderError = this.renderError.bind(this);
+        this.renderMessages = this.renderMessages.bind(this);
     }
 
     componentDidMount(){
         $.ajax({
             type: 'GET',
             datatype: 'json',
-            url: 'http://localhost:8000/devices/'
+            url: Constants.BACKEND_URL +'/devices/'
         }).done((data) => {
-            this.setState({devices: data.results})
+            this.setState({devices: data.results, messages:this.buildInfoMessage(data)});
         }).fail(() => {
-            this.setState({show_error_message: true})
+            this.setState({messages:{content:'Ha ocurrido un error al acceder al listado de dispositivos. Por favor intente de nuevo más tarde o contacte al administrador del sistema.', type:'error'}});
         });
+    }
+
+    buildInfoMessage(response){
+        let message = {};
+        if(response.results.length == 0){
+            message = {content:'No existen dispositivos registrados en el sistema', type:'info'}
+        }
+        return message;
+    };
+
+    render(){
+        return (
+            <div >
+                <PageTitle content="Lista de dispositivos"/>
+                <div className="container">
+                    <div className="row margin">
+                        {this.state.devices.length == 0 ? this.renderMessages() : this.renderTable()}
+                    </div>
+                </div>
+            </div>
+        )
+    };
+
+    renderTable(){
+        return (
+            <table className="table  table-striped table-bordered">
+                {this.renderHeader()}
+                {this.renderRows()}
+            </table>
+        )
     }
 
     renderRows(){
@@ -28,14 +61,11 @@ class Devices extends React.Component{
             {
                 this.state.devices.map(function(device) {
                     return(
-                        <tr key={device.id}>
-                            <td>SOME_CODE_WILL_BE</td>
-                            <td>{device.serial_number}</td>
+                        <tr key={device.id} className="data-row">
+                            <td>{device.code}</td>
                             <td>{device.device_type.name}</td>
-                            <td>{device.device_brand.name}</td>
-                            <td>{device.asset == 1 ? 'Si' : 'No'}</td>
                             <td>{device.purchase_date}</td>
-
+                            <td>{device.ownership}</td>
                         </tr>
                     )
                 })
@@ -49,40 +79,17 @@ class Devices extends React.Component{
             <thead>
             <tr>
                 <th>Código</th>
-                <th>No. Serie</th>
                 <th>Tipo</th>
-                <th>Marca</th>
-                <th>¿Es Activo?</th>
                 <th>Fecha de Compra</th>
+                <th>Propiedad</th>
             </tr>
             </thead>
         )
     }
 
-    renderTable(){
-        return (
-            <table className="table table-condensed table-striped">
-                {this.renderHeader()}
-                {this.renderRows()}
-            </table>
-        )
+    renderMessages(){
+        return <div className={'message ' + this.state.messages.type + '-message'}>{this.state.messages.content }</div>
     }
-
-    renderError(){
-        return <div className="error_message">{this.state.error_message}</div>
-    }
-
-    render(){
-        return (
-            <div>
-                <h1>Dispositivos</h1>
-                {this.state.show_error_message ? this.renderError() : this.renderTable()}
-            </div>
-
-        )
-    };
 
 
 }
-
-export default Devices;

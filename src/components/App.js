@@ -8,7 +8,7 @@ class App extends React.Component {
     return (
       <div>
         <Navbar />
-        <section className="container">
+        <section>
             {this.props.children || <Home/>}
         </section>
         <Footer />

@@ -9,3 +9,29 @@
   margin-top: 10px;
 }
 
+.table th{
+  background: #2e91b6;
+  color: white;
+}
+
+.page-title{
+  margin-top: 0;
+  background: #E7E7E7;
+  padding: 0;
+  margin-bottom: 20px;
+  h1{
+    font-size: 20px;
+    margin-top: 10px;
+  }
+}
+
+.message {
+  text-align: center;
+  font-size: 18px;
+
+  padding: 20% 10%;
+}
+
+.error-message{
+  color: #80031E;
+}

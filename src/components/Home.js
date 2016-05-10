@@ -5,7 +5,7 @@ import About from './About'
 class Home extends React.Component{
     render(){
         return(
-            <div>
+            <div className="container">
                 <div className='row banner'>
                     <div className="col-md-5 ">
                         <Login/>
