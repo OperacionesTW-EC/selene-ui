@@ -111,7 +111,7 @@ Guía de instalación con Docker para Mac
   ```
 
 
-[docker-toolbox]: (https://docs.docker.com/machine/get-started/)
+[docker-toolbox]: (https://www.docker.com/products/docker-toolbox/)
 [docker-ports]: (https://docs.docker.com/engine/installation/mac/#access-container-ports)
 
 
@@ -129,9 +129,9 @@ $ node --version
 
 Descargar e instalar la versión de NVM
 ```sh
-$ nvm download 4.3.2
-$ nvm build 4.3.2
-$ nvm install 4.3.2
+$ nvm download 4.4.4
+$ nvm build 4.4.4
+$ nvm install 4.4.4
 ```
 
 Instalar las dependencias de nuestra aplicación
