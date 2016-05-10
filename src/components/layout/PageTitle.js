@@ -1,6 +1,6 @@
 import React from 'react';
 
-class PageTitle extends React.Component{
+export default class PageTitle extends React.Component{
 
     constructor(props){
         super(props);
@@ -18,4 +18,3 @@ class PageTitle extends React.Component{
     }
 
 }
-export default PageTitle;

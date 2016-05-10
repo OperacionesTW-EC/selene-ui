@@ -3,7 +3,7 @@
 import React from 'react';
 import expect from 'expect';
 import { mount } from 'enzyme';
-import Title from './../../components/layout/PageTitle';
+import PageTitle from './../../components/layout/PageTitle';
 
 
 describe('Page title Component', () => {
@@ -13,7 +13,7 @@ describe('Page title Component', () => {
     describe('Render', () => {
 
         beforeEach(() => {
-            component =  mount(<Title content='Some title' />);
+            component =  mount(<PageTitle content='Some title' />);
         });
 
         it('should render the title div', () => {
