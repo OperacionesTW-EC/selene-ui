@@ -41,7 +41,7 @@ describe('DeviceForm', () => {
         });
 
         it('should render save button',()=>{
-          expect(component.find('a #save').length).toBe(1);
+          expect(component.find('#save').length).toBe(1);
         });
 
     });

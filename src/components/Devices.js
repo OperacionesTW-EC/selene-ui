@@ -1,16 +1,16 @@
 import React from 'react';
 import $ from 'jquery';
 import PageTitle from './layout/PageTitle'
+import MessageHelper from './helpers/MessageHelper'
 import Constants from './../config/Constants'
 
 export default class Devices extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = { devices: [], messages: {content:'', type:undefined} };
+        this.state = { devices: [], message: new MessageHelper()};
         this.renderRows = this.renderRows.bind(this);
         this.renderTable = this.renderTable.bind(this);
-        this.renderMessages = this.renderMessages.bind(this);
     }
 
     componentDidMount(){
@@ -19,19 +19,13 @@ export default class Devices extends React.Component{
             datatype: 'json',
             url: Constants.BACKEND_URL +'/devices/'
         }).done((data) => {
-            this.setState({devices: data.results, messages:this.buildInfoMessage(data)});
+            data.results.length > 0 || this.state.message.buildInfoMessage();
+            this.setState({devices:data.results});
         }).fail(() => {
-            this.setState({messages:{content:'Ha ocurrido un error al acceder al listado de dispositivos. Por favor intente de nuevo más tarde o contacte al administrador del sistema.', type:'error'}});
+            this.state.message.buildErrorMessage();
+            this.setState({devices:[]})
         });
     }
-
-    buildInfoMessage(response){
-        let message = {};
-        if(response.results.length == 0){
-            message = {content:'No existen dispositivos registrados en el sistema', type:'info'}
-        }
-        return message;
-    };
 
     render(){
         return (
@@ -39,7 +33,7 @@ export default class Devices extends React.Component{
                 <PageTitle content="Lista de dispositivos"/>
                 <div className="container">
                     <div className="row margin">
-                        {this.state.devices.length == 0 ? this.renderMessages() : this.renderTable()}
+                        {this.state.devices.length == 0 ? this.state.message.renderMessage() : this.renderTable()}
                     </div>
                 </div>
             </div>
@@ -86,10 +80,5 @@ export default class Devices extends React.Component{
             </thead>
         )
     }
-
-    renderMessages(){
-        return <div className={'message ' + this.state.messages.type + '-message'}>{this.state.messages.content }</div>
-    }
-
 
 }
