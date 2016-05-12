@@ -5,6 +5,7 @@ import PageTitle from './layout/PageTitle';
 import MessageHelper from './helpers/MessageHelper';
 import FormRow from './helpers/FormRow';
 import $ from 'jquery';
+import datepicker from 'bootstrap-datepicker';
 
 export default class DeviceForm extends React.Component{
 
@@ -18,7 +19,7 @@ export default class DeviceForm extends React.Component{
             device: {
                 device_type: '',
                 device_brand: '',
-                asset: '',
+                asset: '1',
                 serial_number: '',
                 model: '',
                 ownership: 'TW',
@@ -32,11 +33,26 @@ export default class DeviceForm extends React.Component{
         this.handleFormChanges = this.handleFormChanges.bind(this);
         this.loadDeviceTypes = this.loadDeviceTypes.bind(this);
         this.loadDeviceBrands = this.loadDeviceBrands.bind(this);
+        this.startDatepicker = this.startDatepicker.bind(this);
     }
 
     componentDidMount(){
         this.loadDeviceTypes();
         this.loadDeviceBrands();
+        this.startDatepicker();
+    }
+
+    startDatepicker(){
+      let data = {device:this.state.device};
+      $('[name="purchase_date"]').datepicker({
+          format: 'yyyy-mm-dd',
+          endDate: 'now',
+          autoclose: true,
+          setDate: new Date()
+      }).on('changeDate', (event) =>  {
+          data.device[event.target.name] = event.target.value;
+          this.setState(data);
+      });
     }
 
     handleSaveClick(){
@@ -77,8 +93,8 @@ export default class DeviceForm extends React.Component{
                                     {this.renderDeviceBrandSelect()}
                                 </FormRow>
                                 <FormRow label="Activo">
-                                    <a value='1' name="asset" onClick={this.handleFormChanges} className="btn btn-default asset-chk"> Si </a>
-                                    <a value='0' name="asset" onClick={this.handleFormChanges} className="btn btn-default asset-chk"> No </a>
+                                    <a value='1' name="asset" onClick={this.handleFormChanges} className={this.state.device.asset ==1 ? "btn btn-default asset-chk selected" : "btn btn-default asset-chk" }> Si </a>
+                                    <a value='0' name="asset" onClick={this.handleFormChanges} className={this.state.device.asset ==0 ? "btn btn-default asset-chk selected" : "btn btn-default asset-chk" }> No </a>
                                 </FormRow>
                                 <FormRow label="Serial">
                                     <input className="form-control" value={this.state.device.serial_number}  type="text" name='serial_number'/>
@@ -87,7 +103,7 @@ export default class DeviceForm extends React.Component{
                                     <input className="form-control" value={this.state.device.model}  type="text" name='model'/>
                                 </FormRow>
                                 <FormRow label="Fecha de Compra">
-                                    <input className="form-control" value={this.state.device.purchase_date}  type="text" name='purchase_date'/>
+                                    <input type='text' className="form-control" value={this.state.device.purchase_date} name='purchase_date'/>
                                 </FormRow>
                                 <FormRow label="Propiedad">
                                     {this.renderOwnershipSelect()}
@@ -148,7 +164,6 @@ export default class DeviceForm extends React.Component{
             </select>
         )
     }
-
 
     loadDeviceBrands(){
         $.ajax({
