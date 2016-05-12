@@ -64,7 +64,15 @@ export default class DeviceForm extends React.Component{
             url: Constants.BACKEND_URL +'/devices/'
         }).done(() => {
             this.state.message.buildSuccessMessage();
-            this.setState({});
+            this.setState({device: {
+                device_type: '',
+                device_brand: '',
+                asset: '1',
+                serial_number: '',
+                model: '',
+                ownership: 'TW',
+                purchase_date: ''
+            }});
         }).fail(() => {
             this.state.message.buildErrorMessage('Error, no se pudo guardar el dispositivo');
             this.setState({});
@@ -123,7 +131,7 @@ export default class DeviceForm extends React.Component{
 
     renderDeviceTypeSelect(){
         return (
-            <select className='form-control' name='device_type'>
+            <select className='form-control' name='device_type' value={this.state.device.device_type}>
                 <option></option>
                 {
                     this.state.deviceTypes.map(function(deviceType) {
@@ -138,7 +146,7 @@ export default class DeviceForm extends React.Component{
 
     renderDeviceBrandSelect(){
         return (
-            <select className='form-control' name='device_brand'>
+            <select className='form-control' name='device_brand'  value={this.state.device.device_brand}>
                 <option></option>
                 {
                     this.state.deviceBrands.map(function(deviceBrand) {

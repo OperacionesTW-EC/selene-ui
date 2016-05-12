@@ -7,10 +7,10 @@ const schemas = {
                 "type": "integer"
             },
             "next": {
-                "type": "null"
+                "type": ["string","null"]
             },
             "previous": {
-                "type": "null"
+                "type": ["string","null"]
             },
             "results": {
                 "type": "array",

@@ -42,7 +42,7 @@ describe('DeviceForm', () => {
 						}]
 					};
 
-					component = mount( < DeviceForm /> );
+					component = mount( < DeviceForm / > );
 					expect(component.state('deviceTypes')).toEqual(deviceTypes.results);
 				});
 
@@ -72,7 +72,7 @@ describe('DeviceForm', () => {
 							name: 'some_name'
 						}]
 					};
-					component = mount( < DeviceForm /> );
+					component = mount( < DeviceForm / > );
 					expect(component.state('deviceBrands')).toEqual(deviceBrands.results);
 				});
 
@@ -98,7 +98,7 @@ describe('DeviceForm', () => {
 			});
 
 			it('should render an error message', () => {
-				component = mount( < DeviceForm /> );
+				component = mount( < DeviceForm / > );
 				expect(component.find('.error-message').length).toBe(1);
 			});
 
@@ -118,7 +118,7 @@ describe('DeviceForm', () => {
 					}
 				}
 			});
-			component = mount( < DeviceForm /> );
+			component = mount( < DeviceForm / > );
 		});
 
 		afterEach(function() {
@@ -175,14 +175,31 @@ describe('DeviceForm', () => {
 
 		describe('inputs', () => {
 
+			let response = {
+				results: []
+			};
+
+			let sandboxAjax;
+
 			beforeEach(() => {
 				sandbox = Sinon.sandbox.create();
 				sandbox.spy(DeviceForm.prototype, "handleFormChanges");
-				component = mount( < DeviceForm /> );
+				component = mount( < DeviceForm / > );
+
+				sandboxAjax = Sinon.sandbox.create();
+				sandboxAjax.stub($, 'ajax').returns({
+					done: (callback) => {
+						callback(response);
+						return {
+							fail: (callback) => {}
+						}
+					}
+				});
 			});
 
 			afterEach(function() {
 				sandbox.restore();
+				sandboxAjax.restore();
 			});
 
 			it('shoud call handleFormChanges when any of the input changes', () => {
@@ -203,6 +220,53 @@ describe('DeviceForm', () => {
 				expect(inputComponent.nodes[0].value).toEqual(expectValue)
 				expect(component.state().device.serial_number).toEqual(expectValue)
 			});
+
+			it('should update state value of device type field', () => {
+				response = {
+					results: [{
+						id: '1',
+						name: 'some_name'
+					}, {
+						id: '2',
+						name: 'some_name'
+					}]
+				};
+
+				component = mount( < DeviceForm / > );
+				let input = component.find('[name="device_type"]');
+				input.simulate('change', {
+					target: {
+						name: 'device_type',
+						value: 1
+					}
+				});
+
+				expect(input.nodes[0].value).toEqual(1);
+			});
+
+
+			it('should update state value of device brand field', () => {
+				response = {
+					results: [{
+						id: '1',
+						name: 'some_name'
+					}, {
+						id: '2',
+						name: 'some_name'
+					}]
+				};
+
+				component = mount( < DeviceForm / > );
+				let input = component.find('[name="device_brand"]');
+				input.simulate('change', {
+					target: {
+						name: 'device_brand',
+						value: 1
+					}
+				});
+
+				expect(input.nodes[0].value).toEqual(1);
+			});
 		});
 
 		describe('save button', () => {
@@ -210,7 +274,7 @@ describe('DeviceForm', () => {
 			beforeEach(() => {
 				sandbox = Sinon.sandbox.create();
 				sandbox.spy(DeviceForm.prototype, "handleSaveClick");
-				component = mount( < DeviceForm /> );
+				component = mount( < DeviceForm / > );
 				sandbox.spy($, "ajax");
 			});
 
@@ -233,7 +297,9 @@ describe('DeviceForm', () => {
 
 		describe('with successful ajax call', () => {
 
-			let response = {results: []};
+			let response = {
+				results: []
+			};
 			let isMounted;
 
 			beforeEach(function() {
@@ -247,7 +313,7 @@ describe('DeviceForm', () => {
 						}
 					}
 				});
-				component = mount( < DeviceForm /> );
+				component = mount( < DeviceForm / > );
 			});
 
 			afterEach(function() {
@@ -255,16 +321,65 @@ describe('DeviceForm', () => {
 			});
 
 			it('should show a success message', () => {
-				component = mount( < DeviceForm /> );
+				component = mount( < DeviceForm / > );
 				isMounted = true;
 				component.find("#save").simulate('click');
 				expect(component.find('.success-message').length).toBe(1);
 			});
+
+			it('should clean input device type field', () => {
+				response = {
+					results: [{
+						id: '1',
+						name: 'some_name'
+					}, {
+						id: '2',
+						name: 'some_name'
+					}]
+				};
+				component = mount( < DeviceForm / > );
+				isMounted = true;
+				let input = component.find('[name="device_type"]');
+				input.simulate('change', {
+					target: {
+						name: 'device_type',
+						value: 1
+					}
+				});
+				component.find("#save").simulate('click');
+				expect(input.nodes[0].value).toEqual('');
+			});
+
+			it('should clean input device brand field', () => {
+				response = {
+					results: [{
+						id: '1',
+						name: 'some_name'
+					}, {
+						id: '2',
+						name: 'some_name'
+					}]
+				};
+				component = mount( < DeviceForm / > );
+				isMounted = true;
+				let input = component.find('[name="device_brand"]');
+				input.simulate('change', {
+					target: {
+						name: 'device_brand',
+						value: 1
+					}
+				});
+				component.find("#save").simulate('click');
+				expect(input.nodes[0].value).toEqual('');
+			});
+
 		});
 
 		describe('with error', () => {
 
-			let response = {results: []};
+			let response = {
+				results: []
+			};
 			let isMounted;
 
 			beforeEach(function() {
@@ -272,10 +387,10 @@ describe('DeviceForm', () => {
 				sandbox = Sinon.sandbox.create();
 				sandbox.stub($, 'ajax').returns({
 					done: (callback) => {
-						if(!isMounted) callback(response);
+						if (!isMounted) callback(response);
 						return {
 							fail: (callback) => {
-								if(isMounted) callback();
+								if (isMounted) callback();
 							}
 						}
 					}
@@ -287,7 +402,7 @@ describe('DeviceForm', () => {
 			});
 
 			it('should show an error message', () => {
-				component = mount( < DeviceForm /> );
+				component = mount( < DeviceForm / > );
 				isMounted = true;
 				component.find("#save").simulate('click');
 				expect(component.find('.error-message').length).toBe(1);
