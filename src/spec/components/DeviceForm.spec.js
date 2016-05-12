@@ -13,6 +13,7 @@ describe('DeviceForm', () => {
 	let deviceTypes, deviceBrands;
 
 	describe('Initialization', () => {
+		
 		describe('with valid data', () => {
 
 			describe('deviceTypes', () => {
@@ -41,7 +42,7 @@ describe('DeviceForm', () => {
 						}]
 					};
 
-					component = mount( < DeviceForm / > );
+					component = mount( < DeviceForm /> );
 					expect(component.state('deviceTypes')).toEqual(deviceTypes.results);
 				});
 
@@ -71,7 +72,7 @@ describe('DeviceForm', () => {
 							name: 'some_name'
 						}]
 					};
-					component = mount( < DeviceForm / > );
+					component = mount( < DeviceForm /> );
 					expect(component.state('deviceBrands')).toEqual(deviceBrands.results);
 				});
 
@@ -96,8 +97,8 @@ describe('DeviceForm', () => {
 				sandbox.restore();
 			});
 
-			it('should render an error message ', () => {
-				component = mount( < DeviceForm / > );
+			it('should render an error message', () => {
+				component = mount( < DeviceForm /> );
 				expect(component.find('.error-message').length).toBe(1);
 			});
 
@@ -117,7 +118,7 @@ describe('DeviceForm', () => {
 					}
 				}
 			});
-			component = mount( < DeviceForm / > );
+			component = mount( < DeviceForm /> );
 		});
 
 		afterEach(function() {
@@ -172,34 +173,131 @@ describe('DeviceForm', () => {
 
 	describe('Form events', () => {
 
-		it('shoud call handleFormChanges when any of the input changes', () => {
-			Sinon.spy(DeviceForm.prototype, "handleFormChanges");
-			component = mount( < DeviceForm / > );
-			component.find("[name='device_type']").simulate('change');
-			expect(DeviceForm.prototype.handleFormChanges.calledOnce).toEqual(true);
-		});
+		describe('inputs', () => {
 
-		it('should update the componente state', () => {
-			let expectValue = "123456";
-			component = mount( < DeviceForm / > );
-			let inputComponent = component.find("[name='serial_number']");
-
-			inputComponent.simulate('change', {
-				target: {
-					name: 'serial_number',
-					value: expectValue
-				}
+			beforeEach(() => {
+				sandbox = Sinon.sandbox.create();
+				sandbox.spy(DeviceForm.prototype, "handleFormChanges");
+				component = mount( < DeviceForm /> );
 			});
 
-			expect(component.find("[name='serial_number']").nodes[0].value).toEqual(expectValue)
+			afterEach(function() {
+				sandbox.restore();
+			});
+
+			it('shoud call handleFormChanges when any of the input changes', () => {
+				component.find("[name='device_type']").simulate('change');
+				expect(DeviceForm.prototype.handleFormChanges.calledOnce).toEqual(true);
+			});
+
+			it('should update the component state ', () => {
+				let expectValue = "123456";
+				let inputComponent = component.find("[name='serial_number']");
+				inputComponent.simulate('change', {
+					target: {
+						name: 'serial_number',
+						value: expectValue
+					}
+				});
+
+				expect(inputComponent.nodes[0].value).toEqual(expectValue)
+				expect(component.state().device.serial_number).toEqual(expectValue)
+			});
 		});
 
-		it('should call handleSaveClick when click button save', () => {
-      Sinon.spy(DeviceForm.prototype, "handleSaveClick");
-      component = mount( < DeviceForm / > );
-      component.find("#save").simulate('click');
-      expect(DeviceForm.prototype.handleSaveClick.calledOnce).toEqual(true);
-		})
+		describe('save button', () => {
+
+			beforeEach(() => {
+				sandbox = Sinon.sandbox.create();
+				sandbox.spy(DeviceForm.prototype, "handleSaveClick");
+				component = mount( < DeviceForm /> );
+				sandbox.spy($, "ajax");
+			});
+
+			afterEach(function() {
+				sandbox.restore();
+			});
+
+			it('should invoke handleSaveClick when clicked', () => {
+				component.find("#save").simulate('click');
+				expect(DeviceForm.prototype.handleSaveClick.calledOnce).toEqual(true);
+			});
+
+			it('should send data to backed', () => {
+				component.find("#save").simulate('click');
+				expect($.ajax.calledOnce).toEqual(true);
+			});
+
+			it('should send data to backed', () => {
+				component.find("#save").simulate('click');
+				expect($.ajax.calledOnce).toEqual(true);
+			});
+
+
+		});
+
+		describe('with successful ajax call', () => {
+
+			let response = {results: []};
+			let isMounted;
+
+			beforeEach(function() {
+				isMounted = false;
+				sandbox = Sinon.sandbox.create();
+				sandbox.stub($, 'ajax').returns({
+					done: (callback) => {
+						isMounted ? callback() : callback(response);
+						return {
+							fail: (callback) => {}
+						}
+					}
+				});
+				component = mount( < DeviceForm /> );
+			});
+
+			afterEach(function() {
+				sandbox.restore();
+			});
+
+			it('should show a success message', () => {
+				component = mount( < DeviceForm /> );
+				isMounted = true;
+				component.find("#save").simulate('click');
+				expect(component.find('.success-message').length).toBe(1);
+			});
+		});
+
+		describe('with error', () => {
+
+			let response = {results: []};
+			let isMounted;
+
+			beforeEach(function() {
+				isMounted = false;
+				sandbox = Sinon.sandbox.create();
+				sandbox.stub($, 'ajax').returns({
+					done: (callback) => {
+						if(!isMounted) callback(response);
+						return {
+							fail: (callback) => {
+								if(isMounted) callback();
+							}
+						}
+					}
+				});
+			});
+
+			afterEach(function() {
+				sandbox.restore();
+			});
+
+			it('should show an error message', () => {
+				component = mount( < DeviceForm /> );
+				isMounted = true;
+				component.find("#save").simulate('click');
+				expect(component.find('.error-message').length).toBe(1);
+			});
+		});
 
 	});
 
