@@ -23,7 +23,7 @@ describe('Devices Component', () => {
         });
 
         it('should load devices from backend', () => {
-            devices = {results:[{device_type:{}, device_brand:{}}]};
+            devices = {results:[{id:'1'},{id:'2'}]};
             component = mount(<Devices/>);
             expect(component.state('devices')).toEqual(devices.results);
         });
@@ -39,14 +39,14 @@ describe('Devices Component', () => {
         });
 
         it('should render a row for every element on the list', () => {
-            devices = {results:[{device_type:{}, device_brand:{}, id:'1'}, {device_type:{}, device_brand:{}, id:'2'}]};
+            devices = {results:[{id:'1'}, {id:'2'}]};
             component = mount(<Devices/>);
             var rows = component.find('tr.data-row');
             expect(rows.length).toBe(devices.results.length);
         });
 
         it('should code, type, purchase date and ownership', () => {
-            devices = {results:[{device_type:{name:'some_name'},code:'some_code', purchase_date:'01/01/2016',ownership:'TW', device_brand:{}}]};
+            devices = {results:[{device_type_name:'some_name',code:'some_code', purchase_date:'01/01/2016',ownership:'TW'}]};
             component = mount(<Devices/>);
             var row = component.find('tr.data-row').nodes[0];
             expect(row.innerHTML).toContain('some_name');
@@ -56,7 +56,7 @@ describe('Devices Component', () => {
         });
 
         it('should render rows with four tds', () => {
-            devices = {results:[{device_type:{name:'some_name'},code:'some_code', purchase_date:'01/01/2016',ownership:'TW', device_brand:{}}]};
+            devices = {results:[{device_type_name:'some_name',code:'some_code', purchase_date:'01/01/2016',ownership:'TW'}]};
             component = mount(<Devices/>);
             var tds = component.find('tr.data-row').find('td').nodes;
             expect(tds.length).toEqual(4);
@@ -75,7 +75,7 @@ describe('Devices Component', () => {
     });
 
     describe('with error in response', () => {
-      
+
         beforeEach(function () {
             sandbox = Sinon.sandbox.create();
             sandbox.stub($,'ajax').returns({done: (_) => { return {fail: (callback) => {callback()}}} });

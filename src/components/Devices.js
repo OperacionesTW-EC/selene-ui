@@ -57,7 +57,7 @@ export default class Devices extends React.Component{
                     return(
                         <tr key={device.id} className="data-row">
                             <td>{device.code}</td>
-                            <td>{device.device_type.name}</td>
+                            <td>{device.device_type_name}</td>
                             <td>{device.purchase_date}</td>
                             <td>{device.ownership}</td>
                         </tr>

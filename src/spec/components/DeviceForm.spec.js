@@ -13,7 +13,7 @@ describe('DeviceForm', () => {
 	let deviceTypes, deviceBrands;
 
 	describe('Initialization', () => {
-		
+
 		describe('with valid data', () => {
 
 			describe('deviceTypes', () => {
@@ -221,11 +221,6 @@ describe('DeviceForm', () => {
 			it('should invoke handleSaveClick when clicked', () => {
 				component.find("#save").simulate('click');
 				expect(DeviceForm.prototype.handleSaveClick.calledOnce).toEqual(true);
-			});
-
-			it('should send data to backed', () => {
-				component.find("#save").simulate('click');
-				expect($.ajax.calledOnce).toEqual(true);
 			});
 
 			it('should send data to backed', () => {

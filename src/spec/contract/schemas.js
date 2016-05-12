@@ -21,38 +21,16 @@ const schemas = {
                             "type": "integer"
                         },
                         "device_type": {
-                            "type": "object",
-                            "properties": {
-                                "url": {
-                                    "type": "string"
-                                },
-                                "name": {
-                                    "type": "string"
-                                },
-                                "code": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "url",
-                                "name",
-                                "code"
-                            ]
+                            "type": "integer"
                         },
                         "device_brand": {
-                            "type": "object",
-                            "properties": {
-                                "url": {
-                                    "type": "string"
-                                },
-                                "name": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "url",
-                                "name"
-                            ]
+                            "type": "integer"
+                        },
+                        "device_type_name": {
+                            "type": "string"
+                        },
+                        "device_brand_name": {
+                            "type": "string"
                         },
                         "asset": {
                             "type": "integer"
