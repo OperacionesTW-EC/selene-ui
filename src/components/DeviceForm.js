@@ -76,8 +76,10 @@ export default class DeviceForm extends React.Component{
                                     {this.renderDeviceBrandSelect()}
                                 </FormRow>
                                 <FormRow label="Activo">
-                                    <a value='1' name="asset" onClick={this.handleFormChanges} className={this.state.device.asset ==1 ? "btn btn-default asset-chk selected" : "btn btn-default asset-chk" }> Si </a>
-                                    <a value='0' name="asset" onClick={this.handleFormChanges} className={this.state.device.asset ==0 ? "btn btn-default asset-chk selected" : "btn btn-default asset-chk" }> No </a>
+                                    <a value='1' name="asset" onClick={this.handleFormChanges}
+                                       className={"btn btn-default asset-chk " + (this.state.device.asset ==1 ? "selected" : "") }> Si </a>
+                                    <a value='0' name="asset" onClick={this.handleFormChanges}
+                                       className={"btn btn-default asset-chk " + (this.state.device.asset ==0 ? "selected" : "")}> No </a>
                                 </FormRow>
                                 <FormRow label="Serial">
                                     <input className="form-control" value={this.state.device.serial_number}  type="text" name='serial_number'/>
