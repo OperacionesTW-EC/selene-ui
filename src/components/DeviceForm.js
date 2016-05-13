@@ -33,50 +33,25 @@ export default class DeviceForm extends React.Component{
         this.handleFormChanges = this.handleFormChanges.bind(this);
         this.loadDeviceTypes = this.loadDeviceTypes.bind(this);
         this.loadDeviceBrands = this.loadDeviceBrands.bind(this);
-        this.startDatepicker = this.startDatepicker.bind(this);
+        this.setDatePicker = this.setDatePicker.bind(this);
+        this.resetState = this.resetState.bind(this);
     }
 
     componentDidMount(){
         this.loadDeviceTypes();
         this.loadDeviceBrands();
-        this.startDatepicker();
+        this.setDatePicker();
     }
 
-    startDatepicker(){
-      let data = {device:this.state.device};
-      $('[name="purchase_date"]').datepicker({
+    setDatePicker(){
+      $("[name='purchase_date']").datepicker({
           format: 'yyyy-mm-dd',
           endDate: 'now',
           autoclose: true,
           setDate: new Date()
       }).on('changeDate', (event) =>  {
-          data.device[event.target.name] = event.target.value;
-          this.setState(data);
+          this.handleFormChanges(event);
       });
-    }
-
-    handleSaveClick(){
-        $.ajax({
-            type: 'post',
-            datatype: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(this.state.device),
-            url: Constants.BACKEND_URL +'/devices/'
-        }).done(() => {
-            this.state.message.buildSuccessMessage();
-            this.setState({device: {
-                device_type: '',
-                device_brand: '',
-                asset: '1',
-                serial_number: '',
-                model: '',
-                ownership: 'TW',
-                purchase_date: ''
-            }});
-        }).fail(() => {
-            this.state.message.buildErrorMessage('Error, no se pudo guardar el dispositivo');
-            this.setState({});
-        })
     }
 
     handleFormChanges(event){
@@ -129,10 +104,26 @@ export default class DeviceForm extends React.Component{
         )
     }
 
+    handleSaveClick(){
+        $.ajax({
+            type: 'post',
+            datatype: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(this.state.device),
+            url: Constants.BACKEND_URL +'/devices/'
+        }).done(() => {
+            this.state.message.buildSuccessMessage();
+            this.resetState();
+        }).fail(() => {
+            this.state.message.buildErrorMessage('Error, no se pudo guardar el dispositivo');
+            this.setState({});
+        })
+    }
+
     renderDeviceTypeSelect(){
         return (
             <select className='form-control' name='device_type' value={this.state.device.device_type}>
-                <option></option>
+                <option>Seleccione...</option>
                 {
                     this.state.deviceTypes.map(function(deviceType) {
                         return(
@@ -147,7 +138,7 @@ export default class DeviceForm extends React.Component{
     renderDeviceBrandSelect(){
         return (
             <select className='form-control' name='device_brand'  value={this.state.device.device_brand}>
-                <option></option>
+                <option>Seleccione...</option>
                 {
                     this.state.deviceBrands.map(function(deviceBrand) {
                         return(
@@ -197,6 +188,18 @@ export default class DeviceForm extends React.Component{
             this.state.message.buildErrorMessage();
             this.setState({deviceTypes:[]});
         });
+    }
+
+    resetState(){
+        this.setState({device: {
+            device_type: '',
+            device_brand: '',
+            asset: '1',
+            serial_number: '',
+            model: '',
+            ownership: 'TW',
+            purchase_date: ''
+        }});
     }
 
 }

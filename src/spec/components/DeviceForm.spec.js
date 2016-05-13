@@ -42,7 +42,7 @@ describe('DeviceForm', () => {
 						}]
 					};
 
-					component = mount( < DeviceForm / > );
+					component = mount( < DeviceForm/>);
 					expect(component.state('deviceTypes')).toEqual(deviceTypes.results);
 				});
 
@@ -72,7 +72,7 @@ describe('DeviceForm', () => {
 							name: 'some_name'
 						}]
 					};
-					component = mount( < DeviceForm / > );
+					component = mount( < DeviceForm/>);
 					expect(component.state('deviceBrands')).toEqual(deviceBrands.results);
 				});
 
@@ -98,7 +98,7 @@ describe('DeviceForm', () => {
 			});
 
 			it('should render an error message', () => {
-				component = mount( < DeviceForm / > );
+				component = mount( < DeviceForm/>);
 				expect(component.find('.error-message').length).toBe(1);
 			});
 
@@ -118,7 +118,7 @@ describe('DeviceForm', () => {
 					}
 				}
 			});
-			component = mount( < DeviceForm / > );
+			component = mount( < DeviceForm/>);
 		});
 
 		afterEach(function() {
@@ -184,7 +184,7 @@ describe('DeviceForm', () => {
 			beforeEach(() => {
 				sandbox = Sinon.sandbox.create();
 				sandbox.spy(DeviceForm.prototype, "handleFormChanges");
-				component = mount( < DeviceForm / > );
+				component = mount( < DeviceForm/>);
 
 				sandboxAjax = Sinon.sandbox.create();
 				sandboxAjax.stub($, 'ajax').returns({
@@ -232,7 +232,7 @@ describe('DeviceForm', () => {
 					}]
 				};
 
-				component = mount( < DeviceForm / > );
+				component = mount( < DeviceForm/>);
 				let input = component.find('[name="device_type"]');
 				input.simulate('change', {
 					target: {
@@ -241,7 +241,7 @@ describe('DeviceForm', () => {
 					}
 				});
 
-				expect(input.nodes[0].value).toEqual(1);
+				expect(input.nodes[0].value).toEqual('1');
 			});
 
 
@@ -256,7 +256,7 @@ describe('DeviceForm', () => {
 					}]
 				};
 
-				component = mount( < DeviceForm / > );
+				component = mount( < DeviceForm/>);
 				let input = component.find('[name="device_brand"]');
 				input.simulate('change', {
 					target: {
@@ -265,7 +265,7 @@ describe('DeviceForm', () => {
 					}
 				});
 
-				expect(input.nodes[0].value).toEqual(1);
+				expect(input.nodes[0].value).toEqual('1');
 			});
 		});
 
@@ -274,7 +274,7 @@ describe('DeviceForm', () => {
 			beforeEach(() => {
 				sandbox = Sinon.sandbox.create();
 				sandbox.spy(DeviceForm.prototype, "handleSaveClick");
-				component = mount( < DeviceForm / > );
+				component = mount( < DeviceForm/>);
 				sandbox.spy($, "ajax");
 			});
 
@@ -313,7 +313,7 @@ describe('DeviceForm', () => {
 						}
 					}
 				});
-				component = mount( < DeviceForm / > );
+				component = mount( < DeviceForm/>);
 			});
 
 			afterEach(function() {
@@ -321,7 +321,7 @@ describe('DeviceForm', () => {
 			});
 
 			it('should show a success message', () => {
-				component = mount( < DeviceForm / > );
+				component = mount( < DeviceForm/>);
 				isMounted = true;
 				component.find("#save").simulate('click');
 				expect(component.find('.success-message').length).toBe(1);
@@ -337,7 +337,7 @@ describe('DeviceForm', () => {
 						name: 'some_name'
 					}]
 				};
-				component = mount( < DeviceForm / > );
+				component = mount( < DeviceForm/>);
 				isMounted = true;
 				let input = component.find('[name="device_type"]');
 				input.simulate('change', {
@@ -347,7 +347,7 @@ describe('DeviceForm', () => {
 					}
 				});
 				component.find("#save").simulate('click');
-				expect(input.nodes[0].value).toEqual('');
+				expect(input.nodes[0].value).toEqual('Seleccione...');
 			});
 
 			it('should clean input device brand field', () => {
@@ -360,7 +360,7 @@ describe('DeviceForm', () => {
 						name: 'some_name'
 					}]
 				};
-				component = mount( < DeviceForm / > );
+				component = mount( < DeviceForm/>);
 				isMounted = true;
 				let input = component.find('[name="device_brand"]');
 				input.simulate('change', {
@@ -370,7 +370,7 @@ describe('DeviceForm', () => {
 					}
 				});
 				component.find("#save").simulate('click');
-				expect(input.nodes[0].value).toEqual('');
+				expect(input.nodes[0].value).toEqual('Seleccione...');
 			});
 
 		});
@@ -402,7 +402,7 @@ describe('DeviceForm', () => {
 			});
 
 			it('should show an error message', () => {
-				component = mount( < DeviceForm / > );
+				component = mount( < DeviceForm/>);
 				isMounted = true;
 				component.find("#save").simulate('click');
 				expect(component.find('.error-message').length).toBe(1);
