@@ -113,8 +113,8 @@ export default class DeviceForm extends React.Component{
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(this.state.device),
             url: Constants.BACKEND_URL +'/devices/'
-        }).done(() => {
-            this.state.message.buildSuccessMessage();
+        }).done((response) => {
+            this.state.message.buildSuccessMessage('El dispositivo '+response.full_code+" ha sido registrado satisfactoriamente");
             this.resetState();
         }).fail(() => {
             this.state.message.buildErrorMessage('Error, no se pudo guardar el dispositivo');

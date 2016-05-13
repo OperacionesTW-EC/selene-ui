@@ -298,7 +298,8 @@ describe('DeviceForm', () => {
 		describe('with successful ajax call', () => {
 
 			let response = {
-				results: []
+				results: [],
+				full_code:'some code'
 			};
 			let isMounted;
 
@@ -307,7 +308,7 @@ describe('DeviceForm', () => {
 				sandbox = Sinon.sandbox.create();
 				sandbox.stub($, 'ajax').returns({
 					done: (callback) => {
-						isMounted ? callback() : callback(response);
+						callback(response);
 						return {
 							fail: (callback) => {}
 						}
@@ -320,11 +321,12 @@ describe('DeviceForm', () => {
 				sandbox.restore();
 			});
 
-			it('should show a success message', () => {
+			it('should show a success message with the device code', () => {
 				component = mount( < DeviceForm/>);
 				isMounted = true;
 				component.find("#save").simulate('click');
 				expect(component.find('.success-message').length).toBe(1);
+				expect(component.find('.success-message').nodes[0].innerHTML).toContain(response.full_code);
 			});
 
 			it('should clean input device type field', () => {

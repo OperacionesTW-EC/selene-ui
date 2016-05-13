@@ -56,7 +56,7 @@ export default class Devices extends React.Component{
                 this.state.devices.map(function(device) {
                     return(
                         <tr key={device.id} className="data-row">
-                            <td>{device.code}</td>
+                            <td>{device.full_code}</td>
                             <td>{device.device_type_name}</td>
                             <td>{device.purchase_date}</td>
                             <td>{device.ownership}</td>

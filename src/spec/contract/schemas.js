@@ -23,6 +23,9 @@ const schemas = {
                         "device_type": {
                             "type": "integer"
                         },
+                        "full_code": {
+                            "type": "string"
+                        },
                         "device_brand": {
                             "type": "integer"
                         },

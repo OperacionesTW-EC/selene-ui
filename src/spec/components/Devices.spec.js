@@ -45,8 +45,8 @@ describe('Devices Component', () => {
             expect(rows.length).toBe(devices.results.length);
         });
 
-        it('should code, type, purchase date and ownership', () => {
-            devices = {results:[{device_type_name:'some_name',code:'some_code', purchase_date:'01/01/2016',ownership:'TW'}]};
+        it('should show code, type, purchase date and ownership', () => {
+            devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',ownership:'TW'}]};
             component = mount(<Devices/>);
             var row = component.find('tr.data-row').nodes[0];
             expect(row.innerHTML).toContain('some_name');
@@ -56,7 +56,7 @@ describe('Devices Component', () => {
         });
 
         it('should render rows with four tds', () => {
-            devices = {results:[{device_type_name:'some_name',code:'some_code', purchase_date:'01/01/2016',ownership:'TW'}]};
+            devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',ownership:'TW'}]};
             component = mount(<Devices/>);
             var tds = component.find('tr.data-row').find('td').nodes;
             expect(tds.length).toEqual(4);
