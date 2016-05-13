@@ -27,12 +27,61 @@
 
 .message {
   text-align: center;
-  font-size: 18px;
-  padding: 20% 10%;
+  font-size: 14px;
+  width: 250px;
+  height: auto;
+  padding: 20px;
+  position: absolute;
+  right: 30px;
+  top: 150px;
 }
+
 
 .error-message{
   color: #80031E;
+  background-color: #F2DEDE;
+}
+.error-message::after{
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #F2DEDE;
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: calc(50% - 7px);
+}
+
+.info-message{
+  background-color: #fce7ac;
+  color: #333;
+}
+.info-message::after{
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #fce7ac;
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: calc(50% - 7px);
+}
+.success-message{
+  background-color: #DFF0D8;
+  color: #333;
+}
+.success-message::after{
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #DFF0D8;
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: calc(50% - 7px);
 }
 
 .page-content {
