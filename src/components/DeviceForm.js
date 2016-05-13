@@ -106,12 +106,20 @@ export default class DeviceForm extends React.Component{
         )
     }
 
+    processForm(){
+        let deviceTemp = $.extend({}, this.state.device);
+        if(deviceTemp.purchase_date=='')
+            delete deviceTemp.purchase_date;
+        return deviceTemp;
+    }
+
     handleSaveClick(){
+        const submitData = this.processForm();
         $.ajax({
             type: 'post',
             datatype: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(this.state.device),
+            data: JSON.stringify(submitData),
             url: Constants.BACKEND_URL +'/devices/'
         }).done((response) => {
             this.state.message.buildSuccessMessage('El dispositivo '+response.full_code+" ha sido registrado satisfactoriamente");
