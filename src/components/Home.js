@@ -1,17 +1,15 @@
-import React from 'react'
-import Login from './Login'
-import About from './About'
+import React from 'react';
+import Login from './Login';
 
 class Home extends React.Component{
     render(){
         return(
             <div className="container">
-                <div className='row banner'>
-                    <div className="col-md-5 ">
+                <div className='row'>
+                    <div className="col-md-12">
                         <Login/>
                     </div>
                 </div>
-                <About/>
             </div>
         )
     }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Icon from './helpers/Icon';
 import $ from 'jquery';
 
@@ -12,41 +13,31 @@ class Login extends React.Component{
 
     render(){
         return(
-            <div>
+            <section className="login-card paper white">
                 <div className="row">
                     <div className="col-md-12">
-                        <span className="tw-brand">
-                            ThoughtWorks <Icon icon="registered"/>
-                        </span>
-                        <span className="country-name">
-                            Ecuador
-                        </span>
+                        <h2 className="brand text-center">
+                            <img src='./../../assets/images/twlogosm.png' height="25px;" className="nav-img"/>
+                            Selene
+                        </h2>
+                        <p className="text-center">
+                            <small className="trademark">Thoughtworks® - Ecuador</small>
+                        </p>
+                        <br/>
+                        <div className="form">
+                            <form className="login-form">
+                                <input name="login" type="text" placeholder="Nombre de Usuario"/>
+                                <input name="password" type="password" placeholder="Contraseña"/>
+
+                                <Link to='devices' type='submit' className="btn btn-secondary btn-block">
+                                    Ingresar
+                                </Link>
+                                <p className="login-info">No recuerdas tu clave? <a href="#">Recuperar clave.</a></p>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div className="row margin">
-                    <div className="col-md-4">
-                        <label>Usuario</label>
-                    </div>
-                    <div className="col-md-8">
-                        <input type='text'  className="input-sm form-control" name="login" value={this.state.login} onChange={this.validField}/>
-                    </div>
-                </div>
-                <div className="row margin">
-                    <div className="col-md-4">
-                        <label>Contraseña</label>
-                    </div>
-                    <div className="col-md-8">
-                        <input type='password' className="input-sm form-control" name='password'/>
-                    </div>
-                </div>
-                <div className="row margin">
-                    <div className="col-md-3 col-md-offset-9 text-right" >
-                        <button type="submit" value="entrar" className="btn btn-success btn-sm">
-                            <Icon icon="unlock"/> Entrar
-                        </button>
-                    </div>
-                </div>
-            </div>
+            </section>
         )
     }
 

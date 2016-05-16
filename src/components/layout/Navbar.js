@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Icon from './../helpers/Icon';
 
-let activeClassName = 'nav-active';
+let activeClassName = 'active';
 
 class Navbar extends React.Component {
     render(){
@@ -19,12 +19,12 @@ class Navbar extends React.Component {
                         <ul className="nav navbar-nav">
                             <li className="navigation">
                                 <Link to='devices' activeClassName={activeClassName}>
-                                  <Icon icon="desktop"/> Dispositivos
+                                    <Icon icon="desktop"/> Dispositivos
                                 </Link>
                             </li>
                             <li className="navigation">
                                 <Link to='device_form' activeClassName={activeClassName}>
-                                  <Icon icon="plus"/> Registrar dispositivo
+                                    <Icon icon="plus"/> Registrar dispositivo
                                 </Link>
                             </li>
                         </ul>

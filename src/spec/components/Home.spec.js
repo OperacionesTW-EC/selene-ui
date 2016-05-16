@@ -16,8 +16,5 @@ describe('App Component', () => {
     let component = mount(<Home/>)
     it('should render the login component', () => {
         expect(component.contains(<Login/>)).toBe(true);
-    });
-    it('should render the about component', () => {
-        expect(component.contains(<About/>)).toBe(true);
-    });
+    })
 });

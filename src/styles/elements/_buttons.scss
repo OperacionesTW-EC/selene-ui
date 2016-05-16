@@ -1,0 +1,25 @@
+@import './../settings/_colors.scss';
+
+.btn-secondary {
+  color: $white;
+  background-color: $secondary;
+  border: none;
+  border-bottom: 3px solid darken($secondary, 20%);
+  border-radius: 0;
+  transition: all ease .3s;
+
+  &:hover {
+    color: #fff;
+    border-bottom: 3px solid darken($secondary, 40%);
+  }
+
+  &:active {
+    color: $white;
+    border-bottom: 3px solid $secondary;
+  }
+
+  &:focus {
+    color: $white;
+    outline: none;
+  }
+}

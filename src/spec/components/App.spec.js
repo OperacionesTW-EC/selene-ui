@@ -31,7 +31,7 @@ describe('App Component', () => {
         );
         expect(output).toIncludeJSX(expected);
     });
-    it('should render home component by default', () => {
+    it('should render login component by default', () => {
         const renderer = TestUtils.createRenderer();
         renderer.render(<App/>);
         const output = renderer.getRenderOutput();

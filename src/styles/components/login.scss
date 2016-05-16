@@ -1,0 +1,56 @@
+@import './../settings/_colors.scss';
+@import './../settings/_animations.scss';
+
+.invalid {
+  border: 1px solid red;
+}
+
+.brand {
+  font-weight: 900;
+  color: $primary;
+}
+
+.trademark {
+  font-size: .8em;
+  color: $primary;
+}
+
+.login-card {
+  width: 360px;
+  padding: 4%;
+  margin: auto;
+  margin-top: 10%;
+
+  .form {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 15px;
+      margin: 0 0 15px;
+      font-family: "Roboto", sans-serif;
+      font-size: 1em;
+      background: #f2f2f2;
+      border: 0;
+      outline: 0;
+
+      &:focus {
+        outline: 1px solid $secondary;
+        transition: outline .5s ease;
+      }
+    }
+    .login-info {
+      padding: 10% 5%;
+      margin: 10px 0 0;
+      font-size: .9em;
+      color: $grey-muted;
+      a {
+        color: $primary;
+        text-decoration: none;
+      }
+    }
+  }
+}

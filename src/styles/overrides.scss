@@ -1,6 +1,5 @@
-* {
-  border-radius: 0 !important;
-}
-.navbar{
-  margin-bottom: 0;
-}
+@import './settings/colors.scss';
+
+// ELEMENTS
+@import './elements/_buttons.scss';
+@import './elements/_links.scss';
