@@ -17,7 +17,7 @@ describe('Page title Component', () => {
         });
 
         it('should render the title div', () => {
-            expect(component.find('.page-title').length).toBe(1);
+            expect(component.find('.page-header').length).toBe(1);
         });
 
         it('should render the page title', () => {

@@ -31,9 +31,11 @@ export default class Devices extends React.Component{
         return (
             <div >
                 <PageTitle content="Lista de dispositivos"/>
-                <div className="container page-margin">
-                    <div className="row margin">
-                        {this.state.devices.length == 0 ? this.state.message.renderMessage() : this.renderTable()}
+                <div className="container">
+                    <div className="row">
+                        <section className="paper">
+                            {this.state.devices.length == 0 ? this.state.message.renderMessage() : this.renderTable()}
+                        </section>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ export default class PageTitle extends React.Component{
 
     render(){
         return (
-            <div className="page-title">
+            <div className="page-header">
                 <div className="container">
                     <h1>{this.state.content}</h1>
                 </div>

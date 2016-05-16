@@ -67,39 +67,47 @@ export default class DeviceForm extends React.Component{
                 {this.state.message.renderMessage()}
                 <div className="container">
                     <form onChange={this.handleFormChanges}>
-                        <div className="row">
-                            <div className="col-md-8 col-md-offset-2 page-content">
-                                <FormRow label="Tipo">
-                                    {this.renderDeviceTypeSelect()}
-                                </FormRow>
-                                <FormRow label="Marca">
-                                    {this.renderDeviceBrandSelect()}
-                                </FormRow>
-                                <FormRow label="Activo">
-                                    <a value='1' name="asset" onClick={this.handleFormChanges}
-                                        className={"btn btn-default asset-chk " + (this.state.device.asset ==1 ? "selected" : "") }> Si </a>
-                                    <a value='0' name="asset" onClick={this.handleFormChanges}
-                                        className={"btn btn-default asset-chk " + (this.state.device.asset ==0 ? "selected" : "")}> No </a>
-                                </FormRow>
-                                <FormRow label="Serial">
-                                    <input className="form-control" value={this.state.device.serial_number}  type="text" name='serial_number'/>
-                                </FormRow>
-                                <FormRow label="Modelo">
-                                    <input className="form-control" value={this.state.device.model}  type="text" name='model'/>
-                                </FormRow>
-                                <FormRow label="Fecha de Compra">
-                                    <input type='text' className="form-control" value={this.state.device.purchase_date} name='purchase_date'/>
-                                </FormRow>
-                                <FormRow label="Propiedad">
-                                    {this.renderOwnershipSelect()}
-                                </FormRow>
-                                <FormRow>
-                                    <a  id="save" onClick={this.handleSaveClick} className="btn btn-secondary btn-block">
-                                        <Icon icon="save"/> Guardar
-                                    </a>
-                                </FormRow>
+
+                        <section className="form-card paper white">
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="form">
+                                        <FormRow label="Tipo">
+                                            {this.renderDeviceTypeSelect()}
+                                        </FormRow>
+                                        <FormRow label="Marca">
+                                            {this.renderDeviceBrandSelect()}
+                                        </FormRow>
+                                        <FormRow label="Activo">
+                                            <div className="btn-group">
+                                                <a value='1' name="asset" onClick={this.handleFormChanges}
+                                                    className={"btn btn-default asset-chk " + (this.state.device.asset ==1 ? "selected" : "") }> Si </a>
+                                                <a value='0' name="asset" onClick={this.handleFormChanges}
+                                                    className={"btn btn-default asset-chk " + (this.state.device.asset ==0 ? "selected" : "")}> No </a>
+                                            </div>
+                                        </FormRow>
+                                        <FormRow label="Serial">
+                                            <input className="form-control" value={this.state.device.serial_number}  type="text" name='serial_number'/>
+                                        </FormRow>
+                                        <FormRow label="Modelo">
+                                            <input className="form-control" value={this.state.device.model}  type="text" name='model'/>
+                                        </FormRow>
+                                        <FormRow label="Fecha de Compra">
+                                            <input type='text' className="form-control" value={this.state.device.purchase_date} name='purchase_date'/>
+                                        </FormRow>
+                                        <FormRow label="Propiedad">
+                                            {this.renderOwnershipSelect()}
+                                        </FormRow>
+                                        <FormRow>
+                                            <a  id="save" onClick={this.handleSaveClick} className="btn btn-secondary btn-block">
+                                                <Icon icon="save"/> Guardar
+                                            </a>
+                                        </FormRow>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </section>
+
                     </form>
                 </div>
             </div>

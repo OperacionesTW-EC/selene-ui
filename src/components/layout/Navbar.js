@@ -8,7 +8,7 @@ class Navbar extends React.Component {
     render(){
         return(
             <nav className="navbar navbar-default">
-                <div className="container-fluid">
+                <div className="container">
                     <div className="navbar-header">
                         <Link to='/' className="navbar-brand navigation">
                             <img src='./../../assets/images/twlogosm.png' height="100%" className="nav-img"/>

@@ -39,7 +39,7 @@ body {
 .page-header {
   padding: 20px;
   margin: 0 0;
-  // background: url('./../assets/images/header-bg.png') repeat;
+  background: url('./../assets/images/header-bg.png') repeat;
 
   h1 {
     margin-top: 10px;
@@ -145,10 +145,51 @@ body {
   &.selected {
     color: #fff;
     background-color: $secondary;
-    border: 1px solid darken($secondary, 40%);
+    border: 1px solid darken($secondary, 20%);
     transition: background .4s ease;
   }
 }
+
+
+.form-card {
+  width: 620px;
+  padding: 4%;
+  margin: auto;
+  margin-top: 3%;
+
+  .form {
+    position: relative;
+    z-index: 1;
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 15px;
+      margin: 0 0 15px;
+      font-family: sans-serif;
+      font-size: 1em;
+      background: #f2f2f2;
+      border: 0;
+      outline: 0;
+
+      &:focus {
+        outline: 1px solid $secondary;
+        transition: outline .5s ease;
+      }
+    }
+    .login-info {
+      padding: 10% 5%;
+      margin: 10px 0 0;
+      font-size: .9em;
+      color: $grey-muted;
+      a {
+        color: $primary;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
 
 // OVERRIDES
 @import "./overrides.scss";

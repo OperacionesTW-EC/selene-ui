@@ -17,7 +17,7 @@ class Login extends React.Component{
                 <div className="row">
                     <div className="col-md-12">
                         <h2 className="brand text-center">
-                            <img src='./../../assets/images/twlogosm.png' height="25px;" className="nav-img"/>
+                            <img src='./../assets/images/twlogosm.png' height="25px;" className="nav-img"/>
                             Selene
                         </h2>
                         <p className="text-center">
