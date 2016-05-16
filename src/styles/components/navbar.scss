@@ -13,6 +13,7 @@
   border: none;
   border-bottom: 2px solid #fff;
   border-radius: 0;
+
   .navbar-header {
     .navbar-brand {
       font-size: 1.5em;
@@ -21,6 +22,7 @@
     }
   }
   .navbar-nav > li > a {
+    padding-bottom: 2px;
     color: $black;
     transition: .3s color ease;
     &.raya:after {
@@ -46,7 +48,7 @@
         position: absolute;
         bottom: -.20em;
         width: 0;
-        height: 2px;
+        height: 1px;
         content: "";
         background: $primary;
         transition: .4s all ease;

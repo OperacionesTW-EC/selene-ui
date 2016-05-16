@@ -136,5 +136,19 @@ body {
   margin-bottom: 50px;
 }
 
+.asset-chk {
+  &:hover {
+    color: #fff;
+    background-color: $secondary;
+    transition: background .4s ease;
+  }
+  &.selected {
+    color: #fff;
+    background-color: $secondary;
+    border: 1px solid darken($secondary, 40%);
+    transition: background .4s ease;
+  }
+}
+
 // OVERRIDES
 @import "./overrides.scss";

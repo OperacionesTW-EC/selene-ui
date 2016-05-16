@@ -18,12 +18,12 @@ class Navbar extends React.Component {
                     <div className="collapse navbar-collapse" id="js-navbar-collapse">
                         <ul className="nav navbar-nav">
                             <li className="navigation">
-                                <Link to='devices' activeClassName={activeClassName}>
+                                <Link to='devices' className="raya after" activeClassName={activeClassName}>
                                     <Icon icon="desktop"/> Dispositivos
                                 </Link>
                             </li>
                             <li className="navigation">
-                                <Link to='device_form' activeClassName={activeClassName}>
+                                <Link to='device_form' className="raya after" activeClassName={activeClassName}>
                                     <Icon icon="plus"/> Registrar dispositivo
                                 </Link>
                             </li>

@@ -77,9 +77,9 @@ export default class DeviceForm extends React.Component{
                                 </FormRow>
                                 <FormRow label="Activo">
                                     <a value='1' name="asset" onClick={this.handleFormChanges}
-                                       className={"btn btn-default asset-chk " + (this.state.device.asset ==1 ? "selected" : "") }> Si </a>
+                                        className={"btn btn-default asset-chk " + (this.state.device.asset ==1 ? "selected" : "") }> Si </a>
                                     <a value='0' name="asset" onClick={this.handleFormChanges}
-                                       className={"btn btn-default asset-chk " + (this.state.device.asset ==0 ? "selected" : "")}> No </a>
+                                        className={"btn btn-default asset-chk " + (this.state.device.asset ==0 ? "selected" : "")}> No </a>
                                 </FormRow>
                                 <FormRow label="Serial">
                                     <input className="form-control" value={this.state.device.serial_number}  type="text" name='serial_number'/>
@@ -94,7 +94,7 @@ export default class DeviceForm extends React.Component{
                                     {this.renderOwnershipSelect()}
                                 </FormRow>
                                 <FormRow>
-                                    <a  id="save" onClick={this.handleSaveClick} className="btn btn-primary">
+                                    <a  id="save" onClick={this.handleSaveClick} className="btn btn-secondary btn-block">
                                         <Icon icon="save"/> Guardar
                                     </a>
                                 </FormRow>
