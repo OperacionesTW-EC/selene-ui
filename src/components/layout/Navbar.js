@@ -7,7 +7,7 @@ let activeClassName = 'active';
 class Navbar extends React.Component {
     render(){
         return(
-            <nav className="navbar navbar-default">
+            <nav className="paper navbar navbar-default">
                 <div className="container">
                     <div className="navbar-header">
                         <Link to='/' className="navbar-brand navigation">
@@ -16,15 +16,10 @@ class Navbar extends React.Component {
                         </Link>
                     </div>
                     <div className="collapse navbar-collapse" id="js-navbar-collapse">
-                        <ul className="nav navbar-nav">
+                        <ul className="nav navbar-nav navbar-right">
                             <li className="navigation">
-                                <Link to='devices' className="raya after" activeClassName={activeClassName}>
-                                    <Icon icon="desktop"/> Dispositivos
-                                </Link>
-                            </li>
-                            <li className="navigation">
-                                <Link to='device_form' className="raya after" activeClassName={activeClassName}>
-                                    <Icon icon="plus"/> Registrar dispositivo
+                                <Link to='dashboard' className="raya after" activeClassName={activeClassName}>
+                                    <Icon icon="th-large"/> Dashboard
                                 </Link>
                             </li>
                         </ul>

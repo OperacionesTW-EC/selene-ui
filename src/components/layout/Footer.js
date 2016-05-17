@@ -3,9 +3,9 @@ import Icon from './../helpers/Icon';
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="container">
-        <p className="text-muted text-center">ThoughtWorks <Icon icon="registered"/>  2016, Quito - Ecuador</p>
+    <footer className="paper footer">
+        <div className="container">
+            <p className="text-muted text-center">ThoughtWorks <Icon icon="registered"/>  2016, Quito - Ecuador</p>
       </div>
     </footer>
   )

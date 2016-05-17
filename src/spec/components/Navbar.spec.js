@@ -32,18 +32,11 @@ describe('About Component', () => {
             expect(links[0].getAttribute('href')).toEqual(expectedRoute);
         });
         it('should show a link to devices', function () {
-            expectedRoute = '#/devices';
+            expectedRoute = '#/dashboard';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
             links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
-            expect(links[1].innerHTML).toInclude('Dispositivos');
+            expect(links[1].innerHTML).toInclude('Dashboard');
             expect(links[1].getAttribute('href')).toEqual(expectedRoute);
-        });
-        it('should show a link to device form', function () {
-            expectedRoute = '#/device_form';
-            renderResult = TestUtils.renderIntoDocument(<Subject/>);
-            links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
-            expect(links[2].innerHTML).toInclude('Registrar dispositivo');
-            expect(links[2].getAttribute('href')).toEqual(expectedRoute);
         });
     });
 

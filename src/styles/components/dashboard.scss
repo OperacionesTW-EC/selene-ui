@@ -1,0 +1,85 @@
+@import './../settings/_colors.scss';
+
+.actions {
+  display: flex;
+  height: 80vh;
+
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+
+  .action-card-group {
+    display: flex;
+
+    flex: 1 1 0;
+
+    .card {
+      display: flex;
+      width: 180px;
+      margin: 2em;
+      overflow: hidden;
+      text-decoration: none;
+      flex-direction: column;
+      background-color: transparent;
+      border: 1px solid $grey-muted;
+      border-radius: 4px;
+      box-shadow: 0 0 2px #999;
+      transition: background .4s ease, border .3s ease, box-shadow .4s ease;
+
+      flex: 1 1 auto;
+
+      &:hover {
+        background-color: white;
+        border: 1px solid $primary;
+        box-shadow: 0 0 10px #999;
+
+        .description > .description-icon {
+          color: $primary;
+        }
+      }
+
+      &.disabled {
+        .description {
+          .description-icon {
+            color: #b9b9b9;
+          }
+          .description-text {
+            font-style: italic;
+            color: #b9b9b9;
+          }
+        }
+        &:hover {
+          background-color: transparent;
+          border: 1px solid #b9b9b9;
+          box-shadow: 0 0 0 #999;
+
+          .description > .description-icon {
+            color: #b9b9b9;
+          }
+        }
+      }
+
+      .description {
+        display: flex;
+        padding: 15px 0;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        .description-icon {
+          margin-bottom: 10px;
+          font-size: 52px;
+          color: $grey-muted;
+          transition: color .4s ease,;
+        }
+        .description-text {
+          max-width: calc(100% - 30px);
+          font-size: 14px;
+          color: $primary;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

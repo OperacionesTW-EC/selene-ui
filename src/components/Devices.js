@@ -1,8 +1,9 @@
 import React from 'react';
 import $ from 'jquery';
-import PageTitle from './layout/PageTitle'
-import MessageHelper from './helpers/MessageHelper'
-import Constants from './../config/Constants'
+import PageTitle from './layout/PageTitle';
+import MessageHelper from './helpers/MessageHelper';
+import Constants from './../config/Constants';
+import { Link } from 'react-router';
 
 export default class Devices extends React.Component{
 
@@ -37,7 +38,7 @@ export default class Devices extends React.Component{
                             <div className="panel-heading">
                                 <div className="row">
                                     <div className="col-md-12 text-right">
-                                        <button type="button" className="btn btn-sm btn-secondary btn-create">Registrar Dispositivo</button>
+                                        <Link to='/device_form' className='btn btn-sm btn-secondary btn-create'>Registrar Dispositivo</Link>
                                     </div>
                                 </div>
                             </div>

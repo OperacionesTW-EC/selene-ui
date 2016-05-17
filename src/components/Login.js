@@ -29,7 +29,7 @@ class Login extends React.Component{
                                 <input name="login" type="text" placeholder="Nombre de Usuario"/>
                                 <input name="password" type="password" placeholder="Contraseña"/>
 
-                                <Link to='devices' type='submit' className="btn btn-secondary btn-block">
+                                <Link to='dashboard' type='submit' className="btn btn-secondary btn-block">
                                     Ingresar
                                 </Link>
                                 <p className="login-info">No recuerdas tu clave? <a href="#">Recuperar clave.</a></p>

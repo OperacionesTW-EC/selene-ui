@@ -7,11 +7,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
-        <section>
-            {this.props.children || <Home/>}
-        </section>
-        <Footer />
+          <Navbar />
+          <section>
+              {this.props.children || <Home/>}
+          </section>
+          <Footer />
       </div>
     )
   }
