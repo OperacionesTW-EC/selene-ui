@@ -5,6 +5,8 @@ import Devices from './../components/Devices';
 import DeviceForm from './../components/DeviceForm';
 import Home from './../components/Home';
 import Dashboard from './../components/Dashboard';
+import AssignDevice from './../components/AssignDevice';
+
 
 
 export default (
@@ -14,6 +16,7 @@ export default (
             <Route path='dashboard' component={Dashboard}/>
             <Route path='devices' component={Devices}/>
             <Route path='device_form' component={DeviceForm}/>
+            <Route path='assign_device' component={AssignDevice}/>
         </Route>
     </Router>
 )

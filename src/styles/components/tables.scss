@@ -46,3 +46,18 @@
 .panel-table .panel-body .table-bordered > tbody > tr > td {
   line-height: 34px;
 }
+
+.panel-table .panel-body .table-bordered > thead > tr > th:last-of-type {
+  width: 39px;
+  text-align: center;
+}
+
+
+.panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
+  text-align: center;
+  align-content: center;
+}
+
+.panel-table .panel-body .table-bordered .device-chk {
+
+}

@@ -1,3 +1,4 @@
+
 /* eslint-env mocha*/
 
 import React from 'react';
@@ -13,7 +14,7 @@ describe('Navbar Component', () => {
 
     describe('Render', () => {
 
-        let component = require('./../../components/layout/Navbar').default;
+        let component = require('./../../components/Dashboard').default;
         let expectedRoute, Subject, renderResult, links;
 
         beforeEach(() => {
@@ -24,22 +25,30 @@ describe('Navbar Component', () => {
             });
         });
 
-        it('should show a link to home', function () {
-            expectedRoute = '#/home';
+        it('should show a link to devices', function () {
+            expectedRoute = '#/devices';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
             links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
-            expect(links[0].innerHTML).toInclude('Selene');
+            expect(links[0].innerHTML).toInclude('Dispositivos');
             expect(links[0].getAttribute('href')).toEqual(expectedRoute);
         });
-        it('should show a link to devices', function () {
-            expectedRoute = '#/dashboard';
+
+        it('should show a link to device form', function () {
+            expectedRoute = '#/device_form';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
             links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
-            expect(links[1].innerHTML).toInclude('Dashboard');
+            expect(links[1].innerHTML).toInclude('Registrar Dispositivo');
             expect(links[1].getAttribute('href')).toEqual(expectedRoute);
         });
-        
-      
+
+        it('should show a link to assign device', function () {
+            expectedRoute = '#/assign_device';
+            renderResult = TestUtils.renderIntoDocument(<Subject/>);
+            links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
+            expect(links[2].innerHTML).toInclude('Asignar');
+            expect(links[2].getAttribute('href')).toEqual(expectedRoute);
+        });
+
     });
 
 });

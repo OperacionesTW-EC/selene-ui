@@ -20,12 +20,12 @@ const Dashboard = () => {
                                     <div className="description-text">Registrar Dispositivo</div>
                                 </div>
                             </Link>
-                            <div className="card disabled">
+                           <Link to='/assign_device' className="card">
                                 <div className="description">
                                     <div className="icon fa fa-user-plus description-icon"></div>
                                     <div className="description-text">Asignar</div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </div>

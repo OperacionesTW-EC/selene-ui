@@ -29,10 +29,16 @@ const schemas = {
                         "device_brand": {
                             "type": "integer"
                         },
+                        "device_state": {
+                            "type": "integer"
+                        },
                         "device_type_name": {
                             "type": "string"
                         },
                         "device_brand_name": {
+                            "type": "string"
+                        },
+                        "device_state_name": {
                             "type": "string"
                         },
                         "asset": {
