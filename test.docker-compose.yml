@@ -1,0 +1,9 @@
+ui:
+  build: .
+  env_file: ./env.example
+  ports:
+    - 8080:8080
+  dockerfile: test.dockerfile
+  volumes:
+    - ./src:/ui/src
+    - ./dist:/ui/dist
