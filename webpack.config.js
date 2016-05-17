@@ -57,7 +57,12 @@ var common = {
       title: 'Selene',
       template: 'src/index.html',
       inject: false
-    })
+    }),
+    new webpack.EnvironmentPlugin([
+      "HOST",
+      "PORT",
+      "BACKEND_URL"
+    ])
   ]
 }
 
