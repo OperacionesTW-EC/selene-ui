@@ -3,6 +3,7 @@
 @import "./components/navbar.scss";
 @import "./components/home.scss";
 @import "./components/login.scss";
+@import "./components/tables.scss";
 
 // SETTINGS
 @import './settings/colors.scss';
@@ -31,13 +32,8 @@ body {
   }
 }
 
-.table th {
-  color: white;
-  background: $primary;
-}
-
 .page-header {
-  padding: 20px;
+  padding: 20px 0;
   margin: 0 0;
   background: url('./../assets/images/header-bg.png') repeat;
 
@@ -52,21 +48,6 @@ body {
   margin-top: 10px;
 }
 
-.table th {
-  color: white;
-  background: #2e91b6;
-}
-
-.page-title {
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: 20px;
-  background: #e7e7e7;
-  h1 {
-    margin-top: 10px;
-    font-size: 20px;
-  }
-}
 
 .message {
   position: absolute;

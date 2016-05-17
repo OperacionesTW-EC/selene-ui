@@ -33,8 +33,17 @@ export default class Devices extends React.Component{
                 <PageTitle content="Lista de dispositivos"/>
                 <div className="container">
                     <div className="row">
-                        <section className="paper">
-                            {this.state.devices.length == 0 ? this.state.message.renderMessage() : this.renderTable()}
+                        <section className="paper panel panel-default panel-table">
+                            <div className="panel-heading">
+                                <div className="row">
+                                    <div className="col-md-12 text-right">
+                                        <button type="button" className="btn btn-sm btn-secondary btn-create">Registrar Dispositivo</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="panel-body">
+                                {this.state.devices.length == 0 ? this.state.message.renderMessage() : this.renderTable()}
+                            </div>
                         </section>
                     </div>
                 </div>
@@ -44,7 +53,7 @@ export default class Devices extends React.Component{
 
     renderTable(){
         return (
-            <table className="table  table-striped table-bordered">
+            <table className="table table-striped table-bordered table-list">
                 {this.renderHeader()}
                 {this.renderRows()}
             </table>
@@ -54,18 +63,18 @@ export default class Devices extends React.Component{
     renderRows(){
         return (
             <tbody>
-            {
-                this.state.devices.map(function(device) {
-                    return(
-                        <tr key={device.id} className="data-row">
-                            <td>{device.full_code}</td>
-                            <td>{device.device_type_name}</td>
-                            <td>{device.purchase_date}</td>
-                            <td>{device.ownership}</td>
-                        </tr>
-                    )
-                })
-            }
+                {
+                    this.state.devices.map(function(device) {
+                        return(
+                            <tr key={device.id} className="data-row">
+                                <td className="text-center">{device.full_code}</td>
+                                <td>{device.device_type_name}</td>
+                                <td>{device.purchase_date}</td>
+                                <td>{device.ownership}</td>
+                            </tr>
+                        )
+                    })
+                }
             </tbody>
         )
     }
