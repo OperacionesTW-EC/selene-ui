@@ -1,3 +1,3 @@
 export default {
-    BACKEND_URL : 'http://localhost:8000'
+    BACKEND_URL : process.env.BACKEND_URL
 }
