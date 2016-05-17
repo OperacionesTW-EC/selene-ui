@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Icon from './../helpers/Icon';
+import logo from './../../assets/images/twlogosm.png';
 
 let activeClassName = 'active';
 
@@ -11,7 +12,7 @@ class Navbar extends React.Component {
                 <div className="container">
                     <div className="navbar-header">
                         <Link to='/' className="navbar-brand navigation">
-                            <img src='./../../assets/images/twlogosm.png' height="100%" className="nav-img"/>
+                            <img src={logo} height="100%" className="nav-img"/>
                             Selene
                         </Link>
                     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Icon from './helpers/Icon';
 import $ from 'jquery';
+import logo from './../assets/images/twlogosm.png';
 
 class Login extends React.Component{
 
@@ -17,7 +18,7 @@ class Login extends React.Component{
                 <div className="row">
                     <div className="col-md-12">
                         <h2 className="brand text-center">
-                            <img src='./../assets/images/twlogosm.png' height="25px;" className="nav-img"/>
+                            <img src={logo} height="25px;" className="nav-img"/>
                             Selene
                         </h2>
                         <p className="text-center">
