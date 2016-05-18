@@ -43,7 +43,7 @@ export default class Devices extends React.Component{
             <div >
                 { this.renderTitle() }
                 <div className="container">
-                    <div className="row margin">
+                    <div className="row">
                         <section className="paper panel panel-default panel-table">
                             { this.renderPanelHeader()}
                             <div className="panel-body">

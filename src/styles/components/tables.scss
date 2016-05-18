@@ -1,6 +1,10 @@
-// .panel-default {
-//   border: 2px solid white;
-// }
+.panel-default {
+  border: 1px solid #f7f7f7;
+}
+
+.panel-heading {
+  padding: 20px 0;
+}
 
 .panel-table .panel-body {
   padding: 0;
@@ -13,6 +17,10 @@
 
 .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
   width: 120px;
+  text-align: center;
+}
+
+.panel-table .panel-body .table-bordered > thead > tr > th {
   text-align: center;
 }
 
@@ -38,7 +46,7 @@
   margin: 0;
 }
 
-.panel-table .panel-footer .col {
+.panel-table .panel-footer {
   height: 34px;
   line-height: 34px;
 }
@@ -53,11 +61,8 @@ th.checkbox-col {
 }
 
 
-.panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
+.panel-table .panel-body .table-bordered > tbody > tr > td {
   text-align: center;
+
   align-content: center;
-}
-
-.panel-table .panel-body .table-bordered .device-chk {
-
 }
