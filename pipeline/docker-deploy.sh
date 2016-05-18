@@ -207,6 +207,22 @@ set_script_variables()
   set_images_and_services
 }
 
+run_docker_container()
+{
+  $ssh_cmd "$docker_cmd run -d -p 80:80 --name $1 -t $1"
+}
+
+build_docker_image()
+{
+  $ssh_cmd "$docker_cmd build -f prod.dockerfile -t $1 . "
+}
+
+up_docker_container()
+{
+  build_docker_image selene_ui
+  run_docker_container selene_ui
+}
+
 build()
 {
   clean_project_containers
