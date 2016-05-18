@@ -94,8 +94,11 @@ export default class Devices extends React.Component{
                             <tr key={device.id} className="data-row">
                                 <td className="text-center">{device.full_code}</td>
                                 <td>{device.device_type_name}</td>
+                                <td>{device.device_brand_name}</td>
                                 <td>{device.purchase_date}</td>
-                                <td>{device.ownership}</td>
+                                <td>{device.assign_date}</td>
+                                <td>{device.end_date}</td>
+                                <td>{device.return_date}</td>
                                 { context.renderChkRow(device) }
                             </tr>
                         )
@@ -114,8 +117,11 @@ export default class Devices extends React.Component{
             <tr>
                 <th>Código</th>
                 <th>Tipo</th>
+                <th>Marca</th>
                 <th>Fecha de Compra</th>
-                <th>Propiedad</th>
+                <th>Fecha de Asignación</th>
+                <th>Fecha de Finalización</th>
+                <th>Fecha de Entrega</th>
                 { this.renderChkHeader() }
             </tr>
             </thead>
@@ -125,7 +131,7 @@ export default class Devices extends React.Component{
     renderChkHeader(){
         if (this.state.type=='embedded')
             return (
-                <th> <Icon icon="check"/></th>
+                <th className="checkbox-col"> <Icon icon="check"/></th>
             )
     }
 

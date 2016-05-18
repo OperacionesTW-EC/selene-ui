@@ -5,7 +5,7 @@ export default class MessageHelper{
     constructor(){
         this.message = undefined;
         this.DEFAULT_INFO_MESSAGE = 'No hay registros en el sistema';
-        this.DEFAULT_ERROR_MESSAGE = 'Ha ocurrido un error, por favor intentelo mas tarde o comuniquese con el administrador del sistema';
+        this.DEFAULT_ERROR_MESSAGE = 'Ha ocurrido un error, por favor inténtelo mas tarde o comuníquese con el administrador del sistema';
         this.DEFAULT_SUCCESS_MESSAGE = 'Acción completada exitosamente';
     }
 

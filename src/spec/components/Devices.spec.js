@@ -32,7 +32,7 @@ describe('Devices Component', () => {
             it('should render headers for all fields', () => {
                 component = mount(<Devices/>);
                 var th = component.find('th');
-                var headers = ['Código', 'Tipo', 'Fecha de Compra', 'Propiedad'];
+                var headers = ['Código', 'Tipo', 'Marca', 'Fecha de Compra','Fecha de Asignación','Fecha de Finalización','Fecha de Entrega'];
                 th.nodes.map((elem) => {
                     var elementText = elem.innerHTML;
                     expect(headers.indexOf(elementText)).toNotBe(-1);
@@ -47,20 +47,20 @@ describe('Devices Component', () => {
             });
 
             it('should show code, type, purchase date and ownership', () => {
-                devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',ownership:'TW'}]};
+                devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',device_brand_name:'TW'}]};
                 component = mount(<Devices/>);
                 var row = component.find('tr.data-row').nodes[0];
                 expect(row.innerHTML).toContain('some_name');
                 expect(row.innerHTML).toContain('some_code');
-                expect(row.innerHTML).toContain('01/01/2016');
                 expect(row.innerHTML).toContain('TW');
+                expect(row.innerHTML).toContain('01/01/2016');
             });
 
             it('should render rows with four tds', () => {
-                devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',ownership:'TW'}]};
+                devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',device_brand_name:'TW'}]};
                 component = mount(<Devices/>);
                 var tds = component.find('tr.data-row').find('td').nodes;
-                expect(tds.length).toEqual(4);
+                expect(tds.length).toEqual(7);
             });
 
             it('should not render an error message ', () => {
