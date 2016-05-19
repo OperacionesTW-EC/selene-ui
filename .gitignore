@@ -61,3 +61,5 @@ Temporary Items
 .apdisk
 .editorconfig
 dist/
+.idea
+*.iml
