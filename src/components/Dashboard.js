@@ -22,7 +22,6 @@ const Dashboard = () => {
                             </Link>
                            <Link to='/assign_device' className="card">
                                 <div className="description">
-                                    OMG
                                     <div className="icon fa fa-user-plus description-icon"></div>
                                     <div className="description-text">Asignar</div>
                                 </div>

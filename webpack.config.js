@@ -59,8 +59,6 @@ var common = {
       inject: false
     }),
     new webpack.EnvironmentPlugin([
-      "HOST",
-      "PORT",
       "BACKEND_URL"
     ])
   ]
