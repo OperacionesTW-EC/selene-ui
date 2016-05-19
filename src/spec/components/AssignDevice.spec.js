@@ -94,6 +94,10 @@ describe('Assign device Component', () => {
                     expect(component.state('projects')).toEqual(projects.results);
                 });
 
+                it('should render the project list into a combo box', () => {
+                    expect(component.find('form select option').nodes[1].innerHTML).toContain(projects.results[0].name);
+                });
+
             });
         });
         describe('with invalid data', () => {
@@ -126,7 +130,7 @@ describe('Assign device Component', () => {
             });
 
             it('should render an error message', () => {
-                expect(component.find('.error-message').length).toBe(1);
+                expect(component.find('.error-message').length).toNotBe(0);
             });
 
         });
@@ -150,6 +154,7 @@ describe('Assign device Component', () => {
                 sandbox = Sinon.sandbox.create();
                 sandbox.spy(AssignDevice.prototype, "handleFormChanges");
                 sandbox.spy(AssignDevice.prototype, "handleCheckBoxChanges");
+                sandbox.spy(AssignDevice.prototype, "assign");
                 sandbox.stub($, 'ajax').returns({
                     done: (callback) => {
                         callback(devices);
@@ -178,7 +183,25 @@ describe('Assign device Component', () => {
             });
             it('should call update the state when checkbox changes', () => {
                 component.find(".device-chk").simulate('change', {value:'1'});
-                expect(component.state()['assignation']['selected_devices']).toEqual(['1']);
+                expect(component.state()['assignment']['selected_devices']).toEqual(['1']);
+            });
+            it('should call assign function when a responsible name is set and a device is selected', () => {
+                component.setState({assignment: {
+                    assign_employee: 'Tim',
+                    selected_devices: [{name:'mouse'}]}});
+                component.find("#save").simulate('click');
+                expect(AssignDevice.prototype.assign.calledOnce).toEqual(true);
+            });
+            it("should not call assign when a responsible name is set but no device is selected", () => {
+                component.find("#save").simulate('click');
+                expect(AssignDevice.prototype.assign.calledOnce).toEqual(false);
+            });
+            it('should send data to backend', () => {
+                component.setState({assignment: {
+                    assign_employee: 'Tim',
+                    selected_devices: [{name:'mouse'}]}});
+                component.find("#save").simulate('click');
+                expect($.ajax.called).toEqual(true);
             });
         });
     });
