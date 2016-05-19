@@ -202,7 +202,7 @@ describe('DeviceForm', () => {
 				sandboxAjax.restore();
 			});
 
-			it('shoud call handleFormChanges when any of the input changes', () => {
+			it('should call handleFormChanges when any of the input changes', () => {
 				component.find("[name='device_type']").simulate('change');
 				expect(DeviceForm.prototype.handleFormChanges.calledOnce).toEqual(true);
 			});

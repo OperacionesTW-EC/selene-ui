@@ -22,6 +22,7 @@ export default class Devices extends React.Component{
         this.renderPanelHeader = this.renderPanelHeader.bind(this);
         this.renderChkRow = this.renderChkRow.bind(this);
         this.renderChkHeader = this.renderChkHeader.bind(this);
+        this.isEmbedded = this.isEmbedded.bind(this);
     }
 
     componentDidMount(){
@@ -44,12 +45,14 @@ export default class Devices extends React.Component{
                 { this.renderTitle() }
                 <div className="container">
                     <div className="row">
-                        <section className="paper panel panel-default panel-table">
-                            { this.renderPanelHeader()}
-                            <div className="panel-body">
-                                {this.state.devices.length == 0 ? this.state.message.renderMessage() : this.renderTable()}
-                            </div>
-                        </section>
+                        <div className="col-md-12">
+                            <section className="paper panel panel-default panel-table">
+                                { this.renderPanelHeader()}
+                                <div className="panel-body">
+                                    {this.state.devices.length == 0 ? this.state.message.renderMessage() : this.renderTable()}
+                                </div>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,7 +60,7 @@ export default class Devices extends React.Component{
     };
 
     renderPanelHeader(){
-        if (this.state.type!='embedded')
+        if (!this.isEmbedded())
             return (<div className="panel-heading">
                 <div className="row">
                     <div className="col-md-12 text-right">
@@ -68,7 +71,7 @@ export default class Devices extends React.Component{
     }
 
     renderTitle(){
-        if(this.state.type!='embedded')
+        if(!this.isEmbedded())
             return (<PageTitle content="Lista de dispositivos"/>)
     }
 
@@ -98,7 +101,7 @@ export default class Devices extends React.Component{
                                 <td>{device.purchase_date}</td>
                                 <td>{device.assign_date}</td>
                                 <td>{device.end_date}</td>
-                                <td>{device.return_date}</td>
+                                { context.isEmbedded() || <td>{device.return_date}</td> }
                                 { context.renderChkRow(device) }
                             </tr>
                         )
@@ -106,7 +109,7 @@ export default class Devices extends React.Component{
                 })
 
             }
-            { cont>0 || <tr><td colSpan="5">No hay dispositivos {this.state.filterBy}(s)</td></tr>}
+            { cont>0 || <tr className="data-row"><td colSpan="5">No hay dispositivos {this.state.filterBy}(s)</td></tr>}
             </tbody>
         )
     }
@@ -121,7 +124,7 @@ export default class Devices extends React.Component{
                 <th>Fecha de Compra</th>
                 <th>Fecha de Asignación</th>
                 <th>Fecha de Finalización</th>
-                <th>Fecha de Entrega</th>
+                { this.isEmbedded() || <th>Fecha de Entrega</th> }
                 { this.renderChkHeader() }
             </tr>
             </thead>
@@ -129,17 +132,21 @@ export default class Devices extends React.Component{
     }
 
     renderChkHeader(){
-        if (this.state.type=='embedded')
+        if (this.isEmbedded())
             return (
                 <th className="checkbox-col"> <Icon icon="check"/></th>
             )
     }
 
     renderChkRow(device){
-        if (this.state.type=='embedded')
+        if (this.isEmbedded())
             return (
                 <td><input type="checkbox" className="device-chk" onChange={this.state.callback} value={device.id}/></td>
             )
+    }
+
+    isEmbedded(){
+        return this.state.type=='embedded'
     }
 
 
