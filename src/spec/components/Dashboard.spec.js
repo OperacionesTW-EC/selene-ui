@@ -19,14 +19,14 @@ describe('Navbar Component', () => {
 
         beforeEach(() => {
             Subject = stubRouterContext(component, {}, {
-                createHref: () => {
-                    return expectedRoute;
+                createHref: (link) => {
+                    return link;
                 }
             });
         });
 
         it('should show a link to devices', function () {
-            expectedRoute = '#/devices';
+            expectedRoute = '/device_list';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
             links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
             expect(links[0].innerHTML).toInclude('Dispositivos');
@@ -34,7 +34,7 @@ describe('Navbar Component', () => {
         });
 
         it('should show a link to device form', function () {
-            expectedRoute = '#/device_form';
+            expectedRoute = '/device_form';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
             links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
             expect(links[1].innerHTML).toInclude('Registrar Dispositivo');
@@ -42,7 +42,7 @@ describe('Navbar Component', () => {
         });
 
         it('should show a link to assign device', function () {
-            expectedRoute = '#/assign_device';
+            expectedRoute = '/assign_device';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
             links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
             expect(links[2].innerHTML).toInclude('Asignar');

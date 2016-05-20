@@ -1,7 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import { Link } from 'react-router';
-import PageTitle from './layout/PageTitle'
 import MessageHelper from './helpers/MessageHelper'
 import Constants from './../config/Constants'
 import Icon from './helpers/Icon'
@@ -18,8 +16,6 @@ export default class Devices extends React.Component{
         };
         this.renderRows = this.renderRows.bind(this);
         this.renderTable = this.renderTable.bind(this);
-        this.renderTitle = this.renderTitle.bind(this);
-        this.renderPanelHeader = this.renderPanelHeader.bind(this);
         this.renderChkRow = this.renderChkRow.bind(this);
         this.renderChkHeader = this.renderChkHeader.bind(this);
         this.isEmbedded = this.isEmbedded.bind(this);
@@ -41,33 +37,13 @@ export default class Devices extends React.Component{
 
     render(){
         return (
-            <div >
-                { this.renderTitle() }
-                <section className="paper panel panel-default panel-table">
-                    { this.renderPanelHeader()}
-                    <div className="panel-body">
-                        {this.state.devices.length == 0 ? this.state.message.renderMessage() : this.renderTable()}
-                    </div>
-                </section>
-            </div>
+            <section className="paper panel panel-default panel-table">
+                <div className="panel-body">
+                    {this.state.devices.length == 0 ? this.state.message.renderMessage() : this.renderTable()}
+                </div>
+            </section>
         )
     };
-
-    renderPanelHeader(){
-        if (!this.isEmbedded())
-            return (<div className="panel-heading">
-                <div className="row">
-                    <div className="col-md-12 text-right">
-                        <Link to='/device_form' className='btn btn-sm btn-secondary btn-create'>Registrar Dispositivo</Link>
-                    </div>
-                </div>
-            </div>)
-    }
-
-    renderTitle(){
-        if(!this.isEmbedded())
-            return (<PageTitle content="Lista de dispositivos"/>)
-    }
 
     renderTable(){
         return (

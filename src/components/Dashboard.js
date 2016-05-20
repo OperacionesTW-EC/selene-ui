@@ -8,7 +8,7 @@ const Dashboard = () => {
                 <div className="col-md-8 col-md-offset-2">
                     <div className="paper actions">
                         <div className="action-card-group">
-                            <Link to='/devices' className="card">
+                            <Link to='/device_list' className="card este">
                                 <div className="description">
                                     <div className="icon fa fa-map-o description-icon"></div>
                                     <div className="description-text">Dispositivos</div>
