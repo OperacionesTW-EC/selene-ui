@@ -5,7 +5,7 @@ const Dashboard = () => {
     return (
         <section className="container">
             <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-8 col-md-offset-2">
                     <div className="paper actions">
                         <div className="action-card-group">
                             <Link to='/devices' className="card">

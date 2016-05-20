@@ -1,7 +1,8 @@
 @import "./../../node_modules/font-awesome/css/font-awesome.min.css";
+
+// COMPONENTS
 @import "./components/footer.scss";
 @import "./components/navbar.scss";
-@import "./components/home.scss";
 @import "./components/login.scss";
 @import "./components/tables.scss";
 @import "./components/dashboard.scss";
@@ -18,11 +19,12 @@
 
 body {
   height: 100vh;
+  font-size: $base-font-size;
   background-color: $white;
 }
 
 .paper {
-  border-radius: 3px;
+  border-radius: 2px;
   animation: fadeIn 1s ease;
 
   &.white {
@@ -41,73 +43,13 @@ body {
 
   h1 {
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 1.6em;
     font-weight: bold;
   }
 }
 
 .margin {
   margin-top: 10px;
-}
-
-
-.message {
-  position: absolute;
-  top: 150px;
-  right: 30px;
-  width: 250px;
-  height: auto;
-  padding: 20px;
-  font-size: 14px;
-  text-align: center;
-}
-
-
-.error-message {
-  color: #80031e;
-  background-color: #f2dede;
-}
-.error-message::after {
-  position: absolute;
-  top: calc(50% - 7px);
-  right: -10px;
-  width: 0;
-  height: 0;
-  content: '';
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 10px solid #f2dede;
-}
-
-.info-message {
-  color: #333;
-  background-color: #fce7ac;
-}
-.info-message::after {
-  position: absolute;
-  top: calc(50% - 7px);
-  right: -10px;
-  width: 0;
-  height: 0;
-  content: '';
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 10px solid #fce7ac;
-}
-.success-message {
-  color: #333;
-  background-color: #dff0d8;
-}
-.success-message::after {
-  position: absolute;
-  top: calc(50% - 7px);
-  right: -10px;
-  width: 0;
-  height: 0;
-  content: '';
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 10px solid #dff0d8;
 }
 
 .page-content {

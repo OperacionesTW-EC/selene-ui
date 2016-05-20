@@ -111,7 +111,7 @@ export default class AssignDevice extends React.Component{
                         </div>
                     </div>
                 </div>
-                <div className="list-holder margin">
+                <div className="margin">
                     <Devices type="embedded" callback={this.handleCheckBoxChanges} filterBy="Disponible"/>
                 </div>
                 <div className="container">

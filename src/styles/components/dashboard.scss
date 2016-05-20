@@ -15,15 +15,14 @@
 
     .card {
       display: flex;
-      width: 180px;
+      width: 20%;
       margin: 2em;
       overflow: hidden;
       text-decoration: none;
       flex-direction: column;
-      background-color: transparent;
-      border: 1px solid $grey-muted;
-      border-radius: 4px;
-      box-shadow: 0 0 2px #999;
+      background-color: #fff;
+      border: 1px solid transparent;
+      border-radius: 2px;
       transition: background .4s ease, border .3s ease, box-shadow .4s ease;
 
       flex: 1 1 auto;
@@ -31,7 +30,7 @@
       &:hover {
         background-color: white;
         border: 1px solid $primary;
-        box-shadow: 0 0 10px #999;
+        box-shadow: 0 0 1em #555;
 
         .description > .description-icon {
           color: $primary;
@@ -61,7 +60,7 @@
 
       .description {
         display: flex;
-        padding: 15px 0;
+        padding: 1.2em 0;
         flex-direction: column;
 
         align-items: center;
@@ -69,13 +68,13 @@
 
         .description-icon {
           margin-bottom: 10px;
-          font-size: 52px;
+          font-size: 5em;
           color: $grey-muted;
           transition: color .4s ease,;
         }
         .description-text {
           max-width: calc(100% - 30px);
-          font-size: 14px;
+          font-size: 1.1em;
           color: $primary;
           text-align: center;
         }

@@ -1,7 +1,11 @@
 @import './../settings/_colors.scss';
 
+.btn {
+  font-size: 1em;
+}
+
 .btn-secondary {
-  color: $white;
+  color: darken($secondary, 40%);
   background-color: $secondary;
   border: none;
   border-bottom: 3px solid darken($secondary, 20%);
@@ -9,13 +13,13 @@
   transition: all ease .3s;
 
   &:hover {
-    color: #fff;
+    color: darken($secondary, 75%);
     border-bottom: 3px solid darken($secondary, 40%);
   }
 
   &:active {
     color: $white;
-    border-bottom: 3px solid $secondary;
+    border-bottom: 3px solid $white;
   }
 
   &:focus {

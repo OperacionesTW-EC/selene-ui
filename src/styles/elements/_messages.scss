@@ -1,0 +1,61 @@
+@import './../settings/colors.scss';
+
+.message {
+  padding: 20px;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeIn .4s ease;
+
+  &.error-message {
+    color: $error;
+    background-color: $error-bg;
+  }
+
+  &.info-message {
+    color: #333;
+    background-color: #fce7ac;
+  }
+
+  &.success-message {
+    color: $success;
+    background-color: $success-bg;
+  }
+}
+
+// .error-message::after {
+//   position: absolute;
+//   top: calc(50% - 7px);
+//   right: -10px;
+//   width: 0;
+//   height: 0;
+//   content: '';
+//   border-top: 10px solid transparent;
+//   border-bottom: 10px solid transparent;
+//   border-left: 10px solid #f2dede;
+// }
+//
+
+// .info-message::after {
+//   position: absolute;
+//   top: calc(50% - 7px);
+//   right: -10px;
+//   width: 0;
+//   height: 0;
+//   content: '';
+//   border-top: 10px solid transparent;
+//   border-bottom: 10px solid transparent;
+//   border-left: 10px solid #fce7ac;
+// }
+
+// .success-message::after {
+//   position: absolute;
+//   top: calc(50% - 7px);
+//   right: -10px;
+//   width: 0;
+//   height: 0;
+//   content: '';
+//   border-top: 10px solid transparent;
+//   border-bottom: 10px solid transparent;
+//   border-left: 10px solid #dff0d8;
+// }
