@@ -68,7 +68,7 @@ export default class DeviceForm extends React.Component{
                 <div className="container">
                     <form onChange={this.handleFormChanges}>
 
-                        <section className="form-card paper white">
+                        <section className="form-card paper white medium">
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="form">

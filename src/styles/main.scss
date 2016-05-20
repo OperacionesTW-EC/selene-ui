@@ -77,10 +77,13 @@ body {
 
 
 .form-card {
-  width: 620px;
   padding: 4%;
   margin: auto;
   margin-top: 3%;
+
+  &.medium {
+    width: 620px;
+  }
 
   .form {
     position: relative;

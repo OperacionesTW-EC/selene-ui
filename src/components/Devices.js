@@ -43,18 +43,12 @@ export default class Devices extends React.Component{
         return (
             <div >
                 { this.renderTitle() }
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <section className="paper panel panel-default panel-table">
-                                { this.renderPanelHeader()}
-                                <div className="panel-body">
-                                    {this.state.devices.length == 0 ? this.state.message.renderMessage() : this.renderTable()}
-                                </div>
-                            </section>
-                        </div>
+                <section className="paper panel panel-default panel-table">
+                    { this.renderPanelHeader()}
+                    <div className="panel-body">
+                        {this.state.devices.length == 0 ? this.state.message.renderMessage() : this.renderTable()}
                     </div>
-                </div>
+                </section>
             </div>
         )
     };
