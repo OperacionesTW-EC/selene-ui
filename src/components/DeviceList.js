@@ -14,11 +14,13 @@ export default class DeviceList extends React.Component {
         return (
             <div>
                 <PageTitle content="Lista de dispositivos"/>
-                <div className="container">
-                    {this.renderPanelHeader()}
-                    <div className="row">
-                        <div className="col-md-12">
-                            <Devices />
+                <div className="paper transparent">
+                    <div className="container">
+                        {this.renderPanelHeader()}
+                        <div className="row">
+                            <div className="col-md-12">
+                                <Devices />
+                            </div>
                         </div>
                     </div>
                 </div>

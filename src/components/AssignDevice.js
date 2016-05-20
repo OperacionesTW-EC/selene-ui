@@ -93,14 +93,10 @@ export default class AssignDevice extends React.Component{
                                     <div className="row">
                                         <div className="col-md-6">
                                             <label>Responsable:</label>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <label>Proyecto:</label>
-                                        </div>
-                                        <div className="col-md-6">
                                             <input type="text" name="assign_employee" className="form-control" />
                                         </div>
                                         <div className="col-md-6">
+                                            <label>Proyecto:</label>
                                             <select className="form-control" name="assign_project" >
                                                 <option> Ninguno </option>
                                                 { this.state.projects.map((project) => {
@@ -110,6 +106,8 @@ export default class AssignDevice extends React.Component{
                                         </div>
                                     </div>
                                 </form>
+
+                                <hr/>
 
 
                                 <label>Seleccione los dispositivos disponibles:</label>

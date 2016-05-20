@@ -2,17 +2,13 @@
   border: 1px solid #f7f7f7;
 }
 
-.panel-heading {
-  padding: 20px 0;
-}
-
 .panel-table .panel-body {
   padding: 0;
-}
 
-.panel-table .panel-body .table-bordered {
-  margin: 0;
-  border-style: none;
+  .table-bordered {
+    margin: 0;
+    border-style: none;
+  }
 }
 
 .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
