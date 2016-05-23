@@ -9,7 +9,7 @@ import stubRouterContext from './../stubRouterContext';
 
 expect.extend(expectJSX);
 
-describe('Navbar Component', () => {
+describe('Dashboard Component', () => {
 
 
     describe('Render', () => {
@@ -25,11 +25,11 @@ describe('Navbar Component', () => {
             });
         });
 
-        it('should show a link to devices', function () {
-            expectedRoute = '/device_list';
+        it('should show a link to assign device', function () {
+            expectedRoute = '/assign_device';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
             links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
-            expect(links[0].innerHTML).toInclude('Dispositivos');
+            expect(links[0].innerHTML).toInclude('Asignar');
             expect(links[0].getAttribute('href')).toEqual(expectedRoute);
         });
 
@@ -41,11 +41,11 @@ describe('Navbar Component', () => {
             expect(links[1].getAttribute('href')).toEqual(expectedRoute);
         });
 
-        it('should show a link to assign device', function () {
-            expectedRoute = '/assign_device';
+        it('should show a link to devices', function () {
+            expectedRoute = '/device_list';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
             links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
-            expect(links[2].innerHTML).toInclude('Asignar');
+            expect(links[2].innerHTML).toInclude('Dispositivos');
             expect(links[2].getAttribute('href')).toEqual(expectedRoute);
         });
 
