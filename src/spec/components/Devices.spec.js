@@ -106,7 +106,7 @@ describe('Devices Component', () => {
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
                 ownership:'TW',
-                device_state_name:'Disponible'
+                device_status_name:'Disponible'
             }]};
             sandbox = Sinon.sandbox.create();
             sandbox.stub($,'ajax').returns({done: (callback) => {callback(devices); return {fail: (callback) => {}}} });
@@ -150,13 +150,13 @@ describe('Devices Component', () => {
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
                 ownership:'TW',
-                device_state_name:'Disponible'
+                device_status_name:'Disponible'
             }, {
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
                 ownership:'TW',
-                device_state_name:'No Disponible'
+                device_status_name:'No Disponible'
             }
             ]};
             component = mount(<Devices type="embedded" filterBy="Disponible"/>);
@@ -168,13 +168,13 @@ describe('Devices Component', () => {
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
                 ownership:'TW',
-                device_state_name:'No Disponible'
+                device_status_name:'No Disponible'
             }, {
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
                 ownership:'TW',
-                device_state_name:'No Disponible'
+                device_status_name:'No Disponible'
             }
             ]};
             component = mount(<Devices type="embedded" filterBy="Disponible"/>);

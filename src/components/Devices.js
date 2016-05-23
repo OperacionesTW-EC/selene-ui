@@ -61,7 +61,7 @@ export default class Devices extends React.Component{
             <tbody>
             {
                 this.state.devices.map(function(device) {
-                    if(!context.state.filterBy || device.device_state_name==context.state.filterBy){
+                    if(!context.state.filterBy || device.device_status_name==context.state.filterBy){
                         cont++;
                         return(
                             <tr key={device.id} className="data-row">

@@ -27,7 +27,7 @@ describe('Assign device Component', () => {
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
                 ownership:'TW',
-                device_state_name:'Disponible'
+                device_status_name:'Disponible'
             }]};
             sandbox.stub($,'ajax').returns({done: (callback) => {callback(devices); return {fail: (callback) => {}}} });
         });
@@ -149,7 +149,7 @@ describe('Assign device Component', () => {
                     full_code:'some_code',
                     purchase_date:'01/01/2016',
                     ownership:'TW',
-                    device_state_name:'Disponible'
+                    device_status_name:'Disponible'
                 }]};
                 sandbox = Sinon.sandbox.create();
                 sandbox.spy(AssignDevice.prototype, "handleFormChanges");

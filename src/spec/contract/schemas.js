@@ -29,7 +29,7 @@ const schemas = {
                         "device_brand": {
                             "type": "integer"
                         },
-                        "device_state": {
+                        "device_status": {
                             "type": "integer"
                         },
                         "device_type_name": {
@@ -38,7 +38,7 @@ const schemas = {
                         "device_brand_name": {
                             "type": "string"
                         },
-                        "device_state_name": {
+                        "device_status_name": {
                             "type": "string"
                         },
                         "asset": {
