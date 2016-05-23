@@ -1,4 +1,4 @@
-// CSS Normalize
+/* CSS Normalize*/
 
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary {
   display: block;
@@ -60,7 +60,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 }input[type=checkbox],input[type=radio] {
   box-sizing: border-box;padding: 0;
 }input[type=search] {
-  -webkit-box-sizing: content-box                                                                          ;-moz-box-sizing: content-box;box-sizing: content-box;
+  -webkit-box-sizing: content-box                                                                                                                            ;-moz-box-sizing: content-box;box-sizing: content-box;
   -webkit-appearance: textfield;
 }input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -76,13 +76,13 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
   border: 0;
 }
 
-// clearfix
+/* clearfix*/
 .clearfix:after {
   display: block; height: 0; clear: both; font-size: 0;
   visibility: hidden; content: " ";
 }
 
-// Sane border box
+/* Sane border box*/
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;          box-sizing: border-box;

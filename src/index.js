@@ -1,4 +1,5 @@
 import 'style/url!file!./../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'style/url!file!./styles/libs/normalizer.css';
 import './styles/main.scss';
 import 'style/url!file!./../node_modules/jquery/dist/jquery.min.js';
 import 'style/url!file!./../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js';

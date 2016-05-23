@@ -33,8 +33,8 @@ export default class DeviceList extends React.Component {
             <div className="panel-heading">
                 <div className="row">
                     <div className="col-md-12 text-right">
-                        <Link to='/assign_device' className='btn btn-sm btn-primary btn-create'>Asignar Dispositivo</Link>
-                        <Link to='/device_form' className='btn btn-sm btn-secondary btn-create'>Registrar Dispositivo</Link>
+                        <Link to='/assign_device' className='btn btn-primary btn-sm btn-create'>Asignar Dispositivo</Link>
+                        <Link to='/device_form' className='btn btn-secondary btn-sm btn-create'>Registrar Dispositivo</Link>
                     </div>
                 </div>
             </div>
