@@ -15,9 +15,9 @@ export default class AssignDevice extends React.Component{
             projects:[],
             message: new MessageHelper(),
             assignment: {
-                assign_employee: '',
-                assign_project: '',
-                selected_devices: []
+                assignee_name: '',
+                project: undefined,
+                devices: []
             }
         };
         this.handleFormChanges = this.handleFormChanges.bind(this);
@@ -44,14 +44,12 @@ export default class AssignDevice extends React.Component{
         let data = {assignment:this.state.assignment};
         data.assignment[event.target.name] = event.target.value;
         this.setState(data);
-        console.log(data);
     }
 
     handleCheckBoxChanges(event){
         let data = {assignment:this.state.assignment};
-        data.assignment.selected_devices.push(event.value);
+        data.assignment.devices.push(event.target.value);
         this.setState(data);
-        console.log(data)
     }
 
     handleAssignment(){
@@ -60,16 +58,16 @@ export default class AssignDevice extends React.Component{
     }
 
     canAssign(){
-        return this.state.assignment.assign_employee != undefined && this.state.assignment.selected_devices.length != 0;
+        return this.state.assignment.assignee_name != undefined && this.state.assignment.devices.length != 0;
     }
 
     assign(){
-       $.ajax({
+        $.ajax({
             type: 'post',
             datatype: 'json',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(this.state.assignment),
-            url: Constants.BACKEND_URL +'/assignment/'
+            url: Constants.BACKEND_URL +'/assignments/'
         }).done(() => {
             this.state.message.buildSuccessMessage('El(los) dispositivo(s) ha(n) sido asignados satisfactoriamente');
 
@@ -87,35 +85,28 @@ export default class AssignDevice extends React.Component{
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
-
                             <section className="form-card paper white">
                                 <form className="form" onChange={this.handleFormChanges}>
                                     <div className="row">
                                         <div className="col-md-6">
                                             <label>Responsable:</label>
-                                            <input type="text" name="assign_employee" className="form-control" />
+                                            <input type="text" name="assignee_name" className="form-control" />
                                         </div>
                                         <div className="col-md-6">
                                             <label>Proyecto:</label>
-                                            <select className="form-control" name="assign_project" >
+                                            <select className="form-control" name="project" >
                                                 <option> Ninguno </option>
-                                                { this.state.projects.map((project) => {
-                                                    return (<option key={project.id}>{ project.name }</option>);
-                                                })}
+                                                 { this.state.projects.map((project) => {
+                                                    return (<option key={project.id} value={project.id}>{ project.name }</option>);
+                                                 })}
                                             </select>
                                         </div>
                                     </div>
                                 </form>
-
                                 <hr/>
-
-
                                 <label>Seleccione los dispositivos disponibles:</label>
 
-
                                 <Devices type="embedded" callback={this.handleCheckBoxChanges} filterBy="Disponible"/>
-
-
 
                                 <FormRow>
                                     <a  id="save"  className="btn btn-secondary btn-block"  onClick={this.handleAssignment} >
@@ -129,5 +120,4 @@ export default class AssignDevice extends React.Component{
             </div>
         )
     }
-
 }
