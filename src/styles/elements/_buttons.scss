@@ -4,13 +4,39 @@
   font-size: 1em;
 }
 
+.btn-primary {
+  color: lighten($primary, 50%);
+  background-color: $primary;
+  border: none;
+  border-bottom: 3px solid darken($primary, 13%);
+  border-radius: 0;
+  transition: background ease .3s;
+
+  &:hover {
+    color: lighten($primary, 75%);
+    background-color: $primary;
+    border-bottom: 3px solid darken($primary, 40%);
+  }
+
+  &:active {
+    color: $white;
+    background-color: $primary;
+    border-bottom: 3px solid $white;
+  }
+
+  &:focus {
+    color: $white;
+    outline: none;
+  }
+}
+
 .btn-secondary {
   color: darken($secondary, 40%);
   background-color: $secondary;
   border: none;
   border-bottom: 3px solid darken($secondary, 20%);
   border-radius: 0;
-  transition: all ease .3s;
+  transition: background ease .3s;
 
   &:hover {
     color: darken($secondary, 75%);
@@ -26,4 +52,9 @@
     color: $white;
     outline: none;
   }
+}
+
+
+.btn-create {
+  margin-left: 1em;
 }
