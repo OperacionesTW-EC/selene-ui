@@ -20,10 +20,16 @@ const Dashboard = () => {
                                     <div className="description-text">Registrar Dispositivo</div>
                                 </div>
                             </Link>
-                            <Link to='/device_list' className="card este">
+                            <Link to='/device_list' className="card">
                                 <div className="description">
-                                    <div className="icon fa fa-map-o description-icon"></div>
+                                    <div className="icon fa fa-desktop description-icon"></div>
                                     <div className="description-text">Dispositivos</div>
+                                </div>
+                            </Link>
+                            <Link to='/assigned_device_list' className="card">
+                                <div className="description">
+                                    <div className="icon fa fa-th-list description-icon"></div>
+                                    <div className="description-text">Dispositivos Asignados</div>
                                 </div>
                             </Link>
                         </div>

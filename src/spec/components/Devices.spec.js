@@ -33,6 +33,7 @@ describe('Devices Component', () => {
                 component = mount(<Devices/>);
                 var th = component.find('th');
                 var headers = ['Código', 'Tipo', 'Marca', 'Fecha de Compra','Fecha de Asignación','Fecha de Finalización','Fecha de Entrega'];
+                expect(th.length).toBe(headers.length);
                 th.nodes.map((elem) => {
                     var elementText = elem.innerHTML;
                     expect(headers.indexOf(elementText)).toNotBe(-1);

@@ -49,6 +49,14 @@ describe('Dashboard Component', () => {
             expect(links[2].getAttribute('href')).toEqual(expectedRoute);
         });
 
+        it('should show a link to assigned devices', function () {
+            expectedRoute = '/assigned_device_list';
+            renderResult = TestUtils.renderIntoDocument(<Subject/>);
+            links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
+            expect(links[3].innerHTML).toInclude('Dispositivos Asignados');
+            expect(links[3].getAttribute('href')).toEqual(expectedRoute);
+        });
+
     });
 
 });

@@ -6,6 +6,7 @@ import DeviceForm from './../components/DeviceForm';
 import Home from './../components/Home';
 import Dashboard from './../components/Dashboard';
 import AssignDevice from './../components/AssignDevice';
+import AssignedDeviceList from './../components/AssignedDeviceList';
 
 
 
@@ -17,6 +18,7 @@ export default (
             <Route path='device_list' component={DeviceList}/>
             <Route path='device_form' component={DeviceForm}/>
             <Route path='assign_device' component={AssignDevice}/>
+            <Route path='assigned_device_list' component={AssignedDeviceList}/>
         </Route>
     </Router>
 )
