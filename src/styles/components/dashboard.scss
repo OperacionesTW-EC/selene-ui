@@ -1,83 +1,58 @@
 @import './../settings/_colors.scss';
 
-.actions {
-  display: flex;
-  height: 80vh;
+.dashboard {
+  padding: 5em 0;
+}
 
-  flex-flow: row;
-  justify-content: center;
-  align-items: center;
+article {
+  &.card {
+    position: relative;
+    float: left;
+    width: calc(25% - 10px);
+    height: 0;
+    padding-bottom: 23.3%;
+    margin: 0 0 25px;
+    margin: 5px;
+    overflow: hidden;
+    font-size: 14px;
+    border: 2px solid transparent;
+    transition: border .4s ease;
 
-  .action-card-group {
-    display: flex;
-
-    flex: 1 1 0;
-
-    .card {
-      display: flex;
-      width: 20%;
-      margin: 2em;
-      overflow: hidden;
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      color: inherit;
+      color: $grey;
+      text-align: center;
       text-decoration: none;
-      flex-direction: column;
       background-color: #fff;
-      border: 1px solid transparent;
-      border-radius: 2px;
-      transition: background .4s ease, border .3s ease, box-shadow .4s ease;
-
-      flex: 1 1 auto;
-
-      &:hover {
-        background-color: white;
-        border: 1px solid $primary;
-        box-shadow: 0 0 1em #555;
-
-        .description > .description-icon {
-          color: $primary;
-        }
-      }
-
-      &.disabled {
-        .description {
-          .description-icon {
-            color: #b9b9b9;
-          }
-          .description-text {
-            font-style: italic;
-            color: #b9b9b9;
-          }
-        }
-        &:hover {
-          background-color: transparent;
-          border: 1px solid #b9b9b9;
-          box-shadow: 0 0 0 #999;
-
-          .description > .description-icon {
-            color: #b9b9b9;
-          }
-        }
-      }
+      transition: color .4s ease;
 
       .description {
         display: flex;
-        padding: 1.2em 0;
+        height: 100%;
         flex-direction: column;
 
-        align-items: center;
         justify-content: center;
 
-        .description-icon {
-          margin-bottom: 10px;
-          font-size: 5em;
-          color: $grey-muted;
-          transition: color .4s ease,;
+        .icon {
+          margin-bottom: .5em;
+          font-size: 4em;
         }
-        .description-text {
-          max-width: calc(100% - 30px);
-          font-size: 1.1em;
-          color: $primary;
-          text-align: center;
+
+        .text {
+          font-size: 1em;
         }
+      }
+    }
+
+    &:hover {
+      border: 2px solid $primary;
+      transition: border .2s ease;
+      a {
+        color: $primary;
+        transition: color .2s ease;
       }
     }
   }

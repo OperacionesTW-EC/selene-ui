@@ -59,27 +59,27 @@ export default class Devices extends React.Component{
         let cont = 0;
         return (
             <tbody>
-            {
-                this.state.devices.map(function(device) {
-                    if(!context.state.filterBy || device.device_status_name==context.state.filterBy){
-                        cont++;
-                        return(
-                            <tr key={device.id} className="data-row">
-                                <td className="text-center">{device.full_code}</td>
-                                <td>{device.device_type_name}</td>
-                                <td>{device.device_brand_name}</td>
-                                <td>{device.purchase_date}</td>
-                                <td>{device.assign_date}</td>
-                                <td>{device.end_date}</td>
-                                { context.isEmbedded() || <td>{device.return_date}</td> }
-                                { context.renderChkRow(device) }
-                            </tr>
-                        )
-                    }
-                })
+                {
+                    this.state.devices.map(function(device) {
+                        if(!context.state.filterBy || device.device_status_name==context.state.filterBy){
+                            cont++;
+                            return(
+                                <tr key={device.id} className="data-row">
+                                    <td className="text-center">{device.full_code}</td>
+                                    <td>{device.device_type_name}</td>
+                                    <td>{device.device_brand_name}</td>
+                                    <td>{device.purchase_date}</td>
+                                    <td>{device.assign_date}</td>
+                                    <td>{device.end_date}</td>
+                                    { context.isEmbedded() || <td>{device.return_date}</td> }
+                                    { context.renderChkRow(device) }
+                                </tr>
+                            )
+                        }
+                    })
 
-            }
-            { cont>0 || <tr className="data-row"><td colSpan="5">No hay dispositivos {this.state.filterBy}(s)</td></tr>}
+                }
+                { cont>0 || <tr className="data-row"><td colSpan="7">No hay dispositivos {this.state.filterBy}(s)</td></tr>}
             </tbody>
         )
     }

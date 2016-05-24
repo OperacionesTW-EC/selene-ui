@@ -3,39 +3,40 @@ import { Link } from 'react-router';
 
 const Dashboard = () => {
     return (
-        <section className="container">
-            <div className="row">
-                <div className="col-md-8 col-md-offset-2">
-                    <div className="paper actions">
-                        <div className="action-card-group">
-                            <Link to='/assign_device' className="card">
-                                <div className="description">
-                                    <div className="icon fa fa-user-plus description-icon"></div>
-                                    <div className="description-text">Asignar</div>
-                                </div>
-                            </Link>
-                            <Link to='/device_form' className="card">
-                                <div className="description">
-                                    <div className="icon fa fa-plus-square-o description-icon"></div>
-                                    <div className="description-text">Registrar Dispositivo</div>
-                                </div>
-                            </Link>
-                            <Link to='/device_list' className="card">
-                                <div className="description">
-                                    <div className="icon fa fa-desktop description-icon"></div>
-                                    <div className="description-text">Dispositivos</div>
-                                </div>
-                            </Link>
-                            <Link to='/assigned_device_list' className="card">
-                                <div className="description">
-                                    <div className="icon fa fa-th-list description-icon"></div>
-                                    <div className="description-text">Dispositivos Asignados</div>
-                                </div>
-                            </Link>
-                        </div>
+        <section className="container dashboard">
+            <article className="card">
+                <Link to='/assign_device'>
+                    <div className="description">
+                        <div className="icon fa fa-user-plus icon"></div>
+                        <div className="text">Asignar</div>
                     </div>
-                </div>
-            </div>
+                </Link>
+            </article>
+            <article className="card">
+                <Link to='/device_form' className="card">
+                    <div className="description">
+                        <div className="fa fa-plus-square-o icon"></div>
+                        <div className="text">Registrar Dispositivo</div>
+                    </div>
+                </Link>
+            </article>
+            <article className="card">
+                <Link to='/device_list' className="card">
+                    <div className="description">
+                        <div className="fa fa-desktop icon"></div>
+                        <div className="text">Dispositivos</div>
+                    </div>
+                </Link>
+            </article>
+            <article className="card">
+                <Link to='/assigned_device_list' className="card">
+                    <div className="description">
+                        <div className="fa fa-th-list icon"></div>
+                        <div className="text">Dispositivos Asignados</div>
+                    </div>
+                </Link>
+            </article>
+            
         </section>
     )
 }
