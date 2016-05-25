@@ -4,7 +4,12 @@ export default class FormRow extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = {label :props.label, rowClass: props.rowClass || 'margin'};
+        this.state = {
+            label :props.label,
+            rowClass: props.rowClass || 'margin',
+            labelColumnClass: props.labelColumnClass || 'col-md-12',
+            fieldColumnClass: props.fieldColumnClass || 'col-md-12'
+        };
         this.renderLabel = this.renderLabel.bind(this);
     }
 
@@ -12,7 +17,7 @@ export default class FormRow extends React.Component{
         return (
             <div className={'row '+this.state.rowClass}>
                 {this.renderLabel()}
-                <div className="col-md-12">
+                <div className={this.state.fieldColumnClass}>
                     {this.props.children}
                 </div>
             </div>
@@ -22,7 +27,7 @@ export default class FormRow extends React.Component{
     renderLabel(){
         if(this.state.label){
             return (
-                <div className="col-md-12">
+                <div className={this.state.labelColumnClass}>
                     <label>{this.state.label}</label>
                 </div>
             )
