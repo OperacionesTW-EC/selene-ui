@@ -16,9 +16,7 @@ export default class Devices extends React.Component{
         };
         this.renderRows = this.renderRows.bind(this);
         this.renderTable = this.renderTable.bind(this);
-        this.renderChkRow = this.renderChkRow.bind(this);
-        this.renderChkHeader = this.renderChkHeader.bind(this);
-        this.isEmbedded = this.isEmbedded.bind(this);
+        this.selectTableType = this.selectTableType.bind(this);
     }
 
     componentDidMount(){
@@ -46,6 +44,7 @@ export default class Devices extends React.Component{
     };
 
     renderTable(){
+        this.selectTableType();
         return (
             <table className="table table-striped table-bordered table-list" id="device-list">
                 {this.renderHeader()}
@@ -54,37 +53,74 @@ export default class Devices extends React.Component{
         )
     }
 
+    selectTableType(){
+        if (this.state.type=='device_assignment_table'){
+            this.renderHeader = this.renderAssignmentHeader.bind(this);
+            this.renderDataRow = this.renderAssignmentDataRow.bind(this);
+        } else {
+            this.renderHeader = this.renderHeader.bind(this);
+            this.renderDataRow = this.renderDataRow.bind(this);
+        }
+    }
+
     renderRows(){
         let context = this;
         let cont = 0;
         return (
             <tbody>
-                {
-                    this.state.devices.map(function(device) {
-                        if(!context.state.filterBy || device.device_status_name==context.state.filterBy){
-                            cont++;
-                            return(
-                                <tr key={device.id} className="data-row">
-                                    <td className="text-center">{device.full_code}</td>
-                                    <td>{device.device_type_name}</td>
-                                    <td>{device.device_brand_name}</td>
-                                    <td>{device.purchase_date}</td>
-                                    <td>{device.assign_date}</td>
-                                    <td>{device.end_date}</td>
-                                    { context.isEmbedded() || <td>{device.return_date}</td> }
-                                    { context.renderChkRow(device) }
-                                </tr>
-                            )
-                        }
-                    })
-
-                }
-                { cont>0 || <tr className="data-row"><td colSpan="7">No hay dispositivos {this.state.filterBy}(s)</td></tr>}
+            {
+                this.state.devices.map((device) => {
+                    if(!context.state.filterBy || device.device_status_name==context.state.filterBy){
+                        cont++;
+                        { return context.renderDataRow(device) }
+                    }
+                })
+            }
+            { cont>0 || <tr className="data-row"><td colSpan="5">No hay dispositivos {this.state.filterBy}(s)</td></tr>}
             </tbody>
         )
     }
 
+    renderDataRow(device){
+        return (
+            <tr key={device.id} className="data-row">
+                <td className="text-center">{device.full_code}</td>
+                <td>{device.device_type_name}</td>
+                <td>{device.device_brand_name}</td>
+                <td>{device.purchase_date}</td>
+                <td>{device.assign_date}</td>
+                <td>{device.end_date}</td>
+                <td>{device.return_date}</td>
+            </tr>);
+    }
+
+    renderAssignmentDataRow(device){
+        return (
+            <tr key={device.id} className="data-row">
+                <td className="text-center">{device.full_code}</td>
+                <td>{device.device_type_name}</td>
+                <td>{device.device_brand_name}</td>
+                <td>{device.purchase_date}</td>
+                <td><input type="checkbox" className="device-chk" onChange={this.state.callback} value={device.id}/></td>
+            </tr>);
+    }
+
     renderHeader(){
+        return(
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Tipo</th>
+                <th>Marca</th>
+                <th>Fecha de Compra</th>
+                <th>Fecha de Entrega</th>
+                <th>Fecha de Asignación</th>
+                <th>Fecha de Finalización</th>
+            </tr>
+            </thead>)
+    }
+
+    renderAssignmentHeader(){
         return (
             <thead>
             <tr>
@@ -92,32 +128,9 @@ export default class Devices extends React.Component{
                 <th>Tipo</th>
                 <th>Marca</th>
                 <th>Fecha de Compra</th>
-                <th>Fecha de Asignación</th>
-                <th>Fecha de Finalización</th>
-                { this.isEmbedded() || <th>Fecha de Entrega</th> }
-                { this.renderChkHeader() }
+                <th className="checkbox-col"><Icon icon="check"/></th>
             </tr>
-            </thead>
-        )
+            </thead>);
     }
-
-    renderChkHeader(){
-        if (this.isEmbedded())
-            return (
-                <th className="checkbox-col"> <Icon icon="check"/></th>
-            )
-    }
-
-    renderChkRow(device){
-        if (this.isEmbedded())
-            return (
-                <td><input type="checkbox" className="device-chk" onChange={this.state.callback} value={device.id}/></td>
-            )
-    }
-
-    isEmbedded(){
-        return this.state.type=='embedded'
-    }
-
 
 }

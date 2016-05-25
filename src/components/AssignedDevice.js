@@ -10,7 +10,6 @@ export default class AssignedDevice extends React.Component {
           datatype: 'json',
           url: Constants.BACKEND_URL +'/assignments/'+ this.getAssignmentId()
       }).done((data) => {
-        console.log(data);
           this.setState({assignment:data});
       }).fail(() => {
           this.setState({assignment:{}})

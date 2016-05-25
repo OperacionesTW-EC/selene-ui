@@ -6,6 +6,8 @@ import Icon from './helpers/Icon';
 import Constants from './../config/Constants';
 import $ from 'jquery';
 import MessageHelper from './helpers/MessageHelper';
+import { Router, Route, IndexRoute} from 'react-router';
+import datepicker from 'bootstrap-datepicker';
 
 export default class AssignDevice extends React.Component{
 
@@ -17,7 +19,8 @@ export default class AssignDevice extends React.Component{
             assignment: {
                 assignee_name: '',
                 project: undefined,
-                devices: []
+                devices: [],
+                assignment_end_date: undefined
             }
         };
         this.handleFormChanges = this.handleFormChanges.bind(this);
@@ -25,6 +28,7 @@ export default class AssignDevice extends React.Component{
         this.handleAssignment = this.handleAssignment.bind(this);
         this.assign = this.assign.bind(this);
         this.canAssign = this.canAssign.bind(this);
+        this.setDatePicker = this.setDatePicker.bind(this);
     }
 
     componentDidMount(){
@@ -38,6 +42,7 @@ export default class AssignDevice extends React.Component{
             this.state.message.buildErrorMessage();
             this.setState({projects:[]});
         });
+        this.setDatePicker();
     }
 
     handleFormChanges(event){
@@ -48,13 +53,20 @@ export default class AssignDevice extends React.Component{
 
     handleCheckBoxChanges(event){
         let data = {assignment:this.state.assignment};
-        data.assignment.devices.push(event.target.value);
+        if(event.target.checked)
+            data.assignment.devices.push(event.target.value);
+        else
+            data.assignment.devices.splice(data.assignment.devices.indexOf(event.target.value), 1);
         this.setState(data);
     }
 
     handleAssignment(){
         if(this.canAssign())
             this.assign();
+        else {
+            this.state.message.buildErrorMessage('Error, existen campos vacíos');
+            this.setState({});
+        }
     }
 
     canAssign(){
@@ -68,13 +80,25 @@ export default class AssignDevice extends React.Component{
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(this.state.assignment),
             url: Constants.BACKEND_URL +'/assignments/'
-        }).done(() => {
+        }).done((data) => {
             this.state.message.buildSuccessMessage('El(los) dispositivo(s) ha(n) sido asignados satisfactoriamente');
-
+            this.setState({});
+            $(location).attr('href', '#/assign_device/' + data.id);
         }).fail(() => {
             this.state.message.buildErrorMessage('Error, no se pudo realizar la asignación');
             this.setState({});
-        })
+        });
+    }
+
+    setDatePicker(){
+      $("[name='assignment_end_date']").datepicker({
+          format: 'yyyy-mm-dd',
+          startDate: 'now',
+          autoclose: true,
+          setDate: new Date()
+      }).on('changeDate', (event) =>  {
+          this.handleFormChanges(event);
+      });
     }
 
     render(){
@@ -106,7 +130,7 @@ export default class AssignDevice extends React.Component{
                                 <hr/>
                                 <label>Seleccione los dispositivos disponibles:</label>
 
-                                <Devices type="embedded" callback={this.handleCheckBoxChanges} filterBy="Disponible"/>
+                                <Devices type="device_assignment_table" callback={this.handleCheckBoxChanges} filterBy="Disponible"/>
 
                                 <FormRow>
                                     <a  id="save"  className="btn btn-secondary btn-block"  onClick={this.handleAssignment} >
@@ -120,4 +144,5 @@ export default class AssignDevice extends React.Component{
             </div>
         )
     }
+
 }

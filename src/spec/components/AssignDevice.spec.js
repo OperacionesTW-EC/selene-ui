@@ -181,9 +181,20 @@ describe('Assign device Component', () => {
                 component.find(".device-chk").simulate('change');
                 expect(AssignDevice.prototype.handleCheckBoxChanges.calledOnce).toEqual(true);
             });
-            xit('should call update the state when checkbox changes', () => {
-                component.find(".device-chk").simulate('change', {value:'1'});
+            it('should add device id when checkbox is checked', () => {
+                component.find(".device-chk").simulate('change', { target: {value:'1', checked : true}});
                 expect(component.state()['assignment']['devices']).toEqual(['1']);
+            });
+            it('should remove device id when checkbox is unchecked', () => {
+                component.find(".device-chk").simulate('change', { target: {value:'3', checked : true}});
+                component.find(".device-chk").simulate('change', { target: {value:'3', checked : false}});
+                expect(component.state()['assignment']['devices']).toEqual([]);
+            });
+            it('should add device id again when checkbox is re-checked', () => {
+                component.find(".device-chk").simulate('change', { target: {value:'2', checked : true}});
+                component.find(".device-chk").simulate('change', { target: {value:'2', checked : false}});
+                component.find(".device-chk").simulate('change', { target: {value:'2', checked : true}});
+                expect(component.state()['assignment']['devices']).toEqual(['2']);
             });
             it('should call assign function when a responsible name is set and a device is selected', () => {
                 component.setState({assignment: {
@@ -203,6 +214,8 @@ describe('Assign device Component', () => {
                 component.find("#save").simulate('click');
                 expect($.ajax.called).toEqual(true);
             });
+
+
         });
     });
 

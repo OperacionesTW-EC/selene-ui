@@ -119,22 +119,22 @@ describe('Devices Component', () => {
         });
 
         it('should not show the page title', () => {
-            component = mount(<Devices type="embedded" callback={checkboxCallback} filterBy="Disponible"/>);
+            component = mount(<Devices type="device_assignment_table" callback={checkboxCallback} filterBy="Disponible"/>);
             expect(component.find('.page-header').length).toBe(0);
         });
 
         it('should not show the panel heading', () => {
-            component = mount(<Devices type="embedded" callback={checkboxCallback} filterBy="Disponible"/>);
+            component = mount(<Devices type="device_assignment_table" callback={checkboxCallback} filterBy="Disponible"/>);
             expect(component.find('.panel-heading').length).toBe(0);
         });
 
         it('should show checkboxes on every row', () => {
-            component = mount(<Devices type="embedded" />);
+            component = mount(<Devices type="device_assignment_table" />);
             expect(component.find('.device-chk').length).toBe(1)
         });
 
         it('should invoke callback function', () => {
-            component = mount(<Devices type="embedded" callback={checkboxCallback} filterBy="Disponible"/>);
+            component = mount(<Devices type="device_assignment_table" callback={checkboxCallback} filterBy="Disponible"/>);
             let checkbox = component.find('.device-chk');
             checkbox.simulate('change', {
                 target: {
@@ -160,7 +160,7 @@ describe('Devices Component', () => {
                 device_status_name:'No Disponible'
             }
             ]};
-            component = mount(<Devices type="embedded" filterBy="Disponible"/>);
+            component = mount(<Devices type="device_assignment_table" filterBy="Disponible"/>);
             expect(component.find('.device-chk').length).toBe(1)
         });
         it('should show a message if no devices are shown', () => {
@@ -178,7 +178,7 @@ describe('Devices Component', () => {
                 device_status_name:'No Disponible'
             }
             ]};
-            component = mount(<Devices type="embedded" filterBy="Disponible"/>);
+            component = mount(<Devices type="device_assignment_table" filterBy="Disponible"/>);
             expect(component.find('.device-chk').length).toBe(0)
             expect(component.find('tr.data-row').nodes[0].innerHTML).toContain('No hay dispositivos')
         });
