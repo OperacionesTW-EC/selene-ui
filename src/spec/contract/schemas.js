@@ -7,10 +7,10 @@ const schemas = {
                 "type": "integer"
             },
             "next": {
-                "type": ["string","null"]
+                "type": "null"
             },
             "previous": {
-                "type": ["string","null"]
+                "type": "null"
             },
             "results": {
                 "type": "array",
@@ -20,26 +20,20 @@ const schemas = {
                         "id": {
                             "type": "integer"
                         },
-                        "device_type": {
-                            "type": "integer"
-                        },
-                        "full_code": {
+                        "device_type_name": {
                             "type": "string"
                         },
-                        "device_brand": {
-                            "type": "integer"
-                        },
-                        "device_status": {
-                            "type": "integer"
-                        },
-                        "device_type_name": {
+                        "full_code": {
                             "type": "string"
                         },
                         "device_brand_name": {
                             "type": "string"
                         },
-                        "device_status_name": {
-                            "type": "string"
+                        "device_type": {
+                            "type": "integer"
+                        },
+                        "device_brand": {
+                            "type": "integer"
                         },
                         "asset": {
                             "type": "integer"
@@ -54,18 +48,29 @@ const schemas = {
                             "type": "string"
                         },
                         "purchase_date": {
+                            "type": ["string", "null"]
+                        },
+                        "device_status": {
+                            "type": "integer"
+                        },
+                        "device_status_name": {
                             "type": "string"
                         }
                     },
                     "required": [
                         "id",
+                        "device_type_name",
+                        "full_code",
+                        "device_brand_name",
                         "device_type",
                         "device_brand",
                         "asset",
                         "ownership",
                         "serial_number",
                         "model",
-                        "purchase_date"
+                        "purchase_date",
+                        "device_status",
+                        "device_status_name"
                     ]
                 }
             }
