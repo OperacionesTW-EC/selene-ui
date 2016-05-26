@@ -3,6 +3,7 @@ import $ from 'jquery';
 import MessageHelper from './helpers/MessageHelper'
 import Constants from './../config/Constants'
 import Icon from './helpers/Icon'
+import DateHelper from './helpers/DateHelper';
 
 export default class Devices extends React.Component{
 
@@ -87,10 +88,11 @@ export default class Devices extends React.Component{
                 <td className="text-center">{device.full_code}</td>
                 <td>{device.device_type_name}</td>
                 <td>{device.device_brand_name}</td>
-                <td>{device.purchase_date}</td>
-                <td>{device.assign_date}</td>
-                <td>{device.end_date}</td>
-                <td>{device.return_date}</td>
+                <td>{DateHelper(device.purchase_date)}</td>
+                <td>{DateHelper(device.return_date)}</td>
+                <td>{DateHelper(device.first_assignment_date)}</td>
+                <td>{DateHelper(device.end_date)}</td>
+
             </tr>);
     }
 
@@ -100,7 +102,7 @@ export default class Devices extends React.Component{
                 <td className="text-center">{device.full_code}</td>
                 <td>{device.device_type_name}</td>
                 <td>{device.device_brand_name}</td>
-                <td>{device.purchase_date}</td>
+                <td>{DateHelper(device.purchase_date)}</td>
                 <td><input type="checkbox" className="device-chk" onChange={this.state.callback} value={device.id}/></td>
             </tr>);
     }

@@ -47,14 +47,22 @@ describe('Devices Component', () => {
                 expect(rows.length).toBe(devices.results.length);
             });
 
-            it('should show code, type, purchase date and ownership', () => {
-                devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',device_brand_name:'TW'}]};
+            it('should show required field with formatted dates', () => {
+                devices = {results:[{
+                  device_type_name:'some_name',
+                  full_code:'some_code',
+                   purchase_date:'2016-02-28T14:11:22.590810Z',
+                   device_brand_name:'TW',
+                   first_assignment_date:'2016-05-26T14:11:22.590810Z',
+                   end_date:'2019-05-21T14:11:22.590810Z'
+                 }]};
                 component = mount(<Devices/>);
                 var row = component.find('tr.data-row').nodes[0];
-                expect(row.innerHTML).toContain('some_name');
-                expect(row.innerHTML).toContain('some_code');
-                expect(row.innerHTML).toContain('TW');
-                expect(row.innerHTML).toContain('01/01/2016');
+                expect(row.innerHTML).toContain(devices.results[0].full_code);
+                expect(row.innerHTML).toContain(devices.results[0].device_brand_name);
+                expect(row.innerHTML).toContain('02-28-2016');
+                expect(row.innerHTML).toContain('05-26-2016');
+                expect(row.innerHTML).toContain('05-21-2019');
             });
 
             it('should render rows with four tds', () => {

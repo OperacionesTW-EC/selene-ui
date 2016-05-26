@@ -68,10 +68,10 @@ describe('AssignedDeviceList Component', () => {
                 full_code: 'some_code',
                 device_type_name: 'Laptop',
                 device_brand_name: 'HP',
-                first_assignment_date: '01/01/2016',
-                last_assignment_date: '01/01/2016',
-                return_date: '02/01/2016',
-                end_date: '03/01/2016',
+                first_assignment_date: '01-01-2016',
+                last_assignment_date: '01-01-2016',
+                return_date: '02-01-2016',
+                end_date: '03-01-2016',
                 assignee_name: 'some_name',
                 project: 'some_project'
             }];
@@ -94,10 +94,10 @@ describe('AssignedDeviceList Component', () => {
                 full_code: 'some_code',
                 device_type_name: 'Laptop',
                 device_brand_name: 'HP',
-                first_assignment_date: '29/01/2016',
-                last_assignment_date: '30/01/2016',
-                return_date: '02/01/2016',
-                end_date: '03/01/2016',
+                first_assignment_date: '01-29-2016',
+                last_assignment_date: '01-30-2016',
+                return_date: '02-01-2016',
+                end_date: '03-01-2016',
                 assignee_name: 'some_name',
                 project: 'some_project'
             }];
@@ -113,10 +113,10 @@ describe('AssignedDeviceList Component', () => {
                 full_code: 'some_code',
                 device_type_name: 'Mouse',
                 device_brand_name: 'HP',
-                first_assignment_date: '29/01/2016',
-                last_assignment_date: '30/01/2016',
-                return_date: '02/01/2016',
-                end_date: '03/01/2016',
+                first_assignment_date: '01-29-2016',
+                last_assignment_date: '01-30-2016',
+                return_date: '02-01-2016',
+                end_date: '03-01-2016',
                 assignee_name: 'some_name',
                 project: 'some_project'
             }];

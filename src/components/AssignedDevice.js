@@ -1,9 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
 import Constants from './../config/Constants';
-import PageTitle from './../components/layout/PageTitle';
-import Icon from './../components/helpers/Icon';
-import FormRow from './../components/helpers/FormRow';
+import PageTitle from './layout/PageTitle';
+import Icon from './helpers/Icon';
+import FormRow from './helpers/FormRow';
+import DateHelper from './helpers/DateHelper';
 import { Link } from 'react-router';
 
 export default class AssignedDevice extends React.Component {
@@ -24,25 +25,10 @@ export default class AssignedDevice extends React.Component {
             datatype: 'json',
             url: Constants.BACKEND_URL +'/assignments/'+ this.getAssignmentId()
         }).done((data) => {
-            this.setState({assignment: this.processResponse(data)});
+            this.setState({assignment: data});
         }).fail(() => {
             this.setState({assignment:{}})
         });
-    }
-
-    processResponse(responseData){
-        responseData.assignment_datetime =this.convertDate(responseData.assignment_datetime);
-        responseData.return_date = this.convertDate(responseData.return_date);
-        return responseData;
-    }
-
-    convertDate(inputFormat) {
-        function pad(s) { return (s < 10) ? '0' + s : s; }
-        var date = new Date(inputFormat);
-        if(isNaN(date.getTime()))
-            return 'No registrada';
-        return [pad(date.getDate()), pad(date.getMonth()+1), date.getFullYear()].join('-')
-
     }
 
     getAssignmentId(){
@@ -79,10 +65,10 @@ export default class AssignedDevice extends React.Component {
                     {this.state.assignment.project_name}
                 </FormRow>
                 <FormRow label="Fecha de asignación:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                    {this.state.assignment.assignment_datetime}
+                    {DateHelper(this.state.assignment.assignment_datetime)}
                 </FormRow>
                 <FormRow label="Fecha de entrega:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                    {this.state.assignment.return_date}
+                    {DateHelper(this.state.assignment.return_date)}
                 </FormRow>
             </div>
         )
@@ -109,7 +95,7 @@ export default class AssignedDevice extends React.Component {
                                         <td>{device.full_code}</td>
                                         <td>{device.device_type_name}</td>
                                         <td>{device.device_brand_name}</td>
-                                        <td>{device.end_date}</td>
+                                        <td>{DateHelper(device.end_date)}</td>
                                     </tr>
                                 )
                             })

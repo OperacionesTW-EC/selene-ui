@@ -54,8 +54,8 @@ describe('AssignedDevice Component', () => {
                 return_date:'2016-05-26T14:11:22.590810Z', devices:[]};
             component = mount(<AssignedDevice/>);
             let html = component.find('.form-card').node.innerHTML;
-            expect(html).toContain('25-05-2016');
-            expect(html).toContain('26-05-2016');
+            expect(html).toContain('05-25-2016');
+            expect(html).toContain('05-26-2016');
         });
 
         it('should show No registrada if return_date is not present', () => {

@@ -4,7 +4,7 @@ import $ from 'jquery';
 import MessageHelper from './helpers/MessageHelper';
 import PageTitle from './layout/PageTitle';
 import { Link } from 'react-router';
-
+import DateHelper from './helpers/DateHelper';
 
 export default class AssignedDeviceList extends React.Component{
 
@@ -101,9 +101,9 @@ export default class AssignedDeviceList extends React.Component{
                             <td>{device.full_code}</td>
                             <td>{device.device_type_name}</td>
                             <td>{device.device_brand_name}</td>
-                            <td>{device.device_type_name == LAPTOP_NAME ? device.first_assignment_date : device.last_assignment_date}</td>
-                            <td>{device.return_date}</td>
-                            <td>{device.end_date}</td>
+                            <td>{DateHelper(device.device_type_name == LAPTOP_NAME ? device.first_assignment_date : device.last_assignment_date)}</td>
+                            <td>{DateHelper(device.return_date)}</td>
+                            <td>{DateHelper(device.end_date)}</td>
                             <td>{device.assignee_name}</td>
                             <td>{device.project}</td>
                         </tr>
