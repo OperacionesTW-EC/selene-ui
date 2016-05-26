@@ -55,6 +55,12 @@ const schemas = {
                         },
                         "device_status_name": {
                             "type": "string"
+                        },
+                        "end_date": {
+                            "type": ["string", "null"]
+                        },
+                        "first_assignment_date": {
+                            "type": ["string", "null"]
                         }
                     },
                     "required": [
@@ -70,7 +76,9 @@ const schemas = {
                         "model",
                         "purchase_date",
                         "device_status",
-                        "device_status_name"
+                        "device_status_name",
+                        "end_date",
+                        "first_assignment_date"
                     ]
                 }
             }
