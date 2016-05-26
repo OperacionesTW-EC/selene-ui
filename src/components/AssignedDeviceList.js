@@ -91,16 +91,17 @@ export default class AssignedDeviceList extends React.Component{
     }
 
     renderBody(){
+        const LAPTOP_NAME = "Laptop";
         return(
             <tbody>
             {
-                this.state.devices.map(function(device) {
+                this.state.devices.map(function(device, index) {
                     return(
-                        <tr className="data-row" key={device.id}>
+                        <tr className="data-row" key={index}>
                             <td>{device.full_code}</td>
                             <td>{device.device_type_name}</td>
                             <td>{device.device_brand_name}</td>
-                            <td>{device.assign_date}</td>
+                            <td>{device.device_type_name == LAPTOP_NAME ? device.first_assignment_date : device.last_assignment_date}</td>
                             <td>{device.return_date}</td>
                             <td>{device.end_date}</td>
                             <td>{device.assignee_name}</td>

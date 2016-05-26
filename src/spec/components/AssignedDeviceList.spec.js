@@ -40,7 +40,7 @@ describe('AssignedDeviceList Component', () => {
             component = mount(<AssignedDeviceList/>);
             var th = component.find('th');
             var headers = ['Código', 'Tipo', 'Marca', 'Fecha de Asignación', 'Fecha de Entrega', 'Fecha de Finalización', 'Responsable', 'Proyecto'];
-            expect(th.length).toBe(headers.length)
+            expect(th.length).toBe(headers.length);
             th.nodes.map((elem) => {
                 var elementText = elem.innerHTML;
                 expect(headers.indexOf(elementText)).toNotBe(-1);
@@ -62,28 +62,68 @@ describe('AssignedDeviceList Component', () => {
             expect(tds.length).toEqual(8);
         });
 
-        it('should show code, type, brand, assing date, return date, end date, assignee name, project', () => {
+        it('should show code, type, brand, assign date, return date, end date, assignee name, project', () => {
             devices = [{
-                    id: 'id',
-                    full_code: 'some_code',
-                    device_type_name: 'Laptop',
-                    device_brand_name: 'HP',
-                    assign_date: '01/01/2016',
-                    return_date: '02/01/2016',
-                    end_date: '03/01/2016',
-                    assignee_name: 'some_name',
-                    project: 'some_project'
-                }];
+                id: 'id',
+                full_code: 'some_code',
+                device_type_name: 'Laptop',
+                device_brand_name: 'HP',
+                first_assignment_date: '01/01/2016',
+                last_assignment_date: '01/01/2016',
+                return_date: '02/01/2016',
+                end_date: '03/01/2016',
+                assignee_name: 'some_name',
+                project: 'some_project'
+            }];
             component = mount(<AssignedDeviceList/>);
             var row = component.find('tr.data-row').nodes[0];
-            expect(row.innerHTML).toContain('some_code');
-            expect(row.innerHTML).toContain('Laptop');
-            expect(row.innerHTML).toContain('HP');
-            expect(row.innerHTML).toContain('01/01/2016');
-            expect(row.innerHTML).toContain('02/01/2016');
-            expect(row.innerHTML).toContain('03/01/2016');
-            expect(row.innerHTML).toContain('some_name');
-            expect(row.innerHTML).toContain('some_project');
+            expect(row.innerHTML).toContain(devices[0].full_code);
+            expect(row.innerHTML).toContain(devices[0].device_type_name);
+            expect(row.innerHTML).toContain(devices[0].device_brand_name);
+            expect(row.innerHTML).toContain(devices[0].first_assignment_date);
+            expect(row.innerHTML).toContain(devices[0].return_date);
+            expect(row.innerHTML).toContain(devices[0].end_date);
+            expect(row.innerHTML).toContain(devices[0].assignee_name);
+            expect(row.innerHTML).toContain(devices[0].project);
+        });
+
+
+        it('should show first_assign_date if device is a laptop', () => {
+            devices = [{
+                id: 'id',
+                full_code: 'some_code',
+                device_type_name: 'Laptop',
+                device_brand_name: 'HP',
+                first_assignment_date: '29/01/2016',
+                last_assignment_date: '30/01/2016',
+                return_date: '02/01/2016',
+                end_date: '03/01/2016',
+                assignee_name: 'some_name',
+                project: 'some_project'
+            }];
+            component = mount(<AssignedDeviceList/>);
+            var row = component.find('tr.data-row').nodes[0];
+            expect(row.innerHTML).toContain(devices[0].first_assignment_date);
+            expect(row.innerHTML).toNotContain(devices[0].last_assignment_date);
+        });
+
+        it('should show last_assign_date if device is not a laptop', () => {
+            devices = [{
+                id: 'id',
+                full_code: 'some_code',
+                device_type_name: 'Mouse',
+                device_brand_name: 'HP',
+                first_assignment_date: '29/01/2016',
+                last_assignment_date: '30/01/2016',
+                return_date: '02/01/2016',
+                end_date: '03/01/2016',
+                assignee_name: 'some_name',
+                project: 'some_project'
+            }];
+            component = mount(<AssignedDeviceList/>);
+            var row = component.find('tr.data-row').nodes[0];
+            expect(row.innerHTML).toContain(devices[0].last_assignment_date);
+            expect(row.innerHTML).toNotContain(devices[0].first_assignment_date);
         });
 
         it('should not render an error message ', () => {
