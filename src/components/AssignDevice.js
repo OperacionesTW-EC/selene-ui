@@ -5,7 +5,6 @@ import FormRow from './helpers/FormRow';
 import Icon from './helpers/Icon';
 import Constants from './../config/Constants';
 import $ from 'jquery';
-import MessageHelper from './helpers/MessageHelper';
 import { Router, Route, IndexRoute} from 'react-router';
 import datepicker from 'bootstrap-datepicker';
 
@@ -15,7 +14,6 @@ export default class AssignDevice extends React.Component{
         super(props);
         this.state = {
             projects:[],
-            message: new MessageHelper(),
             assignment: {
                 assignee_name: '',
                 project: undefined,
@@ -39,7 +37,7 @@ export default class AssignDevice extends React.Component{
         }).done((data) => {
             this.setState({projects: data.results});
         }).fail(() => {
-            this.state.message.buildErrorMessage();
+            this.props.setMessage('', Constants.MESSAGE_TYPE.ERROR);
             this.setState({projects:[]});
         });
         this.setDatePicker();
@@ -64,8 +62,7 @@ export default class AssignDevice extends React.Component{
         if(this.canAssign())
             this.assign();
         else {
-            this.state.message.buildErrorMessage('Error, existen campos vacíos');
-            this.setState({});
+            this.props.setMessage('Error, existen campos vacíos', Constants.MESSAGE_TYPE.ERROR);
         }
     }
 
@@ -81,12 +78,10 @@ export default class AssignDevice extends React.Component{
             data: JSON.stringify(this.state.assignment),
             url: Constants.BACKEND_URL +'/assignments/'
         }).done((data) => {
-            this.state.message.buildSuccessMessage('El(los) dispositivo(s) ha(n) sido asignados satisfactoriamente');
-            this.setState({});
+            this.props.setMessage('El(los) dispositivo(s) ha(n) sido asignados satisfactoriamente', Constants.MESSAGE_TYPE.OK);
             $(location).attr('href', '#/assign_device/' + data.id);
         }).fail(() => {
-            this.state.message.buildErrorMessage('Error, no se pudo realizar la asignación');
-            this.setState({});
+            this.props.setMessage('Error, no se pudo realizar la asignación',Constants.MESSAGE_TYPE.ERROR);
         });
     }
 
@@ -105,7 +100,6 @@ export default class AssignDevice extends React.Component{
         return(
             <div>
                 <PageTitle content="Asignar dispositivos"/>
-                {this.state.message.renderMessage()}
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
@@ -113,7 +107,7 @@ export default class AssignDevice extends React.Component{
                                 <form className="form" onChange={this.handleFormChanges}>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <label>Responsable:</label>
+                                            <label>Responsable: *</label>
                                             <input type="text" name="assignee_name" className="form-control" />
                                         </div>
                                         <div className="col-md-6">
@@ -128,7 +122,7 @@ export default class AssignDevice extends React.Component{
                                     </div>
                                 </form>
                                 <hr/>
-                                <label>Seleccione los dispositivos disponibles:</label>
+                                <label>Seleccione los dispositivos disponibles: *</label>
 
                                 <Devices type="device_assignment_table" callback={this.handleCheckBoxChanges} filterBy="Disponible"/>
 

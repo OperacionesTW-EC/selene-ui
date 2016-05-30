@@ -1,8 +1,7 @@
 import React from 'react';
 import Icon from './helpers/Icon';
-import Constants from './../config/Constants';
 import PageTitle from './layout/PageTitle';
-import MessageHelper from './helpers/MessageHelper';
+import Constants from './../config/Constants';
 import FormRow from './helpers/FormRow';
 import $ from 'jquery';
 import datepicker from 'bootstrap-datepicker';
@@ -12,7 +11,6 @@ export default class DeviceForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            message: new MessageHelper(),
             deviceTypes: [],
             deviceBrands: [],
             owners : ['TW', 'CL'],
@@ -24,7 +22,8 @@ export default class DeviceForm extends React.Component{
                 model: '',
                 ownership: 'TW',
                 purchase_date: ''
-            }
+            },
+            setMessage: props.setMessage
         };
         this.renderDeviceTypeSelect = this.renderDeviceTypeSelect.bind(this);
         this.renderDeviceBrandSelect = this.renderDeviceBrandSelect.bind(this);
@@ -64,7 +63,6 @@ export default class DeviceForm extends React.Component{
         return (
             <div>
                 <PageTitle content="Registrar Dispositivo" />
-                {this.state.message.renderMessage()}
                 <div className="container">
                     <form onChange={this.handleFormChanges}>
 
@@ -130,13 +128,14 @@ export default class DeviceForm extends React.Component{
             data: JSON.stringify(submitData),
             url: Constants.BACKEND_URL +'/devices/'
         }).done((response) => {
-            this.state.message.buildSuccessMessage('El dispositivo '+response.full_code+" ha sido registrado satisfactoriamente");
+            this.state.setMessage('El dispositivo '+response.full_code+" ha sido registrado satisfactoriamente", Constants.MESSAGE_TYPE.OK);
             this.resetState();
         }).fail(() => {
-            this.state.message.buildErrorMessage('Error, no se pudo guardar el dispositivo');
-            this.setState({});
+            this.state.setMessage('Error, no se pudo guardar el dispositivo', Constants.MESSAGE_TYPE.ERROR);
         })
     }
+    
+    
 
     renderDeviceTypeSelect(){
         return (
@@ -190,7 +189,7 @@ export default class DeviceForm extends React.Component{
         }).done((data) => {
             this.setState({deviceBrands: data.results});
         }).fail(() => {
-            this.state.message.buildErrorMessage();
+            this.state.setMessage('Error de Conectividad', Constants.MESSAGE_TYPE.ERROR);
             this.setState({deviceBrands:[]});
         });
     }
@@ -203,7 +202,7 @@ export default class DeviceForm extends React.Component{
         }).done((data) => {
             this.setState({deviceTypes: data.results});
         }).fail(() => {
-            this.state.message.buildErrorMessage();
+            this.state.setMessage('Error de Conectividad', Constants.MESSAGE_TYPE.ERROR);
             this.setState({deviceTypes:[]});
         });
     }

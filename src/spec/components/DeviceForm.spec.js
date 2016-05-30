@@ -12,6 +12,10 @@ describe('DeviceForm', () => {
 	let sandbox;
 	let deviceTypes, deviceBrands;
 
+	beforeEach(() => {
+	
+	});
+
 	describe('Initialization', () => {
 
 		describe('with valid data', () => {
@@ -314,19 +318,32 @@ describe('DeviceForm', () => {
 						}
 					}
 				});
-				component = mount( < DeviceForm/>);
+				var l = {
+					setMessage: function () {
+						return (<div/>);
+					}
+				};
+				component = mount( <DeviceForm setMessage={()=>{}} props={l}/>);
+
 			});
 
 			afterEach(function() {
 				sandbox.restore();
 			});
 
-			it('should show a success message with the device code', () => {
-				component = mount( < DeviceForm/>);
+			it('····$$$$should show a success message with the device code', () => {
+				var l = {
+					setMessage: function () {
+						return (<div/>);
+					}
+				};
+				component = mount( <DeviceForm setMessage={()=>{}} props={l}/>);
+				sandbox.stub(component.state, 'setMessage');
 				isMounted = true;
 				component.find("#save").simulate('click');
-				expect(component.find('.success-message').length).toBe(1);
-				expect(component.find('.success-message').nodes[0].innerHTML).toContain(response.full_code);
+				expect(DeviceForm.prototype.props.setMessage.calledOnce).toEqual(true);
+				//expect(component.find('.success-message').length).toBe(1);
+				//expect(component.find('.success-message').nodes[0].innerHTML).toContain(response.full_code);
 			});
 
 			it('should clean input device type field', () => {

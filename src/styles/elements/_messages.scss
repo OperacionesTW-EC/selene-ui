@@ -1,11 +1,13 @@
 @import './../settings/colors.scss';
 
 .message {
-  padding: 20px;
+  padding: 32px;
   font-size: 1em;
   font-weight: bold;
   text-align: center;
-  animation: fadeIn .4s ease;
+  position: absolute;
+  width: 100%;
+  z-index: 99;
 
   &.error-message {
     color: $error;
