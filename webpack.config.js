@@ -2,6 +2,10 @@ const path = require('path');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const postcssImport = require('postcss-import');
+const postcssUrl = require('postcss-url');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
 
 const TARGET = process.env.npm_lifecycle_event
 
@@ -51,6 +55,9 @@ var common = {
         loader: 'url?limit=10000&mimetype=image/svg+xml&prefix=fonts'
       }
     ]
+  },
+  postcss: function (webpack) {
+    return [autoprefixer, precss, postcssImport({addDependencyTo: webpack}), postcssUrl({})]
   },
   plugins: [
     new HtmlwebpackPlugin({
