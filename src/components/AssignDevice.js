@@ -20,7 +20,7 @@ export default class AssignDevice extends React.Component{
                 assignee_name: '',
                 project: undefined,
                 devices: [],
-                assignment_end_date: undefined
+                expected_return_date: undefined
             }
         };
         this.handleFormChanges = this.handleFormChanges.bind(this);
@@ -91,7 +91,7 @@ export default class AssignDevice extends React.Component{
     }
 
     setDatePicker(){
-      $("[name='assignment_end_date']").datepicker({
+      $("[name='expected_return_date']").datepicker({
           format: 'yyyy-mm-dd',
           startDate: 'now',
           autoclose: true,
@@ -112,11 +112,11 @@ export default class AssignDevice extends React.Component{
                             <section className="form-card paper white">
                                 <form className="form" onChange={this.handleFormChanges}>
                                     <div className="row">
-                                        <div className="col-md-6">
-                                            <label>Responsable:</label>
+                                        <div className="col-md-4">
+                                            <label>Responsable: *</label>
                                             <input type="text" name="assignee_name" className="form-control" />
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-md-4">
                                             <label>Proyecto:</label>
                                             <select className="form-control" name="project" >
                                                 <option> Ninguno </option>
@@ -125,10 +125,14 @@ export default class AssignDevice extends React.Component{
                                                  })}
                                             </select>
                                         </div>
+                                        <div className="col-md-4">
+                                            <label>Fecha de Entrega:</label>
+                                            <input type="text" name="expected_return_date" className="form-control" readOnly/>
+                                        </div>
                                     </div>
                                 </form>
                                 <hr/>
-                                <label>Seleccione los dispositivos disponibles:</label>
+                                <label>Seleccione los dispositivos disponibles: *</label>
 
                                 <Devices type="device_assignment_table" callback={this.handleCheckBoxChanges} filterBy="Disponible"/>
 
