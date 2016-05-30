@@ -176,6 +176,11 @@ describe('Assign device Component', () => {
                 component.find("[name='assignee_name']").simulate('change');
                 expect(AssignDevice.prototype.handleFormChanges.calledOnce).toEqual(true);
             });
+            
+            it('should should update the assignee_name when calls handleFormChanges', () => {
+                component.find("[name='assignee_name']").simulate('change', {target: {name: 'assignee_name' ,value:'juan'}});
+                expect(component.state()['assignment']['assignee_name']).toEqual('juan');
+            });
 
             it('should call handleCheckBoxChanges when checkbox changes', () => {
                 component.find(".device-chk").simulate('change');
@@ -215,6 +220,23 @@ describe('Assign device Component', () => {
                 expect($.ajax.called).toEqual(true);
             });
 
+            it('should send data to backend', () => {
+                component.setState({assignment: {
+                    assignee_name: 'Tim',
+                    devices: [{name:'mouse'}]}});
+                component.find("#save").simulate('click');
+                expect($.ajax.called).toEqual(true);
+            });
+
+            it('should call handleFormChanges when input date changes', () => {
+                component.find("[name='expected_return_date']").simulate('change');
+                expect(AssignDevice.prototype.handleFormChanges.calledOnce).toEqual(true);
+            });
+
+            it('should should update the expected_return_date when calls handleFormChanges', () => {
+                component.find("[name='expected_return_date']").simulate('change', {target: {name: 'expected_return_date' ,value:'20/09/2017'}});
+                expect(component.state()['assignment']['expected_return_date']).toEqual('20/09/2017');
+            });
 
         });
     });
