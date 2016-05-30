@@ -1,5 +1,7 @@
+@import './../settings/_colors.scss';
+
 .panel-default {
-  border: 1px solid #f7f7f7;
+  border: 1px solid $white;
 }
 
 .panel-table .panel-body {
@@ -11,30 +13,38 @@
   }
 }
 
-.panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
+.table-bordered > thead > tr > th:first-of-type {
   width: 120px;
   text-align: center;
 }
 
-.panel-table .panel-body .table-bordered > thead > tr > th {
+.table-bordered > thead > tr > th {
   text-align: center;
 }
 
-.panel-table .panel-body .table-bordered > thead > tr > th:last-of-type,
-.panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
+.table-bordered > thead > tr > th:last-of-type,
+.table-bordered > tbody > tr > td:last-of-type {
   border-right: 0;
 }
 
-.panel-table .panel-body .table-bordered > thead > tr > th:first-of-type,
-.panel-table .panel-body .table-bordered > tbody > tr > td:first-of-type {
+.table-bordered > thead > tr > th:first-of-type,
+.table-bordered > tbody > tr > td:first-of-type {
   border-left: 0;
 }
 
-.panel-table .panel-body .table-bordered > tbody > tr:first-of-type > td {
+.table-bordered > tbody > tr {
+  &:hover {
+    color: #000;
+    background-color: #ececec;
+    transition: all .2s ease;
+  }
+}
+
+.table-bordered > tbody > tr:first-of-type > td {
   border-bottom: 0;
 }
 
-.panel-table .panel-body .table-bordered > thead > tr:first-of-type > th {
+.table-bordered > thead > tr:first-of-type > th {
   border-top: 0;
 }
 
@@ -47,7 +57,7 @@
   line-height: 34px;
 }
 
-.panel-table .panel-body .table-bordered > tbody > tr > td {
+.table-bordered > tbody > tr > td {
   line-height: 24px;
 }
 
@@ -57,7 +67,7 @@ th.checkbox-col {
 }
 
 
-.panel-table .panel-body .table-bordered > tbody > tr > td {
+.table-bordered > tbody > tr > td {
   text-align: center;
 
   align-content: center;
