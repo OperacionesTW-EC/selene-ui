@@ -57,3 +57,23 @@ article {
     }
   }
 }
+
+@media(max-width:800px) {
+  article {
+    &.card {
+      font-size: 13px;
+
+      a {
+        .description {
+          .icon {
+            font-size: 2em;
+          }
+
+          .text {
+            font-size: .8em;
+          }
+        }
+      }
+    }
+  }
+}
