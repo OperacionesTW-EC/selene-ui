@@ -176,7 +176,7 @@ describe('Assign device Component', () => {
                 component.find("[name='assignee_name']").simulate('change');
                 expect(AssignDevice.prototype.handleFormChanges.calledOnce).toEqual(true);
             });
-            
+
             it('should should update the assignee_name when calls handleFormChanges', () => {
                 component.find("[name='assignee_name']").simulate('change', {target: {name: 'assignee_name' ,value:'juan'}});
                 expect(component.state()['assignment']['assignee_name']).toEqual('juan');
@@ -228,7 +228,7 @@ describe('Assign device Component', () => {
                 expect($.ajax.called).toEqual(true);
             });
 
-            it('should call handleFormChanges when input date changes', () => {
+            it('should call handleFormChanges when expected_return_date input field changes', () => {
                 component.find("[name='expected_return_date']").simulate('change');
                 expect(AssignDevice.prototype.handleFormChanges.calledOnce).toEqual(true);
             });

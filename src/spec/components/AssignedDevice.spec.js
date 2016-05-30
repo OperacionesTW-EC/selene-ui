@@ -50,8 +50,8 @@ describe('AssignedDevice Component', () => {
         });
 
         it('should show formatted assigned and return dates', () => {
-            assignment = {id: '1', assignment_datetime:'2016-05-25T14:11:22.590810Z',
-                return_date:'2016-05-26T14:11:22.590810Z', devices:[]};
+            assignment = {id: '1', assignment_datetime:'2016-05-25T14:01:22.590810Z',
+                expected_return_date:'2016-05-26T14:01:22.590810Z', devices:[]};
             component = mount(<AssignedDevice/>);
             let html = component.find('.form-card').node.innerHTML;
             expect(html).toContain('05-25-2016');

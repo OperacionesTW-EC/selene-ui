@@ -68,7 +68,7 @@ export default class AssignedDevice extends React.Component {
                     {DateHelper(this.state.assignment.assignment_datetime)}
                 </FormRow>
                 <FormRow label="Fecha de entrega:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                    {DateHelper(this.state.assignment.return_date)}
+                    {DateHelper(this.state.assignment.expected_return_date)}
                 </FormRow>
             </div>
         )

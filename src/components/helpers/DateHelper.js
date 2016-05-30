@@ -3,7 +3,7 @@ const convertDate = (inputFormat) => {
     var date = new Date(inputFormat);
     if(isNaN(date.getTime()) || inputFormat == null)
         return 'No registrada';
-    return [pad(date.getMonth()+1), pad(date.getDate()), date.getFullYear()].join('-')
+    return [pad(date.getUTCMonth()+1), pad(date.getUTCDate()), date.getUTCFullYear()].join('-')
 };
 
 export default convertDate;
