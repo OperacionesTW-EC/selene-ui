@@ -64,7 +64,7 @@ export default class AssignDevice extends React.Component{
         if(this.canAssign())
             this.assign();
         else {
-            this.state.message.buildErrorMessage('Error, existen campos vacíos');
+            this.state.message.buildErrorMessage('Error, existen campos obligatorios vacíos, recuerde ingresar el nombre del responsable y seleccionar al menos un dispositivo.');
             this.setState({});
         }
     }
@@ -85,7 +85,7 @@ export default class AssignDevice extends React.Component{
             this.setState({});
             $(location).attr('href', '#/assign_device/' + data.id);
         }).fail(() => {
-            this.state.message.buildErrorMessage('Error, no se pudo realizar la asignación');
+            this.state.message.buildErrorMessage('Error, no se pudo realizar la asignación,  recuerde ingresar el nombre del responsable y seleccionar al menos un dispositivo.');
             this.setState({});
         });
     }
