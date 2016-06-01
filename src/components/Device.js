@@ -10,22 +10,17 @@ export default class Device extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {device :{}};
+        this.state = {device :{}, deviceStatus:[]};
         this.renderDeviceInfo = this.renderDeviceInfo.bind(this);
         this.renderDeviceStatusSelect = this.renderDeviceStatusSelect.bind(this);
+        this.loadDeviceData = this.loadDeviceData.bind(this);
+        this.loadStatusData = this.loadStatusData.bind(this);
         this.handleSaveClick = this.handleSaveClick.bind(this);
     }
 
     componentDidMount(){
-        $.ajax({
-            type: 'GET',
-            datatype: 'json',
-            url: Constants.BACKEND_URL +'/devices/'+ this.props.params.id
-        }).done((data) => {
-            this.setState({device: data});
-        }).fail(() => {
-            this.setState({device:{}})
-        });
+        this.loadDeviceData();
+        this.loadStatusData();
     }
 
     render() {
@@ -86,10 +81,41 @@ export default class Device extends React.Component {
 
     renderDeviceStatusSelect(){
         return (
-            <select className='form-control' name='new_device_status'>
+            <select className='form-control' name='new_device_status'  value={this.state.new_device_status}>
                 <option>Seleccione...</option>
+                {
+                    this.state.deviceStatus.map(function(status) {
+                        return(
+                            <option key={status.id} value={status.id}>{status.name}</option>
+                        )
+                    })
+                }
             </select>
         )
+    }
+
+    loadDeviceData(){
+        $.ajax({
+            type: 'GET',
+            datatype: 'json',
+            url: Constants.BACKEND_URL +'/devices/'+ this.props.params.id
+        }).done((data) => {
+            this.setState({device: data});
+        }).fail(() => {
+            this.setState({device:{}})
+        });
+    }
+
+    loadStatusData(){
+        $.ajax({
+            type: 'GET',
+            datatype: 'json',
+            url: Constants.BACKEND_URL +'/device_status'
+        }).done((data) => {
+            this.setState({deviceStatus: data.results});
+        }).fail(() => {
+            this.setState({deviceStatus:[]})
+        });
     }
 
     handleSaveClick() {

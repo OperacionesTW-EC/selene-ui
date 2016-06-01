@@ -29,6 +29,7 @@ export default class AssignDevice extends React.Component{
         this.assign = this.assign.bind(this);
         this.canAssign = this.canAssign.bind(this);
         this.setDatePicker = this.setDatePicker.bind(this);
+        this.processForm = this.processForm.bind(this);
     }
 
     componentDidMount(){
@@ -74,11 +75,12 @@ export default class AssignDevice extends React.Component{
     }
 
     assign(){
+        const submitData = this.processForm();
         $.ajax({
             type: 'post',
             datatype: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(this.state.assignment),
+            data: JSON.stringify(submitData),
             url: Constants.BACKEND_URL +'/assignments/'
         }).done((data) => {
             this.state.message.buildSuccessMessage('El(los) dispositivo(s) ha(n) sido asignados satisfactoriamente');
@@ -90,15 +92,24 @@ export default class AssignDevice extends React.Component{
         });
     }
 
+    processForm(){
+        let assignmentTemp = $.extend({}, this.state.assignment);
+        if(this.state.assignment.expected_return_date!='' && this.state.assignment.expected_return_date!= undefined) {
+            let dateParts = assignmentTemp.expected_return_date.split('-');
+            assignmentTemp.expected_return_date = dateParts[2] + "-" + dateParts[0] + "-" + dateParts[1];
+        }
+        return assignmentTemp;
+    }
+
     setDatePicker(){
-      $("[name='expected_return_date']").datepicker({
-          format: 'yyyy-mm-dd',
-          startDate: 'now',
-          autoclose: true,
-          setDate: new Date()
-      }).on('changeDate', (event) =>  {
-          this.handleFormChanges(event);
-      });
+        $("[name='expected_return_date']").datepicker({
+            format: 'mm-dd-yyyy',
+            startDate: 'now',
+            autoclose: true,
+            setDate: new Date()
+        }).on('changeDate', (event) =>  {
+            this.handleFormChanges(event);
+        });
     }
 
     render(){
@@ -120,9 +131,9 @@ export default class AssignDevice extends React.Component{
                                             <label>Proyecto:</label>
                                             <select className="form-control" name="project" >
                                                 <option> Ninguno </option>
-                                                 { this.state.projects.map((project) => {
+                                                { this.state.projects.map((project) => {
                                                     return (<option key={project.id} value={project.id}>{ project.name }</option>);
-                                                 })}
+                                                })}
                                             </select>
                                         </div>
                                         <div className="col-md-4">
