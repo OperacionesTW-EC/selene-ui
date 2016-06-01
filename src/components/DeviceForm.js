@@ -45,7 +45,7 @@ export default class DeviceForm extends React.Component{
 
     setDatePicker(){
       $("[name='purchase_date']").datepicker({
-          format: 'yyyy-mm-dd',
+          format: 'mm-dd-yyyy',
           endDate: 'now',
           autoclose: true,
           setDate: new Date()
@@ -116,8 +116,12 @@ export default class DeviceForm extends React.Component{
 
     processForm(){
         let deviceTemp = $.extend({}, this.state.device);
-        if(deviceTemp.purchase_date=='')
+        if(deviceTemp.purchase_date=='') {
             delete deviceTemp.purchase_date;
+        }else{
+            var dateParts = deviceTemp.purchase_date.split('-');
+            deviceTemp.purchase_date = dateParts[2]+"-"+dateParts[0]+"-"+dateParts[1];
+        }
         return deviceTemp;
     }
 

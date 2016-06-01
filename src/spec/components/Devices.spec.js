@@ -6,6 +6,8 @@ import { mount } from 'enzyme';
 import Sinon from 'sinon'
 import $ from 'jquery';
 import Devices from './../../components/Devices';
+import stubRouterContext from './../stubRouterContext';
+import TestUtils from 'react-addons-test-utils';
 
 describe('Devices Component', () => {
     let sandbox;
@@ -32,7 +34,7 @@ describe('Devices Component', () => {
             it('should render headers for all fields', () => {
                 component = mount(<Devices/>);
                 var th = component.find('th');
-                var headers = ['Código', 'Tipo', 'Marca', 'Fecha de Compra','Fecha de Asignación','Fecha de Finalización','Fecha de Entrega'];
+                var headers = ['Código', 'Tipo', 'Marca', 'Fecha de Compra','Fecha de Asignación','Fecha de Finalización','Fecha de Entrega', ''];
                 expect(th.length).toBe(headers.length);
                 th.nodes.map((elem) => {
                     var elementText = elem.innerHTML;
@@ -65,11 +67,25 @@ describe('Devices Component', () => {
                 expect(row.innerHTML).toContain('05-21-2019');
             });
 
-            it('should render rows with four tds', () => {
+            it('should render rows with 8 tds', () => {
                 devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',device_brand_name:'TW'}]};
                 component = mount(<Devices/>);
                 var tds = component.find('tr.data-row').find('td').nodes;
-                expect(tds.length).toEqual(7);
+                expect(tds.length).toEqual(8);
+            });
+
+            it('should render a link to device info', () => {
+                devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',device_brand_name:'TW', id:1}]};
+                let expectedRoute = '/device/1';
+                let Subject = stubRouterContext(Devices, {}, {
+                    createHref: (link) => {
+                        return link;
+                    }
+                });
+                let renderResult = TestUtils.renderIntoDocument(<Subject/>);
+                let links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
+                expect(links[0].innerHTML).toContain('fa-search');
+                expect(links[0].getAttribute('href')).toEqual(expectedRoute);
             });
 
             it('should not render an error message ', () => {
@@ -82,6 +98,8 @@ describe('Devices Component', () => {
                 component = mount(<Devices/>);
                 expect(component.find('.info-message').length).toBe(1);
             });
+
+
         });
 
         describe('with error in response', () => {

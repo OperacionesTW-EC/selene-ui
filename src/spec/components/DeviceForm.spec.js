@@ -274,6 +274,7 @@ describe('DeviceForm', () => {
 			beforeEach(() => {
 				sandbox = Sinon.sandbox.create();
 				sandbox.spy(DeviceForm.prototype, "handleSaveClick");
+				sandbox.spy(DeviceForm.prototype, "processForm");
 				component = mount( < DeviceForm/>);
 				sandbox.spy($, "ajax");
 			});
@@ -291,6 +292,37 @@ describe('DeviceForm', () => {
 				component.find("#save").simulate('click');
 				expect($.ajax.calledOnce).toEqual(true);
 			});
+
+			it('should invoke process form', () => {
+				component.find("#save").simulate('click');
+				expect(DeviceForm.prototype.processForm.calledOnce).toEqual(true);
+			});
+
+
+			describe('processForm', () => {
+				it('should format purchase date', () => {
+					component.find('form').simulate('change', {
+						target: {
+							name: 'purchase_date',
+							value: '01-29-2016'
+						}
+					});
+					var result = component.instance().processForm();
+					expect(result.purchase_date).toEqual('2016-01-29');
+				});
+				
+				it('should remove purchase date if empty', () => {
+					component.find('form').simulate('change', {
+						target: {
+							name: 'purchase_date',
+							value: ''
+						}
+					});
+					var result = component.instance().processForm();
+					expect(result.purchase_date).toBe(undefined);
+				});
+			});
+
 
 
 		});

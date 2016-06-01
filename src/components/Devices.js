@@ -4,6 +4,7 @@ import MessageHelper from './helpers/MessageHelper'
 import Constants from './../config/Constants'
 import Icon from './helpers/Icon'
 import DateHelper from './helpers/DateHelper';
+import {Link} from  'react-router'
 
 export default class Devices extends React.Component{
 
@@ -92,7 +93,9 @@ export default class Devices extends React.Component{
                 <td>{DateHelper(device.return_date)}</td>
                 <td>{DateHelper(device.first_assignment_date)}</td>
                 <td>{DateHelper(device.end_date)}</td>
-
+                <td>
+                    <Link to={"/device/"+device.id} className="btn btn-sm btn-primary"><Icon icon="search"/></Link>
+                </td>
             </tr>);
     }
 
@@ -118,6 +121,7 @@ export default class Devices extends React.Component{
                 <th>Fecha de Entrega</th>
                 <th>Fecha de Asignación</th>
                 <th>Fecha de Finalización</th>
+                <th></th>
             </tr>
             </thead>)
     }
