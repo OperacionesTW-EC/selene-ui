@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './layout/Navbar';
+import SubNav from './layout/SubNav';
 import Footer from './layout/Footer';
 import Home from './Home';
 
@@ -8,6 +9,7 @@ class App extends React.Component {
     return (
       <div>
           <Navbar />
+          <SubNav />
           <section>
               {this.props.children || <Home/>}
           </section>

@@ -77,5 +77,49 @@ body {
 }
 
 
+// SUBNAV TEST
+
+.subnavbar-inner {
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.subnavbar .container > ul {
+  display: inline-block;
+  height: 80px;
+  padding: 0;
+  margin: 0;
+}
+
+.mainnav {
+  margin: 0 auto;
+}
+
+.subnavbar .container > ul > li {
+  float: left;
+  min-width: 90px;
+  height: 60px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  list-style: none;
+  border-left: 1px solid #d9d9d9;
+}
+
+.subnavbar .container > ul > li:last-child {
+  border-right: 1px solid #d9d9d9;
+}
+
+.subnavbar .container > ul > li > a {
+  display: block;
+  height: 100%;
+  padding: 12px 15px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #383838;
+  border-bottom: 3px solid $primary;
+}
+
 // OVERRIDES
 @import "./overrides.scss";
