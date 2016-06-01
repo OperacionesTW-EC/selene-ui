@@ -1,13 +1,17 @@
 @import './../settings/colors.scss';
 
-.footer {
-  position: relative;
-  width: 100%;
-  height: 60px;
-  margin-top: 3em;
+footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  width: 260px;
+  height: 30px;
+  background-color: $secondary;
+  border-radius: 0;
 
-  .container .text-muted {
-    margin: 20px 0;
+  p {
+    padding: 5px 0;
+    font-size: 10px;
     color: $primary;
   }
 }

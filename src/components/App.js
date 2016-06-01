@@ -1,19 +1,17 @@
 import React from 'react';
-import Navbar from './layout/Navbar';
-import SubNav from './layout/SubNav';
-import Footer from './layout/Footer';
+import SideNav from './layout/SideNav';
+// import Navbar from './layout/Navbar';
 import Home from './Home';
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-          <Navbar />
-          <SubNav />
-          <section>
+      <div className="wrapper">
+          <SideNav />
+          <section className="main-panel">
+              {/*<Navbar />*/}
               {this.props.children || <Home/>}
           </section>
-          <Footer />
       </div>
     )
   }

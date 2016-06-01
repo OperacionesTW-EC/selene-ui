@@ -17,7 +17,7 @@ const Dashboard = () => {
                 <Link to='/device_form'>
                     <div className='description'>
                         <Icon icon='plus-square-o icon' />
-                        <div className='text'>Registrar Dispositivo</div>
+                        <div className='text'>Registrar</div>
                     </div>
                 </Link>
             </article>
@@ -33,7 +33,7 @@ const Dashboard = () => {
                 <Link to='/assigned_device_list'>
                     <div className='description'>
                         <Icon icon='th-list icon' />
-                        <div className='text'>Dispositivos Asignados</div>
+                        <div className='text'>Asignados</div>
                     </div>
                 </Link>
             </article>

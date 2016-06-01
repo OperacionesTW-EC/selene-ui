@@ -34,7 +34,7 @@
 }
 
 .btn-secondary {
-  color: darken($secondary, 40%);
+  color: $white;
   background-color: $secondary;
   border: none;
   border-bottom: 3px solid darken($secondary, 20%);
@@ -42,7 +42,7 @@
   transition: background .3s ease, color .3s ease, border .3s ease;
 
   &:hover {
-    color: darken($secondary, 75%);
+    color: $white;
     border-bottom: 3px solid darken($secondary, 40%);
   }
 

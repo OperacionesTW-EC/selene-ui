@@ -7,6 +7,7 @@
 @import "./components/tables.scss";
 @import "./components/dashboard.scss";
 @import "./components/devices.scss";
+@import "./layout.scss";
 // SETTINGS
 @import './settings/colors.scss';
 @import './settings/typography.scss';
@@ -15,13 +16,6 @@
 * {
   font-family: sans-serif;
   outline: 0 !important;
-}
-
-body {
-  min-width: 620px;
-  height: 100vh;
-  font-size: $base-font-size;
-  background-color: $white;
 }
 
 .paper {
@@ -38,14 +32,17 @@ body {
 }
 
 .page-header {
-  padding: 20px 0;
+  padding: 9px 0;
   margin: 0 0;
-  background: url('./../assets/images/header-bg.png') repeat;
+  // background: url('./../assets/images/header-bg.png');
+  // background: $primary;
+  border-radius: 0;
 
   h1 {
     margin-top: 10px;
     font-size: 1.6em;
     font-weight: bold;
+    // color: $white;
   }
 }
 
@@ -76,50 +73,6 @@ body {
   }
 }
 
-
-// SUBNAV TEST
-
-.subnavbar-inner {
-  height: 60px;
-  background: #fff;
-  border-bottom: 1px solid #d6d6d6;
-}
-
-.subnavbar .container > ul {
-  display: inline-block;
-  height: 80px;
-  padding: 0;
-  margin: 0;
-}
-
-.mainnav {
-  margin: 0 auto;
-}
-
-.subnavbar .container > ul > li {
-  float: left;
-  min-width: 90px;
-  height: 60px;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  list-style: none;
-  border-left: 1px solid #d9d9d9;
-}
-
-.subnavbar .container > ul > li:last-child {
-  border-right: 1px solid #d9d9d9;
-}
-
-.subnavbar .container > ul > li > a {
-  display: block;
-  height: 100%;
-  padding: 12px 15px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #383838;
-  border-bottom: 3px solid $primary;
-}
 
 // OVERRIDES
 @import "./overrides.scss";
