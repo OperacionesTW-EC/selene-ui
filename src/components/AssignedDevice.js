@@ -14,7 +14,6 @@ export default class AssignedDevice extends React.Component {
         this.state = {
             assignment: {devices:[]}
         };
-        this.getAssignmentId=this.getAssignmentId.bind(this);
         this.renderAssigmentInfo=this.renderAssigmentInfo.bind(this);
         this.renderDeviceTable=this.renderDeviceTable.bind(this);
     }
@@ -23,16 +22,12 @@ export default class AssignedDevice extends React.Component {
         $.ajax({
             type: 'GET',
             datatype: 'json',
-            url: Constants.BACKEND_URL +'/assignments/'+ this.getAssignmentId()
+            url: Constants.BACKEND_URL +'/assignments/'+ this.props.params.id
         }).done((data) => {
             this.setState({assignment: data});
         }).fail(() => {
             this.setState({assignment:{}})
         });
-    }
-
-    getAssignmentId(){
-        return this.props.params.assignmentId;
     }
 
     render() {
