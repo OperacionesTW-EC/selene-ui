@@ -155,6 +155,7 @@ describe('Assign device Component', () => {
                 sandbox.spy(AssignDevice.prototype, "handleFormChanges");
                 sandbox.spy(AssignDevice.prototype, "handleCheckBoxChanges");
                 sandbox.spy(AssignDevice.prototype, "assign");
+                sandbox.spy(AssignDevice.prototype, "processForm");
                 sandbox.stub($, 'ajax').returns({
                     done: (callback) => {
                         callback(devices);
@@ -236,6 +237,27 @@ describe('Assign device Component', () => {
             it('should should update the expected_return_date when calls handleFormChanges', () => {
                 component.find("[name='expected_return_date']").simulate('change', {target: {name: 'expected_return_date' ,value:'20/09/2017'}});
                 expect(component.state()['assignment']['expected_return_date']).toEqual('20/09/2017');
+            });
+
+            it('should invoke process form', () => {
+                component.setState({assignment: {
+                    assignee_name: 'Tim',
+                    devices: [{name:'Duncan'}]}});
+                component.find("#save").simulate('click');
+                expect(AssignDevice.prototype.processForm.calledOnce).toEqual(true);
+            });
+
+            describe('processForm', () => {
+                it('should format purchase date', () => {
+                    component.find('form').simulate('change', {
+                        target: {
+                            name: 'expected_return_date',
+                            value: '01-29-2016'
+                        }
+                    });
+                    var result = component.instance().processForm();
+                    expect(result.expected_return_date).toEqual('2016-01-29');
+                });
             });
 
         });
