@@ -138,16 +138,74 @@ describe('Device Component', () => {
             expect(component.find('#save').length).toBe(1);
         });
 
-        describe('Events', () => {
+        it('should not render device status list if current state is Dado de baja', () => {
+            device = {device_status_name:'Dado de baja',results:[]};
+            component = mount(<Device params={{id: 1}}/>);
+            expect(component.find('[name="new_device_status"]').length).toBe(0);
+        });
+
+    });
+
+    describe('Events', () => {
+
+        beforeEach(() => {
+            sandbox = Sinon.sandbox.create();
+            sandbox.spy(Device.prototype, "handleSaveClick");
+            sandbox.stub(Device.prototype, "redirectToDeviceList");
+            component = mount(<Device params={{id: 1}}/>);
+            sandbox.stub($, "ajax").returns({
+                done: (callback) => {
+                    callback({});
+                }
+            });
+        });
+
+        afterEach(function() {
+            sandbox.restore();
+        });
+
+        it('should handle device status changes', () => {
+            let input = component.find('[name="new_device_status"]');
+            input.simulate('change', {
+                target: {
+                    name: 'new_device_status',
+                    value: 1
+                }
+            });
+            expect(component.state('new_device_status')).toEqual(1)
+        });
+        describe('with selected status', () => {
+
+            beforeEach(() => {
+                component.setState({new_device_status:'2'})
+            });
 
             it('should invoke handleSaveClick when clicked', () => {
-                device = {results:[]};
-                component = mount(<Device params={{id: 1}}/>);
                 component.find("#save").simulate('click');
                 expect(Device.prototype.handleSaveClick.calledOnce).toEqual(true);
             });
 
+            it('should send data to backed', () => {
+                component.find("#save").simulate('click');
+                expect($.ajax.calledOnce).toEqual(true);
+            });
+
+            it('should redirect upon success', () => {
+                component.find("#save").simulate('click');
+                expect(Device.prototype.redirectToDeviceList.calledOnce).toEqual(true);
+            });
+
         });
+
+        describe('without selected status', () => {
+
+            it('should not send data to backed', () => {
+                component.find("#save").simulate('click');
+                expect($.ajax.calledOnce).toEqual(false);
+            });
+
+        });
+
 
     });
 

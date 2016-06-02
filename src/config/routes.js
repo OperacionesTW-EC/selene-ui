@@ -15,7 +15,7 @@ export default (
         <Route path='/' component={App}>
             <IndexRoute component={Home}/>
             <Route path='dashboard' component={Dashboard}/>
-            <Route path='device_list' component={DeviceList}/>
+            <Route name="devices" path='device_list' component={DeviceList}/>
             <Route path='device_form' component={DeviceForm}/>
             <Route path='assign_device' component={AssignDevice}/>
             <Route path='assign_device/:id' component={AssignedDevice}/>
