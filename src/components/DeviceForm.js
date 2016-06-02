@@ -65,7 +65,7 @@ export default class DeviceForm extends React.Component{
             <div>
                 <PageTitle content="Registrar Dispositivo" />
                 {this.state.message.renderMessage()}
-                <div className="container">
+                <div className="container-fluid">
                     <form onChange={this.handleFormChanges}>
 
                         <section className="form-card paper white medium">

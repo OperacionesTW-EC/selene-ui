@@ -1,9 +1,5 @@
 @import './../settings/_colors.scss';
 
-.dashboard {
-  padding: 5em 0;
-}
-
 article {
   &.card {
     position: relative;
@@ -15,44 +11,63 @@ article {
     margin: 5px;
     overflow: hidden;
     font-size: 14px;
+    cursor: pointer;
     border: 2px solid transparent;
+    border-radius: 3px;
     transition: border .4s ease;
 
-    a {
+    &.half {
+      width: calc(50% - 10px);
+    }
+
+    &.wide {
+      width: calc(100% - 10px);
+    }
+
+    .description {
       position: absolute;
+      display: flex;
       width: 100%;
       height: 100%;
-      color: inherit;
       color: $grey;
       text-align: center;
       text-decoration: none;
+      justify-content: center;
+      flex-direction: column;
       background-color: #fff;
       transition: color .4s ease;
 
-      .description {
-        display: flex;
-        height: 100%;
-        flex-direction: column;
+      .number {
+        font-size: 5em;
+      }
 
-        justify-content: center;
+      .icon {
+        position: absolute;
+        bottom: -20px;
+        left: -15px;
+        font-size: 6em;
+        opacity: .3;
+        transition: bottom .4s ease, left .4s ease;
+      }
 
-        .icon {
-          margin-bottom: .5em;
-          font-size: 4em;
-        }
-
-        .text {
-          font-size: 1em;
-        }
+      .title {
+        font-size: 1em;
+        font-weight: bold;
       }
     }
 
     &:hover {
       border: 2px solid $primary;
       transition: border .2s ease;
-      a {
+      .description {
         color: $primary;
         transition: color .2s ease;
+
+        .icon {
+          bottom: 10px;
+          left: 10px;
+          transition: bottom .4s ease, left .4s ease;
+        }
       }
     }
   }

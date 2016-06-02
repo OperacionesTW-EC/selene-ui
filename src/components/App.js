@@ -1,7 +1,6 @@
 import React from 'react';
 import SideNav from './layout/SideNav';
-// import Navbar from './layout/Navbar';
-import Home from './Home';
+import Dashboard from './Dashboard';
 
 class App extends React.Component {
   render() {
@@ -9,8 +8,7 @@ class App extends React.Component {
       <div className="wrapper">
           <SideNav />
           <section className="main-panel">
-              {/*<Navbar />*/}
-              {this.props.children || <Home/>}
+              {this.props.children || <Dashboard />}
           </section>
       </div>
     )

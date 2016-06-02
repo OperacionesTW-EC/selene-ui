@@ -1,43 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Icon from './helpers/Icon';
+import PageTitle from './layout/PageTitle';
 
 const Dashboard = () => {
     return (
-        <section className='container dashboard'>
-            <article className='card'>
-                <Link to='/assign_device'>
+        <div>
+            <PageTitle content='Dashboard' />
+            <section className='container-fluid'>
+                <article className='card'>
                     <div className='description'>
-                        <Icon icon='user-plus icon' />
-                        <div className='text'>Asignar</div>
+                        <p className='title'>Usuarios</p>
+                        <p className="number">65</p>
+                        <Icon icon='users icon' />
                     </div>
-                </Link>
-            </article>
-            <article className='card'>
-                <Link to='/device_form'>
+                </article>
+                <article className='card'>
                     <div className='description'>
-                        <Icon icon='plus-square-o icon' />
-                        <div className='text'>Registrar</div>
+                        <p className='title'>Pedidos</p>
+                        <p className="number">7</p>
+                        <Icon icon='send icon' />
                     </div>
-                </Link>
-            </article>
-            <article className='card'>
-                <Link to='/device_list'>
+                </article>
+                <article className='card half'>
                     <div className='description'>
+                        <p className='title'>Proyectos</p>
+                        <p className="number">8</p>
+                        <Icon icon='industry icon' />
+                    </div>
+                </article>
+                <article className='card'>
+                    <div className='description'>
+                        <p className='title'>Dispositivos</p>
+                        <p className="number">208</p>
                         <Icon icon='desktop icon' />
-                        <div className='text'>Dispositivos</div>
                     </div>
-                </Link>
-            </article>
-            <article className='card'>
-                <Link to='/assigned_device_list'>
+                </article>
+                <article className='card'>
                     <div className='description'>
-                        <Icon icon='th-list icon' />
-                        <div className='text'>Asignados</div>
+                        <p className='title'>Disponibles</p>
+                        <p className="number">11</p>
+                        <Icon icon='share-alt icon' />
                     </div>
-                </Link>
-            </article>
-        </section>
+                </article>
+                <article className='card'>
+                    <div className='description'>
+                        <p className='title'>Mantenimiento</p>
+                        <p className="number">4</p>
+                        <Icon icon='recycle icon' />
+                    </div>
+                </article>
+                <article className='card'>
+                    <div className='description'>
+                        <p className='title'>De baja (este mes)</p>
+                        <p className="number">2</p>
+                        <Icon icon='fire icon' />
+                    </div>
+                </article>
+                <article className='card wide'>
+                    <div className='description'>
+                        <p className='title'>Cualquier otra cosa</p>
+                        <p className="number">8</p>
+                        <Icon icon='rocket icon' />
+                    </div>
+                </article>
+
+            </section>
+        </div>
     )
 }
 

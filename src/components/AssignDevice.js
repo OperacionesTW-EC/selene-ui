@@ -117,7 +117,7 @@ export default class AssignDevice extends React.Component{
             <div>
                 <PageTitle content="Asignar dispositivos"/>
                 {this.state.message.renderMessage()}
-                <div className="container">
+                <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-12">
                             <section className="form-card paper white">

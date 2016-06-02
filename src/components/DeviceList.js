@@ -15,7 +15,7 @@ export default class DeviceList extends React.Component {
             <div>
                 <PageTitle content="Lista de dispositivos"/>
                 <div className="paper transparent">
-                    <div className="container">
+                    <div className="container-fluid">
                         {this.renderPanelHeader()}
                         <div className="row">
                             <div className="col-md-12">

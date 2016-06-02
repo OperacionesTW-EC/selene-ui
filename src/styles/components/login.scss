@@ -6,8 +6,12 @@
 }
 
 .brand {
-  font-weight: 900;
-  color: $primary;
+  font-weight: bold;
+  color: $secondary;
+  text-transform: uppercase;
+  span {
+    color: $primary;
+  }
 }
 
 .trademark {
@@ -35,6 +39,7 @@
       font-size: 1em;
       background: #f2f2f2;
       border: 0;
+      border-radius: 3px;
       outline: 0;
 
       &:focus {

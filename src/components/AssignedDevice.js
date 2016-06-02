@@ -34,7 +34,7 @@ export default class AssignedDevice extends React.Component {
         return(
             <div>
                 <PageTitle content="Detalle de la asignación" />
-                <div className="container">
+                <div className="container-fluid">
                     <section className="form-card paper white medium">
                         {this.renderAssigmentInfo()}
                         {this.renderDeviceTable()}

@@ -36,7 +36,7 @@ export default class AssignedDeviceList extends React.Component{
         return (
             <div>
                 <PageTitle content="Listados de Dispositivos Asignados" />
-                <div className="container">
+                <div className="container-fluid">
                     {this.renderPanelHeader()}
                     <div className="row">
                         <div className="col-md-12">

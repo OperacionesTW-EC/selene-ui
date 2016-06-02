@@ -18,8 +18,7 @@ class Login extends React.Component{
                 <div className="row">
                     <div className="col-md-12">
                         <h2 className="brand text-center">
-                            <img src={logo} height="25px;" className="nav-img"/>
-                            Selene
+                            <span>TW•</span>Selene
                         </h2>
                         <p className="text-center">
                             <small className="trademark">Thoughtworks® - Ecuador</small>
