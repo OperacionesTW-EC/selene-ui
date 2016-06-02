@@ -27,31 +27,31 @@ const SideNav = () => {
                 </div>
                 <ul className="nav">
                     <li>
-                        <Link to='/dashboard' activeClassName={activeClassName}>
+                        <Link to='/dashboard' className='sidenav-btn' activeClassName={activeClassName}>
                             <Icon icon='cubes icon' />
                             <p>Dashboard</p>
                         </Link>
                     </li>
                     <li>
-                        <Link to='/assign_device' activeClassName={activeClassName}>
+                        <Link to='/assign_device' className='sidenav-btn' activeClassName={activeClassName}>
                             <Icon icon='user-plus icon' />
                             <p>Asignar</p>
                         </Link>
                     </li>
                     <li>
-                        <Link to='/device_form' activeClassName={activeClassName}>
+                        <Link to='/device_form' className='sidenav-btn' activeClassName={activeClassName}>
                             <Icon icon='plus-square-o icon' />
                             <p>Registrar</p>
                         </Link>
                     </li>
                     <li>
-                        <Link to='/device_list' activeClassName={activeClassName}>
+                        <Link to='/device_list' className='sidenav-btn' activeClassName={activeClassName}>
                             <Icon icon='desktop icon' />
                             <p>Dispositivos</p>
                         </Link>
                     </li>
                     <li>
-                        <Link to='/assigned_device_list' activeClassName={activeClassName}>
+                        <Link to='/assigned_device_list' className='sidenav-btn' activeClassName={activeClassName}>
                             <Icon icon='th-list icon' />
                             <p>Asignados</p>
                         </Link>

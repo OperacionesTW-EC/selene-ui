@@ -8,26 +8,17 @@ import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
 
 import App from './../../components/App';
-import Navbar from './../../components/layout/Navbar';
+import SideNav from './../../components/layout/SideNav';
 import Footer from './../../components/layout/Footer';
 import Home from './../../components/Home';
 
 describe('App Component', () => {
-    it('should render the navbar', () => {
+    it('should render the SideNav', () => {
         const renderer = TestUtils.createRenderer();
         renderer.render(<App/>);
         const output = renderer.getRenderOutput();
         const expected = (
-                <Navbar />
-        );
-        expect(output).toIncludeJSX(expected);
-    });
-    it('should render the footer', () => {
-        const renderer = TestUtils.createRenderer();
-        renderer.render(<App/>);
-        const output = renderer.getRenderOutput();
-        const expected = (
-            <Footer />
+                <SideNav />
         );
         expect(output).toIncludeJSX(expected);
     });
