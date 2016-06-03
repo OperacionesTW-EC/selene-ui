@@ -7,7 +7,7 @@ const Dashboard = () => {
     return (
         <div>
             <PageTitle content='Dashboard' />
-            <section className='container-fluid'>
+            <section className='container-fluid paper'>
                 <article className='card'>
                     <div className='description'>
                         <p className='title'>Usuarios</p>

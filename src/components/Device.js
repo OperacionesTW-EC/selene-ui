@@ -83,7 +83,7 @@ export default class Device extends React.Component {
                         {this.renderDeviceStatusSelect()}
                     </FormRow>
                     <FormRow>
-                        <a onClick={this.handleSaveClick} id="save" className="btn btn-secondary btn-block">
+                        <a onClick={this.handleSaveClick} id="save" className="btn btn-ternary btn-block">
                             <Icon icon="save"/> Guardar
                         </a>
                     </FormRow>
