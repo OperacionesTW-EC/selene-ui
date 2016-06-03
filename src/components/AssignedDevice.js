@@ -60,7 +60,7 @@ export default class AssignedDevice extends React.Component {
                     {this.state.assignment.project_name}
                 </FormRow>
                 <FormRow label="Fecha de asignación:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                    {DateHelper(this.state.assignment.assignment_datetime)}
+                    {DateHelper(this.state.assignment.assignment_date)}
                 </FormRow>
                 <FormRow label="Fecha de entrega:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {DateHelper(this.state.assignment.expected_return_date)}
@@ -90,7 +90,7 @@ export default class AssignedDevice extends React.Component {
                                         <td>{device.full_code}</td>
                                         <td>{device.device_type_name}</td>
                                         <td>{device.device_brand_name}</td>
-                                        <td>{DateHelper(device.end_date)}</td>
+                                        <td>{DateHelper(device.laptop_end_life)}</td>
                                     </tr>
                                 )
                             })

@@ -90,9 +90,8 @@ export default class Devices extends React.Component{
                 <td>{device.device_type_name}</td>
                 <td>{device.device_brand_name}</td>
                 <td>{DateHelper(device.purchase_date)}</td>
-                <td>{DateHelper(device.return_date)}</td>
-                <td>{DateHelper(device.first_assignment_date)}</td>
-                <td>{DateHelper(device.end_date)}</td>
+                <td>{DateHelper(device.laptop_begin_life)}</td>
+                <td>{DateHelper(device.laptop_end_life)}</td>
                 <td>
                     <Link to={"/device/"+device.id} className="btn btn-sm btn-primary"><Icon icon="search"/></Link>
                 </td>
@@ -118,7 +117,6 @@ export default class Devices extends React.Component{
                 <th>Tipo</th>
                 <th>Marca</th>
                 <th>Fecha de Compra</th>
-                <th>Fecha de Entrega</th>
                 <th>Fecha de Asignación</th>
                 <th>Fecha de Finalización</th>
                 <th></th>

@@ -49,7 +49,7 @@ describe('AssignedDevice Component', () => {
         });
 
         it('should show formatted assigned and return dates', () => {
-            assignment = {id: '1', assignment_datetime:'2016-05-25T14:01:22.590810Z',
+            assignment = {id: '1', assignment_date:'2016-05-25T14:01:22.590810Z',
                 expected_return_date:'2016-05-26T14:01:22.590810Z', devices:[]};
             component = mount(<AssignedDevice params={{id: 1}}/>);
             let html = component.find('.form-card').node.innerHTML;
@@ -58,7 +58,7 @@ describe('AssignedDevice Component', () => {
         });
 
         it('should show No registrada if return_date is not present', () => {
-            assignment = {id: '1', assignment_datetime:'2016-05-25T14:11:22.590810Z',
+            assignment = {id: '1', assignment_date:'2016-05-25T14:11:22.590810Z',
                 return_date:'', devices:[]};
             component = mount(<AssignedDevice params={{id: 1}}/>);
             let html = component.find('.form-card').node.innerHTML;
@@ -86,13 +86,13 @@ describe('AssignedDevice Component', () => {
         it('should show the required fields', () => {
             assignment = {id: '1', devices:[{id:1, full_code:'TW1',
                 device_type_name:'Laptop', device_brand_name:'apple',
-                end_date:'10-10-2016'}]};
+                laptop_end_life:'10-10-2016'}]};
             component = mount(<AssignedDevice params={{id: 1}}/>);
             var row = component.find('tr.data-row').nodes[0];
             expect(row.innerHTML).toContain(assignment.devices[0].full_code);
             expect(row.innerHTML).toContain(assignment.devices[0].device_type_name);
             expect(row.innerHTML).toContain(assignment.devices[0].device_brand_name);
-            expect(row.innerHTML).toContain(assignment.devices[0].end_date);
+            expect(row.innerHTML).toContain(assignment.devices[0].laptop_end_life);
         });
 
         it('should show ok button', () => {

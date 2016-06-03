@@ -68,9 +68,9 @@ describe('AssignedDeviceList Component', () => {
                 full_code: 'some_code',
                 device_type_name: 'Laptop',
                 device_brand_name: 'HP',
-                assignment_date: '01-01-2016',
+                laptop_begin_life: '01-01-2016',
                 return_date: '02-01-2016',
-                end_date: '03-01-2016',
+                laptop_end_life: '03-01-2016',
                 assignee_name: 'some_name',
                 project: 'some_project'
             }];
@@ -79,9 +79,9 @@ describe('AssignedDeviceList Component', () => {
             expect(row.innerHTML).toContain(devices[0].full_code);
             expect(row.innerHTML).toContain(devices[0].device_type_name);
             expect(row.innerHTML).toContain(devices[0].device_brand_name);
-            expect(row.innerHTML).toContain(devices[0].assignment_date);
+            expect(row.innerHTML).toContain(devices[0].laptop_begin_life);
             expect(row.innerHTML).toContain(devices[0].return_date);
-            expect(row.innerHTML).toContain(devices[0].end_date);
+            expect(row.innerHTML).toContain(devices[0].laptop_end_life);
             expect(row.innerHTML).toContain(devices[0].assignee_name);
             expect(row.innerHTML).toContain(devices[0].project);
         });
