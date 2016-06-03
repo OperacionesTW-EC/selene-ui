@@ -5,6 +5,7 @@ import MessageHelper from './helpers/MessageHelper';
 import PageTitle from './layout/PageTitle';
 import { Link } from 'react-router';
 import DateHelper from './helpers/DateHelper';
+import Icon from './helpers/Icon';
 
 export default class AssignedDeviceList extends React.Component{
 
@@ -57,7 +58,7 @@ export default class AssignedDeviceList extends React.Component{
             <div className="panel-heading">
                 <div className="row">
                     <div className="col-md-12 text-right">
-                        <Link to='/assign_device' className='btn btn-primary btn-sm btn-create'>Asignar Dispositivo</Link>
+                        <Link to='/assign_device' className='btn btn-primary btn-sm btn-create'><Icon icon='user-plus icon' /> Asignar</Link>
                     </div>
                 </div>
             </div>

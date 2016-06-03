@@ -1,8 +1,37 @@
 @import './../settings/_colors.scss';
 
 .btn {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
+}
+
+.btn-ternary {
+  color: $white;
+  background-color: $ternary;
+  border: none;
+  border-bottom: 3px solid darken($ternary, 10%);
+  border-radius: 3px;
+  transition: background .3s ease, color .3s ease, border .3s ease;
+
+  &:hover {
+    color: $white;
+    background-color: $ternary;
+    border-bottom: 3px solid darken($ternary, 15%);
+    opacity: .8;
+  }
+
+  &:active {
+    color: $white;
+    background-color: $ternary;
+    border-bottom: 3px solid $white;
+  }
+
+  &:focus {
+    color: $white;
+    background-color: $ternary;
+    border-bottom: 3px solid $white;
+    outline: none;
+  }
 }
 
 .btn-primary {

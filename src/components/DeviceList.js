@@ -1,7 +1,8 @@
 import React from 'react';
 import Devices from './Devices';
 import { Link } from 'react-router';
-import PageTitle from './layout/PageTitle'
+import PageTitle from './layout/PageTitle';
+import Icon from './helpers/Icon';
 
 export default class DeviceList extends React.Component {
 
@@ -33,8 +34,8 @@ export default class DeviceList extends React.Component {
             <div className="panel-heading">
                 <div className="row">
                     <div className="col-md-12 text-right">
-                        <Link to='/assign_device' className='btn btn-primary btn-sm btn-create'>Asignar Dispositivo</Link>
-                        <Link to='/device_form' className='btn btn-secondary btn-sm btn-create'>Registrar Dispositivo</Link>
+                        <Link to='/assign_device' className='btn btn-primary btn-sm btn-create'><Icon icon='user-plus icon' /> Asignar</Link>
+                        <Link to='/device_form' className='btn btn-secondary btn-sm btn-create'><Icon icon='plus-square icon' /> Registrar</Link>
                     </div>
                 </div>
             </div>

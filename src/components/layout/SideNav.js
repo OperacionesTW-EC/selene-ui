@@ -40,7 +40,7 @@ const SideNav = () => {
                     </li>
                     <li>
                         <Link to='/device_form' className='sidenav-btn' activeClassName={activeClassName}>
-                            <Icon icon='plus-square-o icon' />
+                            <Icon icon='plus-square icon' />
                             <p>Registrar</p>
                         </Link>
                     </li>

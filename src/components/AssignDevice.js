@@ -148,7 +148,7 @@ export default class AssignDevice extends React.Component{
                                 <Devices type="device_assignment_table" callback={this.handleCheckBoxChanges} filterBy="Disponible"/>
 
                                 <FormRow>
-                                    <a  id="save"  className="btn btn-secondary btn-block"  onClick={this.handleAssignment} >
+                                    <a  id="save"  className="btn btn-ternary btn-block"  onClick={this.handleAssignment} >
                                         <Icon icon="save"/> Guardar
                                     </a>
                                 </FormRow>

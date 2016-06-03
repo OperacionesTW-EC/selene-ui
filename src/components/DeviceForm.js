@@ -99,7 +99,7 @@ export default class DeviceForm extends React.Component{
                                             {this.renderOwnershipSelect()}
                                         </FormRow>
                                         <FormRow>
-                                            <a  id="save" onClick={this.handleSaveClick} className="btn btn-secondary btn-block">
+                                            <a  id="save" onClick={this.handleSaveClick} className="btn btn-ternary btn-block">
                                                 <Icon icon="save"/> Guardar
                                             </a>
                                         </FormRow>

@@ -40,7 +40,7 @@ export default class AssignedDevice extends React.Component {
                         {this.renderDeviceTable()}
                         <div className="row margin">
                             <Link to="/assigned_device_list" className="btn btn-secondary btn-block">
-                                <Icon icon="check"/> Aceptar
+                                <Icon icon="th-list"/> Volver a dispositivos asignados
                             </Link>
                         </div>
                     </section>
