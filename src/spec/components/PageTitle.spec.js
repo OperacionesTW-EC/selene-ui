@@ -16,12 +16,14 @@ describe('Page title Component', () => {
             component =  mount(<PageTitle content='Some title' />);
         });
 
-        it('should render the title div', () => {
+        it('should render the title div', (done) => {
             expect(component.find('.page-header').length).toBe(1);
+            done();
         });
 
-        it('should render the page title', () => {
+        it('should render the page title', (done) => {
             expect(component.find('h1').nodes[0].innerHTML).toBe('Some title');
+            done();
         });
     });
 

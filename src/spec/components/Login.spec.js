@@ -10,7 +10,7 @@ import { spy } from 'sinon'
 expect.extend(expectJSX);
 
 
-describe('App Component', () => {
+describe('Login Component', () => {
 
     let  component;
 
@@ -21,14 +21,17 @@ describe('App Component', () => {
         beforeEach(() => {
             component =  mount(<Login />);
         });
-        it('should render user name field', () => {
+        it('should render user name field', (done) => {
             expect(component.find("[name='login']").length == 1).toEqual(true);
+            done();
         });
-        it('should render password field', () => {
+        it('should render password field', (done) => {
             expect(component.find("[name='password']").length == 1).toEqual(true);
+            done();
         });
-        it('should render submit button', () => {
+        it('should render submit button', (done) => {
             expect(component.find("[type='submit']").length == 1).toEqual(true);
+            done();
         });
     });
 

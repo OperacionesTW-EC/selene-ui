@@ -24,19 +24,21 @@ describe('Navbar Component', () => {
             });
         });
 
-        it('should show a link to home', function () {
+        it('should show a link to home', function (done) {
             expectedRoute = '#/home';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
             links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
             expect(links[0].innerHTML).toInclude('Selene');
             expect(links[0].getAttribute('href')).toEqual(expectedRoute);
+            done();
         });
-        it('should show a link to devices', function () {
+        it('should show a link to devices', function (done) {
             expectedRoute = '#/dashboard';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
             links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
             expect(links[1].innerHTML).toInclude('Dashboard');
             expect(links[1].getAttribute('href')).toEqual(expectedRoute);
+            done();
         });
         
       
