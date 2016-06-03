@@ -2,7 +2,7 @@
 
 import React from 'react';
 import expect from 'expect';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Message from './../../components/helpers/Message';
 
 
@@ -14,7 +14,7 @@ describe('Message Component', () => {
         let type = 'error';
 
         beforeEach(() => {
-            component =  mount(<Message content='some message' type={type}/>);
+            component =  shallow(<Message content='some message' type={type}/>);
         });
 
         it('should render the message div', () => {
