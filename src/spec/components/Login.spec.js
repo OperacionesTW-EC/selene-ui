@@ -21,17 +21,17 @@ describe('Login Component', () => {
         beforeEach(() => {
             component =  mount(<Login />);
         });
-        it('should render user name field', (done) => {
+        it('should render user name field', () => {
             expect(component.find("[name='login']").length == 1).toEqual(true);
-            done();
+            
         });
-        it('should render password field', (done) => {
+        it('should render password field', () => {
             expect(component.find("[name='password']").length == 1).toEqual(true);
-            done();
+            
         });
-        it('should render submit button', (done) => {
+        it('should render submit button', () => {
             expect(component.find("[type='submit']").length == 1).toEqual(true);
-            done();
+            
         });
     });
 
