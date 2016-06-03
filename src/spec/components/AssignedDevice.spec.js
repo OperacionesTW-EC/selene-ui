@@ -95,12 +95,12 @@ describe('AssignedDevice Component', () => {
             expect(row.innerHTML).toContain(assignment.devices[0].end_date);
         });
 
-        it('should show ok button', () => {
+        it('should show a back to assigned devices button', () => {
             assignment = {id: '1', devices:[]};
             component = mount(<AssignedDevice params={{id: 1}}/>);
             let button = component.find('.btn')
             expect(button.length).toBe(1);
-            expect(button.node.innerHTML).toContain('Aceptar');
+            expect(button.node.innerHTML).toContain('Volver a dispositivos asignados');
         });
 
     });

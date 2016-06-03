@@ -5,7 +5,6 @@ import PageTitle from './layout/PageTitle';
 import MessageHelper from './helpers/MessageHelper';
 import FormRow from './helpers/FormRow';
 import $ from 'jquery';
-import datepicker from 'bootstrap-datepicker';
 
 export default class DeviceForm extends React.Component{
 

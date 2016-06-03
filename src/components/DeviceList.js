@@ -3,18 +3,28 @@ import Devices from './Devices';
 import { Link } from 'react-router';
 import PageTitle from './layout/PageTitle';
 import Icon from './helpers/Icon';
+import MessageHelper from './helpers/MessageHelper';
+
 
 export default class DeviceList extends React.Component {
 
     constructor(props) {
         super(props);
+        let { query } = this.props.location;
         this.renderPanelHeader = this.renderPanelHeader.bind(this);
+        this.state = {
+            message: new MessageHelper()
+        };
+        if(query.message) {
+            this.state.message.buildSuccessMessage(query.message)
+        }
     }
 
     render() {
         return (
             <div>
                 <PageTitle content="Lista de dispositivos"/>
+                {this.state.message.renderMessage()}
                 <div className="paper transparent">
                     <div className="container-fluid">
                         {this.renderPanelHeader()}

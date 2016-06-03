@@ -102,7 +102,7 @@ describe('AssignedDeviceList Component', () => {
             devices = [];
             component = mount(<AssignedDeviceList/>);
             var link = component.find('a').nodes[0];
-            expect(link.innerHTML).toContain('Asignar Dispositivo');
+            expect(link.innerHTML).toContain('Asignar');
         });
     });
 

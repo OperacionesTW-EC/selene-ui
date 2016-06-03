@@ -10,12 +10,15 @@ export default class Device extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {device :{}, deviceStatus:[]};
+        this.END_STATUS = 'Dado de baja';
+        this.state = {device :{}, deviceStatus:[], new_device_status:''};
         this.renderDeviceInfo = this.renderDeviceInfo.bind(this);
         this.renderDeviceStatusSelect = this.renderDeviceStatusSelect.bind(this);
         this.loadDeviceData = this.loadDeviceData.bind(this);
         this.loadStatusData = this.loadStatusData.bind(this);
         this.handleSaveClick = this.handleSaveClick.bind(this);
+        this.handleStatusChange = this.handleStatusChange.bind(this);
+        this.redirectToDeviceList = this.redirectToDeviceList.bind(this);
     }
 
     componentDidMount(){
@@ -67,25 +70,37 @@ export default class Device extends React.Component {
                 <FormRow label="Estado actual:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.device_status_name}
                 </FormRow>
-                <FormRow label="Cambiar estado:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                    {this.renderDeviceStatusSelect()}
-                </FormRow>
-                <FormRow>
-                    <a onClick={this.handleSaveClick} id="save" className="btn btn-secondary btn-block">
-                        <Icon icon="save"/> Guardar
-                    </a>
-                </FormRow>
+                {this.renderFormControls()}
             </div>
         )
     }
 
+    renderFormControls(){
+        if(this.state.device.device_status_name != this.END_STATUS) {
+            return(
+                <div>
+                    <FormRow label="Cambiar estado:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                        {this.renderDeviceStatusSelect()}
+                    </FormRow>
+                    <FormRow>
+                        <a onClick={this.handleSaveClick} id="save" className="btn btn-secondary btn-block">
+                            <Icon icon="save"/> Guardar
+                        </a>
+                    </FormRow>
+                </div>
+            )
+        }
+
+    }
+
     renderDeviceStatusSelect(){
         return (
-            <select className='form-control' name='new_device_status'  value={this.state.new_device_status}>
+            <select className='form-control' name='new_device_status' onChange={this.handleStatusChange}
+                    value={this.state.new_device_status}>
                 <option>Seleccione...</option>
                 {
-                    this.state.deviceStatus.map(function(status) {
-                        return(
+                    this.state.deviceStatus.map(function (status) {
+                        return (
                             <option key={status.id} value={status.id}>{status.name}</option>
                         )
                     })
@@ -118,7 +133,33 @@ export default class Device extends React.Component {
         });
     }
 
-    handleSaveClick() {
+    handleStatusChange(event){
+        this.setState({new_device_status: event.target.value})
+    }
 
+    handleSaveClick() {
+        let component = this;
+        if(this.state.new_device_status != ''){
+            $.ajax({
+                type: 'patch',
+                datatype: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({id:this.state.device.id, new_device_status: this.state.new_device_status }),
+                url: Constants.BACKEND_URL +'/devices/change_status'
+            }).done((response) => {
+                component.redirectToDeviceList(response);
+            })
+        }
+    }
+
+    redirectToDeviceList(responseFromBackend){
+        this.context.router.push({
+            pathname: '/device_list/',
+            query: { message: responseFromBackend.message }
+        })
     }
 }
+
+Device.contextTypes = {
+    router:  function() { return React.PropTypes.func.isRequired; }
+};
