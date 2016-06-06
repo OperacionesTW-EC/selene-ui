@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Footer from './Footer';
 import Icon from './../helpers/Icon';
+import avatar from './../../assets/images/avatar.png';
 
 let activeClassName = 'active';
 
@@ -17,7 +18,7 @@ const SideNav = () => {
             <div className="sidenav-wrapper">
                 <div className="user">
                     <div className="photo">
-                        <img src="https://api.adorable.io/avatars/285/freddy%40adorable.io" />
+                        <img src={avatar} />
                     </div>
                     <div className="info">
                         <a data-toggle="collapse" href="#" className="collapsed" aria-expanded="false">
