@@ -51,7 +51,6 @@ $sidenav-border: rgba(255, 255, 255, .2);
   .sidenav-wrapper {
     z-index: 4;
     padding-bottom: 60px;
-    overflow-y: scroll;
 
     order: 1;
   }
@@ -146,6 +145,7 @@ $sidenav-border: rgba(255, 255, 255, .2);
       opacity: 1;
     }
     i {
+      width: 30px;
       margin-right: 20px;
       font-size: 18px;
     }
@@ -167,6 +167,6 @@ $sidenav-border: rgba(255, 255, 255, .2);
   transition-property: top,bottom;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
+// ::-webkit-scrollbar {
+//   display: none;
+// }
