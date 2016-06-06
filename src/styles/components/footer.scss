@@ -1,13 +1,15 @@
 @import './../settings/colors.scss';
 
 footer {
-  position: fixed;
-  bottom: 0;
   z-index: 100;
-  width: 260px;
-  height: 30px;
+  display: flex;
+  min-height: 30px;
+  justify-content: center;
+  align-items: center;
   background-color: $secondary;
-  border-radius: 0;
+
+  order: 2;
+  flex: 1;
 
   p {
     padding: 5px 0;

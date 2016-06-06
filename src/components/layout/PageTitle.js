@@ -10,7 +10,7 @@ export default class PageTitle extends React.Component{
     render(){
         return (
             <div className="paper page-header">
-                <div className="container">
+                <div className="container-fluid">
                     <h1>{this.state.content}</h1>
                 </div>
             </div>

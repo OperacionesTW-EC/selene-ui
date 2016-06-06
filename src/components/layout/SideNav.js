@@ -8,25 +8,23 @@ let activeClassName = 'active';
 
 const SideNav = () => {
     return(
-        <section className="sidenav">
-            <div className="logo">
-                <a href="#" className="logo-text">
+        <section className='sidenav'>
+            <div className='logo'>
+                <a href='#'>
                     <span>TW•</span>SELENE
                 </a>
             </div>
 
-            <div className="sidenav-wrapper">
-                <div className="user">
-                    <div className="photo">
+            <div className='sidenav-wrapper'>
+                <div className='user'>
+                    <div className='photo'>
                         <img src={avatar} />
                     </div>
-                    <div className="info">
-                        <a data-toggle="collapse" href="#" className="collapsed" aria-expanded="false">
-                            Samuel L. Jabón
-                        </a>
-                    </div>
+                    <a data-toggle='collapse' href='#' className='collapsed' aria-expanded='false'>
+                        Samuel L. Jabón
+                    </a>
                 </div>
-                <ul className="nav">
+                <ul className='actions'>
                     <li>
                         <Link to='/dashboard' className='sidenav-btn' activeClassName={activeClassName}>
                             <Icon icon='cubes icon' />
@@ -58,8 +56,8 @@ const SideNav = () => {
                         </Link>
                     </li>
                 </ul>
-                <Footer />
             </div>
+            <Footer />
         </section>
     )
 }
