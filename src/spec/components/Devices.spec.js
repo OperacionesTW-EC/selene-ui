@@ -34,7 +34,7 @@ describe('Devices Component', () => {
             it('should render headers for all fields', () => {
                 component = mount(<Devices/>);
                 var th = component.find('th');
-                var headers = ['Código', 'Tipo', 'Marca', 'Fecha de Compra','Fecha de Asignación','Fecha de Finalización','Fecha de Entrega', ''];
+                var headers = ['Código', 'Tipo', 'Marca', 'Fecha de Compra','Fecha de Asignación','Fecha de Finalización', ''];
                 expect(th.length).toBe(headers.length);
                 th.nodes.map((elem) => {
                     var elementText = elem.innerHTML;
@@ -55,8 +55,8 @@ describe('Devices Component', () => {
                   full_code:'some_code',
                    purchase_date:'2016-02-28T14:11:22.590810Z',
                    device_brand_name:'TW',
-                   first_assignment_date:'2016-05-26T14:11:22.590810Z',
-                   end_date:'2019-05-21T14:11:22.590810Z'
+                   laptop_begin_life:'2016-05-26T14:11:22.590810Z',
+                   laptop_end_life:'2019-05-21T14:11:22.590810Z'
                  }]};
                 component = mount(<Devices/>);
                 var row = component.find('tr.data-row').nodes[0];
@@ -67,11 +67,11 @@ describe('Devices Component', () => {
                 expect(row.innerHTML).toContain('05-21-2019');
             });
 
-            it('should render rows with 8 tds', () => {
+            it('should render rows with 7 tds', () => {
                 devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',device_brand_name:'TW'}]};
                 component = mount(<Devices/>);
                 var tds = component.find('tr.data-row').find('td').nodes;
-                expect(tds.length).toEqual(8);
+                expect(tds.length).toEqual(7);
             });
 
             it('should render a link to device info', () => {

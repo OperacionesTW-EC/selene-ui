@@ -2,7 +2,7 @@
 
 import React from 'react';
 import expect from 'expect';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import FormRow from './../../components/helpers/FormRow';
 
 
@@ -19,17 +19,17 @@ describe('FormRow Component', () => {
         });
 
         it('should not render the label', () => {
-            component =  mount(<FormRow/>);
+            component =  shallow(<FormRow/>);
             expect(component.find('label').length).toBe(0);
         });
 
         it('should add margin class by default', () => {
-            component =  mount(<FormRow/>);
+            component =  shallow(<FormRow/>);
             expect(component.find('.margin').length).toBe(1);
         });
 
         it('should render a row', () => {
-            component =  mount(<FormRow/>);
+            component =  shallow(<FormRow/>);
             expect(component.find('.row').length).toBe(1);
         });
     });

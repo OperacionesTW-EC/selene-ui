@@ -130,7 +130,7 @@ export default class AssignDevice extends React.Component{
                                         <div className="col-md-4">
                                             <label>Proyecto:</label>
                                             <select className="form-control" name="project" >
-                                                <option> Ninguno </option>
+                                                <option value=""> Ninguno </option>
                                                 { this.state.projects.map((project) => {
                                                     return (<option key={project.id} value={project.id}>{ project.name }</option>);
                                                 })}
