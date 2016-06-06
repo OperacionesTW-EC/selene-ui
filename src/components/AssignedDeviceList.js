@@ -107,9 +107,9 @@ export default class AssignedDeviceList extends React.Component{
                             <td>{device.full_code}</td>
                             <td>{device.device_type_name}</td>
                             <td>{device.device_brand_name}</td>
-                            <td>{DateHelper(device.laptop_begin_life)}</td>
+                            <td>{DateHelper(device.life_start_date_or_assignment_date)}</td>
                             <td>{DateHelper(device.return_date)}</td>
-                            <td>{DateHelper(device.laptop_end_life)}</td>
+                            <td>{DateHelper(device.life_end_date)}</td>
                             <td>{device.assignee_name}</td>
                             <td>{device.project}</td>
                         </tr>

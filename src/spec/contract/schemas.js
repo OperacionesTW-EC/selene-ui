@@ -56,10 +56,10 @@ const schemas = {
                         "device_status_name": {
                             "type": "string"
                         },
-                        "laptop_end_life": {
+                        "life_end_date": {
                             "type": ["string", "null"]
                         },
-                        "laptop_begin_life": {
+                        "life_start_date_or_assignment_date": {
                             "type": ["string", "null"]
                         }
                     },
@@ -77,8 +77,8 @@ const schemas = {
                         "purchase_date",
                         "device_status",
                         "device_status_name",
-                        "laptop_end_life",
-                        "laptop_begin_life"
+                        "life_end_date",
+                        "life_start_date_or_assignment_date"
                     ]
                 }
             }

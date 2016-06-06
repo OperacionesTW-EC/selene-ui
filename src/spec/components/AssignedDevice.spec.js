@@ -86,13 +86,13 @@ describe('AssignedDevice Component', () => {
         it('should show the required fields', () => {
             assignment = {id: '1', devices:[{id:1, full_code:'TW1',
                 device_type_name:'Laptop', device_brand_name:'apple',
-                laptop_end_life:'10-10-2016'}]};
+                life_end_date:'10-10-2016'}]};
             component = mount(<AssignedDevice params={{id: 1}}/>);
             var row = component.find('tr.data-row').nodes[0];
             expect(row.innerHTML).toContain(assignment.devices[0].full_code);
             expect(row.innerHTML).toContain(assignment.devices[0].device_type_name);
             expect(row.innerHTML).toContain(assignment.devices[0].device_brand_name);
-            expect(row.innerHTML).toContain(assignment.devices[0].laptop_end_life);
+            expect(row.innerHTML).toContain(assignment.devices[0].life_end_date);
         });
 
         it('should show a back to assigned devices button', () => {

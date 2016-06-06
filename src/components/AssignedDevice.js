@@ -90,7 +90,7 @@ export default class AssignedDevice extends React.Component {
                                         <td>{device.full_code}</td>
                                         <td>{device.device_type_name}</td>
                                         <td>{device.device_brand_name}</td>
-                                        <td>{DateHelper(device.laptop_end_life)}</td>
+                                        <td>{DateHelper(device.life_end_date)}</td>
                                     </tr>
                                 )
                             })
