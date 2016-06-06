@@ -55,7 +55,7 @@ describe('Devices Component', () => {
                   full_code:'some_code',
                    purchase_date:'2016-02-28T14:11:22.590810Z',
                    device_brand_name:'TW',
-                   life_start_date_or_assignment_date:'2016-05-26T14:11:22.590810Z',
+                   life_start_date:'2016-05-26T14:11:22.590810Z',
                    life_end_date:'2019-05-21T14:11:22.590810Z'
                  }]};
                 component = mount(<Devices/>);

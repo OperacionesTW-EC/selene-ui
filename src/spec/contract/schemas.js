@@ -59,7 +59,7 @@ const schemas = {
                         "life_end_date": {
                             "type": ["string", "null"]
                         },
-                        "life_start_date_or_assignment_date": {
+                        "life_start_date": {
                             "type": ["string", "null"]
                         }
                     },
@@ -78,7 +78,7 @@ const schemas = {
                         "device_status",
                         "device_status_name",
                         "life_end_date",
-                        "life_start_date_or_assignment_date"
+                        "life_start_date"
                     ]
                 }
             }

@@ -97,7 +97,6 @@ export default class AssignedDeviceList extends React.Component{
     }
 
     renderBody(){
-        const LAPTOP_NAME = "Laptop";
         return(
             <tbody>
             {

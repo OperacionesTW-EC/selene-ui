@@ -62,7 +62,7 @@ export default class Device extends React.Component {
                     {DateHelper(this.state.device.purchase_date)}
                 </FormRow>
                 <FormRow label="Fecha de asignación:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                    {DateHelper(this.state.device.life_start_date_or_assignment_date)}
+                    {DateHelper(this.state.device.life_start_date)}
                 </FormRow>
                 <FormRow label="Fecha de finalización:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {DateHelper(this.state.device.life_end_date)}
