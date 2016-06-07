@@ -70,7 +70,7 @@ export default class AssignedDeviceList extends React.Component{
             data: filters,
             url: Constants.BACKEND_URL +'/assigned_devices/'
         }).done((data) => {
-            data.length > 0 || this.state.message.buildInfoMessage();
+            data.length > 0 || this.state.message.buildInfoMessage("No se han encontrado resultados para la búsqueda");
             this.setState({devices:data});
         }).fail(() => {
             this.state.message.buildErrorMessage();
