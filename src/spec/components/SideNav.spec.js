@@ -28,41 +28,41 @@ describe('SideNav Component', () => {
         it('should show a link to the dashboard', function () {
             expectedRoute = '/dashboard';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
-            links = TestUtils.scryRenderedDOMComponentsWithClass(renderResult, 'sidenav-btn');
-            expect(links[0].innerHTML).toInclude('Asignar');
-            expect(links[0].getAttribute('href')).toEqual(expectedRoute);
+            links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
+            expect(links[2].innerHTML).toInclude('Dashboard');
+            expect(links[2].getAttribute('href')).toEqual(expectedRoute);
         });
 
         it('should show a link to assign device', function () {
             expectedRoute = '/assign_device';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
-            links = TestUtils.scryRenderedDOMComponentsWithClass(renderResult, 'sidenav-btn');
-            expect(links[1].innerHTML).toInclude('Asignar');
-            expect(links[1].getAttribute('href')).toEqual(expectedRoute);
+            links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
+            expect(links[3].innerHTML).toInclude('Asignar');
+            expect(links[3].getAttribute('href')).toEqual(expectedRoute);
         });
 
         it('should show a link to device form', function () {
             expectedRoute = '/device_form';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
-            links = TestUtils.scryRenderedDOMComponentsWithClass(renderResult, 'sidenav-btn');
-            expect(links[2].innerHTML).toInclude('Registrar');
-            expect(links[2].getAttribute('href')).toEqual(expectedRoute);
+            links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
+            expect(links[4].innerHTML).toInclude('Registrar');
+            expect(links[4].getAttribute('href')).toEqual(expectedRoute);
         });
 
         it('should show a link to devices', function () {
             expectedRoute = '/device_list';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
-            links = TestUtils.scryRenderedDOMComponentsWithClass(renderResult, 'sidenav-btn');
-            expect(links[3].innerHTML).toInclude('Dispositivos');
-            expect(links[3].getAttribute('href')).toEqual(expectedRoute);
+            links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
+            expect(links[5].innerHTML).toInclude('Dispositivos');
+            expect(links[5].getAttribute('href')).toEqual(expectedRoute);
         });
 
         it('should show a link to assigned devices', function () {
             expectedRoute = '/assigned_device_list';
             renderResult = TestUtils.renderIntoDocument(<Subject/>);
-            links = TestUtils.scryRenderedDOMComponentsWithClass(renderResult, 'sidenav-btn');
-            expect(links[4].innerHTML).toInclude('Asignados');
-            expect(links[4].getAttribute('href')).toEqual(expectedRoute);
+            links = TestUtils.scryRenderedDOMComponentsWithTag(renderResult, 'a');
+            expect(links[6].innerHTML).toInclude('Asignados');
+            expect(links[6].getAttribute('href')).toEqual(expectedRoute);
         });
 
     });

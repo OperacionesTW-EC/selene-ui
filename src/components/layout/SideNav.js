@@ -14,49 +14,46 @@ const SideNav = () => {
                     <span>TW•</span>SELENE
                 </a>
             </div>
-
-            <div className='sidenav-wrapper'>
-                <div className='user'>
-                    <div className='photo'>
-                        <img src={avatar} />
-                    </div>
-                    <a data-toggle='collapse' href='#' className='collapsed' aria-expanded='false'>
-                        Samuel L. Jabón
-                    </a>
+            <div className='user'>
+                <div className='photo'>
+                    <img src={avatar} />
                 </div>
-                <ul className='actions'>
-                    <li>
-                        <Link to='/dashboard' className='sidenav-btn' activeClassName={activeClassName}>
-                            <Icon icon='cubes icon' />
-                            <p>Dashboard</p>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to='/assign_device' className='sidenav-btn' activeClassName={activeClassName}>
-                            <Icon icon='user-plus icon' />
-                            <p>Asignar</p>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to='/device_form' className='sidenav-btn' activeClassName={activeClassName}>
-                            <Icon icon='plus-square icon' />
-                            <p>Registrar</p>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to='/device_list' className='sidenav-btn' activeClassName={activeClassName}>
-                            <Icon icon='desktop icon' />
-                            <p>Dispositivos</p>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to='/assigned_device_list' className='sidenav-btn' activeClassName={activeClassName}>
-                            <Icon icon='th-list icon' />
-                            <p>Asignados</p>
-                        </Link>
-                    </li>
-                </ul>
+                <a data-toggle='collapse' href='#' className='collapsed' aria-expanded='false'>
+                    Samuel L. Jabón
+                </a>
             </div>
+            <ul className='actions'>
+                <li>
+                    <Link to='/dashboard' activeClassName={activeClassName}>
+                        <Icon icon='cubes icon' />
+                        <p>Dashboard</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/assign_device' activeClassName={activeClassName}>
+                        <Icon icon='user-plus icon' />
+                        <p>Asignar</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/device_form' activeClassName={activeClassName}>
+                        <Icon icon='plus-square icon' />
+                        <p>Registrar</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/device_list' activeClassName={activeClassName}>
+                        <Icon icon='desktop icon' />
+                        <p>Dispositivos</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/assigned_device_list' activeClassName={activeClassName}>
+                        <Icon icon='th-list icon' />
+                        <p>Asignados</p>
+                    </Link>
+                </li>
+            </ul>
             <Footer />
         </section>
     )
