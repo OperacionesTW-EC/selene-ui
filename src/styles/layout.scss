@@ -24,10 +24,10 @@ $sidenav-border: rgba(255, 255, 255, .2);
     z-index: 4;
     display: flex;
     min-height: 60px;
-    justify-content: center;
-    align-items: center;
     border-bottom: 1px solid $sidenav-border;
 
+    justify-content: center;
+    align-items: center;
     order: 0;
     a {
       font-size: 18px;
@@ -51,11 +51,11 @@ $sidenav-border: rgba(255, 255, 255, .2);
   .user {
     display: flex;
     padding: 20px;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     border-bottom: 1px solid $sidenav-border;
 
+    justify-content: center;
+    align-items: center;
     order: 1;
     .photo {
       width: 80px;
@@ -94,16 +94,14 @@ $sidenav-border: rgba(255, 255, 255, .2);
 @media (max-width: 960px) {
   .wrapper {
     flex-direction: column;
-
     .sidenav {
       display: inline-flex;
-      min-width: 520px;
       padding-bottom: 0;
       .actions {
-        justify-content: space-around;
-        align-items: center;
         flex-direction: row;
 
+        justify-content: space-around;
+        align-items: center;
         flex-wrap: nowrap;
         li {
           width: auto;
@@ -127,6 +125,21 @@ $sidenav-border: rgba(255, 255, 255, .2);
   }
 }
 
+@media (max-width: 520px) {
+  .wrapper {
+    .sidenav {
+      .actions {
+        a {
+          padding: 15px 15px;
+          i {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
 .actions {
   display: flex;
   padding: 0;
@@ -138,6 +151,7 @@ $sidenav-border: rgba(255, 255, 255, .2);
   li {
     display: inline-flex;
     width: 100%;
+
     justify-content: center;
   }
   a {
@@ -147,9 +161,10 @@ $sidenav-border: rgba(255, 255, 255, .2);
     margin: 5px 15px;
     color: $white;
     text-decoration: none;
-    align-items: center;
     border-radius: 3px;
     opacity: .86;
+
+    align-items: center;
     &.active {
       color: $primary;
       background: rgba(0, 0, 0, .23);
