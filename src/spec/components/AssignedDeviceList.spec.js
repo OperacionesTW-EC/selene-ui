@@ -224,9 +224,9 @@ describe('AssignedDeviceList Component', () => {
         beforeEach(function () {
             ajaxCount=0;
             sandbox = Sinon.sandbox.create();
-            sandbox.spy(AssignedDeviceList.prototype, "handleFormChanges");
             sandbox.spy(AssignedDeviceList.prototype, "handleSearchClick");
             sandbox.spy(AssignedDeviceList.prototype, "updateFilterFromEvent");
+            sandbox.spy(AssignedDeviceList.prototype, "handleChangeAssignee");
             component = mount(<AssignedDeviceList/>);
             sandbox.spy($, "ajax");
             eventBlock = {preventDefault: function () {}}
@@ -237,14 +237,14 @@ describe('AssignedDeviceList Component', () => {
             sandbox.restore();
         });
 
-        it('should invoke handleFormChanges when project input changes', () => {
+        it('should invoke updateFilterFromEvent when project input changes', () => {
             component.find("[name='project']").simulate('change');
-            expect(AssignedDeviceList.prototype.handleFormChanges.calledOnce).toEqual(true);
+            expect(AssignedDeviceList.prototype.updateFilterFromEvent.calledOnce).toEqual(true);
         });
 
-        it('should invoke handleFormChanges when assignee name input changes', () => {
+        it('should invoke handleChangeAssignee when assignee name input changes', () => {
             component.find("[name='assignee']").simulate('change');
-            expect(AssignedDeviceList.prototype.handleFormChanges.calledOnce).toEqual(true);
+            expect(AssignedDeviceList.prototype.handleChangeAssignee.calledOnce).toEqual(true);
         });
 
         it('should invoke handleSearchClick when click in search', () => {
@@ -273,7 +273,7 @@ describe('AssignedDeviceList Component', () => {
 
         it('should send data to backend on project change', () => {
             component.find("[name='project']").simulate('change');
-            expect(AssignedDeviceList.prototype.updateFilterFromEvent.calledTwice).toEqual(true);
+            expect(AssignedDeviceList.prototype.updateFilterFromEvent.calledOnce).toEqual(true);
             expect($.ajax.calledOnce).toEqual(true);
         });
 

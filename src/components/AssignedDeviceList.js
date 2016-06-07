@@ -19,7 +19,6 @@ export default class AssignedDeviceList extends React.Component{
         };
         this.renderTable = this.renderTable.bind(this);
         this.renderBody = this.renderBody.bind(this);
-        this.handleFormChanges = this.handleFormChanges.bind(this);
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.loadDevices = this.loadDevices.bind(this);
         this.loadProjects = this.loadProjects.bind(this);
@@ -27,6 +26,7 @@ export default class AssignedDeviceList extends React.Component{
         this.blockSubmit = this.blockSubmit.bind(this);
         this.handleChangeProject = this.handleChangeProject.bind(this);
         this.updateFilterFromEvent = this.updateFilterFromEvent.bind(this);
+        this.handleChangeAssignee = this.handleChangeAssignee.bind(this);
     }
 
     componentDidMount(){
@@ -44,6 +44,10 @@ export default class AssignedDeviceList extends React.Component{
         }
     }
 
+    handleChangeAssignee(event){
+        this.updateFilterFromEvent(event);
+    }
+
     handleChangeProject(event){
         this.updateFilterFromEvent(event);
         this.loadDevices(this.state.filters);
@@ -51,10 +55,6 @@ export default class AssignedDeviceList extends React.Component{
 
     blockSubmit(event) {
         event.preventDefault();
-    }
-
-    handleFormChanges(event) {
-        this.updateFilterFromEvent(event);
     }
 
     updateFilterFromEvent(event){
@@ -116,11 +116,11 @@ export default class AssignedDeviceList extends React.Component{
             <div className="panel-heading">
                 <div className="row">
                   <div className="col-md-9">
-                      <form className="form" onChange={this.handleFormChanges} onSubmit={this.blockSubmit}>
+                      <form className="form" onSubmit={this.blockSubmit}>
                           <div className="row">
                               <div className="col-md-4">
                                   <label>Responsable: </label>
-                                  <input type="text" name="assignee" className="form-control" onKeyPress={this.handleAssigneeKeyPress} />
+                                  <input type="text" name="assignee" className="form-control" onKeyPress={this.handleAssigneeKeyPress} onChange={this.handleChangeAssignee}/>
                               </div>
                               <div className="col-md-4">
                                   <label>Proyecto:</label>
