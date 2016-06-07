@@ -126,6 +126,7 @@ export default class AssignedDeviceList extends React.Component{
                                   <label>Proyecto:</label>
                                   <select className="form-control" name="project" onChange={this.handleChangeProject} >
                                       <option value=""> Todos </option>
+                                      <option value="0"> Ninguno </option>
                                       { this.state.projects.map((project) => {
                                           return (<option key={project.id} value={project.id}>{ project.name }</option>);
                                       })}

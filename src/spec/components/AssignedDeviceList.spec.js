@@ -173,8 +173,13 @@ describe('AssignedDeviceList Component', () => {
                     expect(component.state('projects')).toEqual(projects.results);
                 });
 
+                it('should render Ninguno on project list', () => {
+                    expect(component.find('form select option').nodes[1].innerHTML).toContain("Ninguno");
+                    expect(component.find('form select option').nodes[1].value).toBe("0");
+                });
+
                 it('should render the project list into a combo box', () => {
-                    expect(component.find('form select option').nodes[1].innerHTML).toContain(projects.results[0].name);
+                    expect(component.find('form select option').nodes[2].innerHTML).toContain(projects.results[0].name);
                 });
 
             });
