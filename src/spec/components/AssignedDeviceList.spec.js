@@ -10,18 +10,24 @@ describe('AssignedDeviceList Component', () => {
     let devices;
     let sandbox;
     let component;
+    let ajaxCount;
+    let projects;
 
     describe('render test', () => {
 
         beforeEach(function () {
+            ajaxCount=0;
+            projects = {results:[{id:'1', name:'some name'}]};
             sandbox = Sinon.sandbox.create();
             sandbox.stub($, 'ajax').returns({
                 done: (callback) => {
-                    callback(devices);
-                    return {
-                        fail: (callback) => {
-                        }
+                    if(ajaxCount==0) {
+                        callback(devices);
+                    } else {
+                        callback(projects);
                     }
+                    ajaxCount++;
+                    return {fail: (callback) => {} }
                 }
             });
         });
@@ -101,9 +107,17 @@ describe('AssignedDeviceList Component', () => {
         it('should render assign button', () => {
             devices = [];
             component = mount(<AssignedDeviceList/>);
-            var link = component.find('a').nodes[0];
+            var link = component.find('a #btn-save').nodes[0];
             expect(link.innerHTML).toContain('Asignar');
         });
+
+        it('should render search button', () => {
+            devices = [];
+            component = mount(<AssignedDeviceList/>);
+            var link = component.find('a #btn-search').nodes[0];
+            expect(link.innerHTML).toContain('Buscar');
+        });
+
     });
 
     describe('with error in response', () => {
@@ -127,5 +141,173 @@ describe('AssignedDeviceList Component', () => {
         });
     });
 
+    describe('initialization test', () => {
+
+        describe('projects', () => {
+
+            describe('with valid data', () => {
+
+                beforeEach(function () {
+                    ajaxCount=0;
+                    projects = {results:[{id:'1', name:'some name'}]};
+                    sandbox = Sinon.sandbox.create();
+                    sandbox.stub($, 'ajax').returns({
+                        done: (callback) => {
+                            if(ajaxCount==0) {
+                                callback(devices);
+                            } else {
+                                callback(projects);
+                            }
+                            ajaxCount++;
+                            return {fail: (callback) => {} }
+                        }
+                    });
+                    component = mount(<AssignedDeviceList/>);
+                });
+
+                afterEach(function () {
+                    sandbox.restore();
+                });
+
+                it('should load projects from backend', () => {
+                    expect(component.state('projects')).toEqual(projects.results);
+                });
+
+                it('should render the project list into a combo box', () => {
+                    expect(component.find('form select option').nodes[1].innerHTML).toContain(projects.results[0].name);
+                });
+
+            });
+
+            describe('with invalid data', () => {
+
+                beforeEach(function () {
+                    ajaxCount=0;
+                    projects = {results:[{id:'1', name:'some name'}]};
+                    sandbox = Sinon.sandbox.create();
+                    sandbox.stub($, 'ajax').returns({
+                        done: (callback) => {
+                            if(ajaxCount==0) {
+                                callback(devices);
+                            }
+                            ajaxCount++;
+                            return {
+                                fail: (callback) => {
+                                    if(ajaxCount > 0) {
+                                        callback(projects);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    component = mount(<AssignedDeviceList/>);
+                });
+
+                afterEach(function () {
+                    sandbox.restore();
+                });
+
+                it('should render an error message', () => {
+                    expect(component.find('.error-message').length).toNotBe(0);
+                });
+
+            });
+
+        });
+
+    });
+
+    describe('events test',() => {
+
+        let eventBlock;
+
+        beforeEach(function () {
+            ajaxCount=0;
+            sandbox = Sinon.sandbox.create();
+            sandbox.spy(AssignedDeviceList.prototype, "handleFormChanges");
+            sandbox.spy(AssignedDeviceList.prototype, "handleSearchClick");
+            sandbox.spy(AssignedDeviceList.prototype, "updateFilterFromEvent");
+            component = mount(<AssignedDeviceList/>);
+            sandbox.spy($, "ajax");
+            eventBlock = {preventDefault: function () {}}
+            sandbox.spy(eventBlock, 'preventDefault');
+        });
+
+        afterEach(function () {
+            sandbox.restore();
+        });
+
+        it('should invoke handleFormChanges when project input changes', () => {
+            component.find("[name='project']").simulate('change');
+            expect(AssignedDeviceList.prototype.handleFormChanges.calledOnce).toEqual(true);
+        });
+
+        it('should invoke handleFormChanges when assignee name input changes', () => {
+            component.find("[name='assignee']").simulate('change');
+            expect(AssignedDeviceList.prototype.handleFormChanges.calledOnce).toEqual(true);
+        });
+
+        it('should invoke handleSearchClick when click in search', () => {
+            component.find("#btn-search").simulate('click');
+            expect(AssignedDeviceList.prototype.handleSearchClick.calledOnce).toEqual(true);
+        });
+
+        it('should send data to backed', () => {
+            component.find("#btn-search").simulate('click');
+            expect($.ajax.calledOnce).toEqual(true);
+        });
+
+        it('should block submit form', () => {
+            component.find("form").simulate('submit', {
+                preventDefault: eventBlock.preventDefault
+            });
+            expect(eventBlock.preventDefault.calledOnce).toEqual(true);
+        });
+
+        it('should send data to backend on "enter" keypress', () => {
+            component.find("[name='assignee']").simulate('keyPress', {
+                charCode: 13
+            });
+            expect($.ajax.calledOnce).toEqual(true);
+        });
+
+        it('should send data to backend on project change', () => {
+            component.find("[name='project']").simulate('change');
+            expect(AssignedDeviceList.prototype.updateFilterFromEvent.calledTwice).toEqual(true);
+            expect($.ajax.calledOnce).toEqual(true);
+        });
+
+    });
+
+    describe('render search', ()=>{
+
+        beforeEach(function () {
+            ajaxCount=0;
+            projects = {results:[{id:'1', name:'some name'}]};
+            sandbox = Sinon.sandbox.create();
+            sandbox.stub($, 'ajax').returns({
+                done: (callback) => {
+                    if(ajaxCount==0) {
+                        callback(devices);
+                    } else {
+                        callback(projects);
+                    }
+                    ajaxCount++;
+                    return {fail: (callback) => {} }
+                }
+            });
+        });
+
+        afterEach(function () {
+            sandbox.restore();
+        });
+
+        it('should render a row for every element on the list', () => {
+            devices = [{id: '1'}, {id: '2'}, {id: '3'}];
+            component.find("#btn-search").simulate('click');
+            var rows = component.find('tr.data-row');
+            expect(rows.length).toBe(devices.length);
+        });
+    });
 
 });
