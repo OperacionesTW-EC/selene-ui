@@ -114,7 +114,7 @@ describe('Device Component', () => {
         it('should show formatted purchase, first assignment and end dates', () => {
             device = {id: 1,
                 "purchase_date":"2016-05-01T15:02:21.960017Z",
-                "life_start_date":"2016-05-31T15:02:21.960017Z",
+                "life_start_date_or_assignment_date":"2016-05-31T15:02:21.960017Z",
                 "life_end_date":"2019-05-31T15:02:21.960017Z",
                 results:[]
             };
