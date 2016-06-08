@@ -11,8 +11,6 @@ expect.extend(expectJSX);
 
 describe('Date Helper', () => {
 
-    let  component;
-
     describe('Convert', () => {
 
         beforeEach(() => {

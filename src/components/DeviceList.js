@@ -11,13 +11,13 @@ export default class DeviceList extends React.Component {
     constructor(props) {
         super(props);
         let { query } = this.props.location;
-        this.renderPanelHeader = this.renderPanelHeader.bind(this);
         this.state = {
             message: new MessageHelper()
         };
         if(query.message) {
             this.state.message.buildSuccessMessage(query.message)
         }
+        this.renderPanelHeader = this.renderPanelHeader.bind(this);
     }
 
     render() {

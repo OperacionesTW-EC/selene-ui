@@ -30,6 +30,7 @@ export default class AssignDevice extends React.Component{
         this.canAssign = this.canAssign.bind(this);
         this.setDatePicker = this.setDatePicker.bind(this);
         this.processForm = this.processForm.bind(this);
+        this.redirectToAssignedDevice = this.redirectToAssignedDevice.bind(this);
     }
 
     componentDidMount(){
@@ -83,13 +84,18 @@ export default class AssignDevice extends React.Component{
             data: JSON.stringify(submitData),
             url: Constants.BACKEND_URL +'/assignments/'
         }).done((data) => {
-            this.state.message.buildSuccessMessage('El(los) dispositivo(s) ha(n) sido asignados satisfactoriamente');
-            this.setState({});
-            $(location).attr('href', '#/assign_device/' + data.id);
+            this.redirectToAssignedDevice(data)
         }).fail(() => {
             this.state.message.buildErrorMessage('Error, no se pudo realizar la asignación,  recuerde ingresar el nombre del responsable y seleccionar al menos un dispositivo.');
             this.setState({});
         });
+    }
+
+    redirectToAssignedDevice(responseFromBackend){
+        this.context.router.push({
+            pathname: '/assign_device/'+responseFromBackend.id,
+            query: { message: 'El dispositivo se asignó correctamente.' }
+        })
     }
 
     processForm(){
@@ -161,3 +167,7 @@ export default class AssignDevice extends React.Component{
     }
 
 }
+
+AssignDevice.contextTypes = {
+    router:  function() { return React.PropTypes.func.isRequired; }
+};

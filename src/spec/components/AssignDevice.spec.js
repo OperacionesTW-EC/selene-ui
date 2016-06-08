@@ -156,6 +156,7 @@ describe('Assign device Component', () => {
                 sandbox.spy(AssignDevice.prototype, "handleCheckBoxChanges");
                 sandbox.spy(AssignDevice.prototype, "assign");
                 sandbox.spy(AssignDevice.prototype, "processForm");
+                sandbox.stub(AssignDevice.prototype, "redirectToAssignedDevice");
                 sandbox.stub($, 'ajax').returns({
                     done: (callback) => {
                         callback(devices);
@@ -187,21 +188,25 @@ describe('Assign device Component', () => {
                 component.find(".device-chk").simulate('change');
                 expect(AssignDevice.prototype.handleCheckBoxChanges.calledOnce).toEqual(true);
             });
+
             it('should add device id when checkbox is checked', () => {
                 component.find(".device-chk").simulate('change', { target: {value:'1', checked : true}});
                 expect(component.state()['assignment']['devices']).toEqual(['1']);
             });
+
             it('should remove device id when checkbox is unchecked', () => {
                 component.find(".device-chk").simulate('change', { target: {value:'3', checked : true}});
                 component.find(".device-chk").simulate('change', { target: {value:'3', checked : false}});
                 expect(component.state()['assignment']['devices']).toEqual([]);
             });
+
             it('should add device id again when checkbox is re-checked', () => {
                 component.find(".device-chk").simulate('change', { target: {value:'2', checked : true}});
                 component.find(".device-chk").simulate('change', { target: {value:'2', checked : false}});
                 component.find(".device-chk").simulate('change', { target: {value:'2', checked : true}});
                 expect(component.state()['assignment']['devices']).toEqual(['2']);
             });
+
             it('should call assign function when a responsible name is set and a device is selected', () => {
                 component.setState({assignment: {
                     assignee_name: 'Tim',
@@ -209,16 +214,26 @@ describe('Assign device Component', () => {
                 component.find("#save").simulate('click');
                 expect(AssignDevice.prototype.assign.calledOnce).toEqual(true);
             });
+
             it("should not call assign when a responsible name is set but no device is selected", () => {
                 component.find("#save").simulate('click');
                 expect(AssignDevice.prototype.assign.calledOnce).toEqual(false);
             });
+
             it('should send data to backend', () => {
                 component.setState({assignment: {
                     assignee_name: 'Tim',
                     devices: [{name:'mouse'}]}});
                 component.find("#save").simulate('click');
                 expect($.ajax.called).toEqual(true);
+            });
+
+            it('should invoke redirectToAssignedDevice', () => {
+                component.setState({assignment: {
+                    assignee_name: 'Tim',
+                    devices: [{name:'mouse'}]}});
+                component.find("#save").simulate('click');
+                expect(AssignDevice.prototype.redirectToAssignedDevice.called).toEqual(true);
             });
 
             it('should call handleFormChanges when expected_return_date input field changes', () => {

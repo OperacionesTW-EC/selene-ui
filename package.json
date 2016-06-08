@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack -p",
-    "test": "mocha --require './src/spec/setup.js' './src/**/components/*.spec.js' --compilers js:babel-core/register,png:./mochacfg.js --timeout 8000",
+    "test": "mocha --require './src/spec/setup.js' './src/**/components/*.spec.js' --compilers js:babel-core/register,png:./mochacfg.js --timeout 10000",
     "contract": "mocha --require './src/spec/setup.js' './src/**/contract/*.spec.js' --compilers js:babel-core/register",
     "test-watch": "mocha -w './src/**/*.spec.js' --compilers js:babel-core/register"
   },

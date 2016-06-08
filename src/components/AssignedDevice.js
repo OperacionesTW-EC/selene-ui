@@ -6,14 +6,20 @@ import Icon from './helpers/Icon';
 import FormRow from './helpers/FormRow';
 import DateHelper from './helpers/DateHelper';
 import { Link } from 'react-router';
+import MessageHelper from './helpers/MessageHelper';
 
 export default class AssignedDevice extends React.Component {
 
     constructor(props) {
         super(props);
+        let { query } = this.props.location;
         this.state = {
-            assignment: {devices:[]}
+            assignment: {devices:[]},
+            message: new MessageHelper()
         };
+        if(query.message) {
+            this.state.message.buildSuccessMessage(query.message)
+        }
         this.renderAssigmentInfo=this.renderAssigmentInfo.bind(this);
         this.renderDeviceTable=this.renderDeviceTable.bind(this);
     }
@@ -34,6 +40,7 @@ export default class AssignedDevice extends React.Component {
         return(
             <div>
                 <PageTitle content="Detalle de la asignación" />
+                {this.state.message.renderMessage()}
                 <div className="container-fluid">
                     <section className="form-card paper white medium">
                         {this.renderAssigmentInfo()}

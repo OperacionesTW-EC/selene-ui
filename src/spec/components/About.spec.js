@@ -19,7 +19,7 @@ describe('About Component', () => {
             component =  shallow(<About />);
         });
         it('should include contact info', () => {
-            expect(component.contains('fescobar@thoughtworks.com')).toBe(true);
+            expect(component.contains('fescobar@thoughtworks.com')).toBeTruthy();
         });
     });
 

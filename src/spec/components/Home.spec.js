@@ -15,6 +15,6 @@ expect.extend(expectJSX);
 describe('App Component', () => {
     let component = mount(<Home/>)
     it('should render the login component', () => {
-        expect(component.contains(<Login/>)).toBe(true);
+        expect(component.contains(<Login/>)).toBeTruthy()
     })
 });

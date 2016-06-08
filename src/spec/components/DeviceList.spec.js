@@ -23,7 +23,7 @@ describe('DeviceList Component', () => {
 
         it('should render a device list', () => {
             var deviceComponent = TestUtils.findRenderedComponentWithType(renderResult, Devices);
-            expect(deviceComponent!=null).toBe(true)
+            expect(deviceComponent!=null).toBeTruthy()
         });
 
         it('should render header', () => {
