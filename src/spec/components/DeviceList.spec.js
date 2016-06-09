@@ -27,10 +27,10 @@ describe('DeviceList Component', () => {
         });
 
         it('should render header', () => {
-            var heading = TestUtils.scryRenderedDOMComponentsWithClass(renderResult, 'panel-heading');
+            var heading = TestUtils.scryRenderedDOMComponentsWithClass(renderResult, 'main-header');
             expect(heading.length).toBe(1);
         });
-        
+
         describe('with message parameter', () => {
 
             it('should show a message ', () => {

@@ -115,7 +115,7 @@ describe('AssignedDeviceList Component', () => {
             devices = [];
             component = mount(<AssignedDeviceList/>);
             var link = component.find('a #btn-search').nodes[0];
-            expect(link.innerHTML).toContain('Buscar');
+            expect(link.innerHTML).toContain('<i class="fa fa-search icon"></i>');
         });
 
     });
