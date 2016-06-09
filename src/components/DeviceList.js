@@ -41,14 +41,9 @@ export default class DeviceList extends React.Component {
 
     renderPanelHeader(){
         return (
-            <div className="panel-heading">
+            <div className="main-header">
                 <div className="row">
-                    <div className="col-xs-9">
-                      <div className="form">
-                        <input type="text" className="form-control" placeholder="Buscar..." />
-                      </div>
-                    </div>
-                    <div className="col-xs-3 text-right">
+                    <div className="col-xs-12 text-right">
                         <Link to='/assign_device' className='btn btn-primary btn-sm btn-create'><Icon icon='user-plus icon' /> Asignar</Link>
                         <Link to='/device_form' className='btn btn-secondary btn-sm btn-create'><Icon icon='plus-square icon' /> Registrar</Link>
                     </div>

@@ -42,3 +42,48 @@
     }
   }
 }
+
+.flex-form > * {
+  -webkit-appearance: none;
+  padding: 10px;
+  font-size: 1.2em;
+  line-height: 30px;
+  background: white;
+  border: 0;
+  border-right: 1px solid rgba(0,0,0,.1);
+  border-radius: 0;
+  outline: 0;
+}
+
+.flex-form > *:first-child {
+  border-right: 0;
+  border-right: 1px solid rgba(0,0,0,.1);
+  border-radius: 3px 0 0 3px;
+}
+
+.flex-form > *:last-child {
+  border-right: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.flex-form {
+  z-index: 10;
+  display: flex;
+
+  label {
+    margin-bottom: 0;
+  }
+}
+
+input[type="search"] {
+  flex-basis: 500px;
+}
+
+
+.form-control {
+  font-size: 1em;
+}
+
+.main-header {
+  padding: 20px 0;
+}

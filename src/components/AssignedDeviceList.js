@@ -113,31 +113,26 @@ export default class AssignedDeviceList extends React.Component{
 
     renderPanelHeader(){
         return (
-            <div className="panel-heading">
+            <div className="main-header">
                 <div className="row">
-                  <div className="col-md-9">
-                      <form className="form" onSubmit={this.blockSubmit}>
-                          <div className="row">
-                              <div className="col-md-4">
-                                  <label>Responsable: </label>
-                                  <input type="text" name="assignee" className="form-control" onKeyPress={this.handleAssigneeKeyPress} onChange={this.handleChangeAssignee}/>
-                              </div>
-                              <div className="col-md-4">
-                                  <label>Proyecto:</label>
-                                  <select className="form-control" name="project" onChange={this.handleChangeProject} >
-                                      <option value=""> Todos </option>
-                                      <option value="0"> Ninguno </option>
-                                      { this.state.projects.map((project) => {
-                                          return (<option key={project.id} value={project.id}>{ project.name }</option>);
-                                      })}
-                                  </select>
-                              </div>
-                          </div>
-                      </form>
-                  </div>
-                    <div className="col-md-3 text-right">
-                        <a onClick={this.handleSearchClick} id="btn-search" className='btn btn-secondary btn-sm btn-create'><Icon icon='search icon' /> Buscar</a>
-                        <Link id="btn-save" to='/assign_device' className='btn btn-primary btn-sm btn-create'><Icon icon='user-plus icon' /> Asignar</Link>
+                    <div className="col-md-9">
+                        <form className="flex-form" onSubmit={this.blockSubmit}>
+                            <input placeholder="Buscar responsable" type="search" name="assignee" onKeyPress={this.handleAssigneeKeyPress} onChange={this.handleChangeAssignee}/>
+                            <label for="from">en</label>
+                            <select name="project" onChange={this.handleChangeProject} >
+                                <option value="" defaultValue>Todos</option>
+                                <option value="0"> Ninguno </option>
+                                { this.state.projects.map((project) => {
+                                    return (<option key={project.id} value={project.id}>{ project.name }</option>);
+                                })}
+                            </select>
+                            <a onClick={this.handleSearchClick} id="btn-search" className='btn btn-default'><Icon icon='search icon' /></a>
+                        </form>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="header-actions text-right">
+                            <Link id="btn-save" to='/assign_device' className='btn btn-primary btn-sm btn-create'><Icon icon='user-plus icon' /> Asignar</Link>
+                        </div>
                     </div>
                 </div>
             </div>
