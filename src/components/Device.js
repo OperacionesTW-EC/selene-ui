@@ -58,6 +58,9 @@ export default class Device extends React.Component {
                 <FormRow label="Serial:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.serial_number}
                 </FormRow>
+                <FormRow label="Descripción:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                    {this.state.device.description}
+                </FormRow>
                 <FormRow label="Fecha de compra:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {DateHelper(this.state.device.purchase_date)}
                 </FormRow>

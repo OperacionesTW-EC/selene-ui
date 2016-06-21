@@ -20,6 +20,7 @@ export default class DeviceForm extends React.Component{
                 device_brand: '',
                 asset: '1',
                 serial_number: '',
+                description:    '',
                 model: '',
                 ownership: 'TW',
                 purchase_date: ''
@@ -87,6 +88,9 @@ export default class DeviceForm extends React.Component{
                                         </FormRow>
                                         <FormRow label="Serial">
                                             <input className="form-control" value={this.state.device.serial_number}  type="text" name='serial_number'/>
+                                        </FormRow>
+                                        <FormRow label="Descripción">
+                                            <input className="form-control" value={this.state.device.description}  type="text" name='description'/>
                                         </FormRow>
                                         <FormRow label="Modelo">
                                             <input className="form-control" value={this.state.device.model}  type="text" name='model'/>
@@ -217,6 +221,7 @@ export default class DeviceForm extends React.Component{
             device_brand: '',
             asset: '1',
             serial_number: '',
+            description: '',
             model: '',
             ownership: 'TW',
             purchase_date: ''

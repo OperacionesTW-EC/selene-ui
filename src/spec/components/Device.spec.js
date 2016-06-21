@@ -98,6 +98,7 @@ describe('Device Component', () => {
                 "serial_number":"",
                 "model":"Adaptador VDI",
                 "device_status_name": "Disponible",
+                "description": "Nuevo Modelo",
                 results:[]
             };
 
@@ -109,6 +110,7 @@ describe('Device Component', () => {
             expect(html).toContain(device.model);
             expect(html).toContain(device.serial_number);
             expect(html).toContain(device.device_status_name);
+            expect(html).toContain(device.description);
         });
 
         it('should show formatted purchase, first assignment and end dates', () => {

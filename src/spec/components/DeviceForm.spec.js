@@ -141,6 +141,10 @@ describe('DeviceForm', () => {
 			expect(component.find('[name="serial_number"]').length).toBe(1);
 		});
 
+		it('should render the device description', () => {
+			expect(component.find('[name="description"]').length).toBe(1);
+		});
+
 		it('should render the device model field', () => {
 			expect(component.find('[name="model"]').length).toBe(1);
 		});
