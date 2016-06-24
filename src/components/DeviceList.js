@@ -1,4 +1,6 @@
 import React from 'react';
+import Constants from './../config/Constants';
+import $ from 'jquery';
 import Devices from './Devices';
 import { Link } from 'react-router';
 import PageTitle from './layout/PageTitle';
@@ -12,6 +14,7 @@ export default class DeviceList extends React.Component {
         super(props);
         let { query } = this.props.location;
         this.state = {
+            deviceStatus:[],
             message: new MessageHelper()
         };
         if(query.message) {
@@ -19,11 +22,28 @@ export default class DeviceList extends React.Component {
         }
         this.renderPanelHeader = this.renderPanelHeader.bind(this);
         this.handleChangeStatus = this.handleChangeStatus.bind(this);
+        this.loadStatusData = this.loadStatusData.bind(this);
+    }
+
+    componentDidMount(){
+        this.loadStatusData();
     }
 
     handleChangeStatus(event){
         this.updateFilterFromEvent(event);
-        this.loadDevices(this.state.filters);
+        this.loadStatusData(this.state.filters);
+    }
+
+    loadStatusData(){
+        $.ajax({
+            type: 'GET',
+            datatype: 'json',
+            url: Constants.BACKEND_URL +'/device_status'
+        }).done((data) => {
+            this.setState({deviceStatus: data.results});
+        }).fail(() => {
+            this.setState({deviceStatus:[]})
+        });
     }
 
     render() {
@@ -51,8 +71,11 @@ export default class DeviceList extends React.Component {
                 <div className="row">
                 <div className="col-md-9">
                         <form className="flex-form" onSubmit={this.blockSubmit}>
-                            <select name="status" onChange={this.handleChangeStatus} >
+                            <select name="status">
                                 <option value="" defaultValue>Seleccione un estado </option>
+                                { this.state.deviceStatus.map((status) => {
+                                    return (<option key={status.id} value={status.id}>{status.name }</option>);
+                                })}
                             </select>
                             <a onClick={this.handleSearchClick} id="btn-search" className='btn btn-default'><Icon icon='search icon' /></a>
                         </form>
