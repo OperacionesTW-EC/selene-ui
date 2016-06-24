@@ -18,6 +18,12 @@ export default class DeviceList extends React.Component {
             this.state.message.buildSuccessMessage(query.message)
         }
         this.renderPanelHeader = this.renderPanelHeader.bind(this);
+        this.handleChangeStatus = this.handleChangeStatus.bind(this);
+    }
+
+    handleChangeStatus(event){
+        this.updateFilterFromEvent(event);
+        this.loadDevices(this.state.filters);
     }
 
     render() {
@@ -43,6 +49,14 @@ export default class DeviceList extends React.Component {
         return (
             <div className="main-header">
                 <div className="row">
+                <div className="col-md-9">
+                        <form className="flex-form" onSubmit={this.blockSubmit}>
+                            <select name="status" onChange={this.handleChangeStatus} >
+                                <option value="" defaultValue>Seleccione un estado </option>
+                            </select>
+                            <a onClick={this.handleSearchClick} id="btn-search" className='btn btn-default'><Icon icon='search icon' /></a>
+                        </form>
+                    </div>
                     <div className="col-xs-12 text-right">
                         <Link to='/assign_device' className='btn btn-primary btn-sm btn-create'><Icon icon='user-plus icon' /> Asignar</Link>
                         <Link to='/device_form' className='btn btn-secondary btn-sm btn-create'><Icon icon='plus-square icon' /> Registrar</Link>
@@ -52,3 +66,4 @@ export default class DeviceList extends React.Component {
         )
     }
 }
+
