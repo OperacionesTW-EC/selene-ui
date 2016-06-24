@@ -92,6 +92,7 @@ export default class Devices extends React.Component{
                 <td>{DateHelper(device.purchase_date)}</td>
                 <td>{DateHelper(device.life_start_date_or_assignment_date)}</td>
                 <td>{DateHelper(device.life_end_date)}</td>
+                <td>{DateHelper(device.state)}</td>
                 <td>
                     <Link to={"/device/"+device.id} className="btn btn-xs btn-primary"><Icon icon="search"/></Link>
                 </td>
@@ -119,6 +120,7 @@ export default class Devices extends React.Component{
                 <th>Fecha de Compra</th>
                 <th>Fecha de Asignación</th>
                 <th>Fecha de Finalización</th>
+                <th>Estado</th>
                 <th></th>
             </tr>
             </thead>)
