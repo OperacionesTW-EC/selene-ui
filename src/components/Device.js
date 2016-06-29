@@ -73,6 +73,9 @@ export default class Device extends React.Component {
                 <FormRow label="Estado actual:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.device_status_name}
                 </FormRow>
+                <FormRow label="Tipo de Baja:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                    {this.state.device.device_status_name}
+                </FormRow>
                 {this.renderFormControls()}
             </div>
         )
@@ -100,14 +103,14 @@ export default class Device extends React.Component {
         return (
             <select className='form-control' name='new_device_status' onChange={this.handleStatusChange}
                     value={this.state.new_device_status}>
-                <option>Seleccione...</option>
-                {
-                    this.state.deviceStatus.map(function (status) {
-                        return (
-                            <option key={status.id} value={status.id}>{status.name}</option>
-                        )
-                    })
-                }
+                    <option>Seleccione...</option>
+                    {
+                        this.state.deviceStatus.map(function (status) {
+                            return (
+                                <option key={status.id} value={status.id}>{status.name}</option>
+                            )
+                        })
+                    }
             </select>
         )
     }

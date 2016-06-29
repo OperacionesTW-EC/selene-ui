@@ -72,7 +72,7 @@ export default class Devices extends React.Component{
             <tbody>
             {
                 this.state.devices.map((device) => {
-                    if(!context.state.filterBy || device.device_status_name==context.state.filterBy){
+                    if(!context.props.filterBy || device.device_status_name==context.props.filterBy){
                         cont++;
                         { return context.renderDataRow(device) }
                     }
