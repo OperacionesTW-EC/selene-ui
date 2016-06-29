@@ -14,6 +14,7 @@ export default class Device extends React.Component {
         this.state = {device :{}, deviceStatus:[], new_device_status:''};
         this.renderDeviceInfo = this.renderDeviceInfo.bind(this);
         this.renderDeviceStatusSelect = this.renderDeviceStatusSelect.bind(this);
+        this.renderDeviceEndStatusSelect = this.renderDeviceEndStatusSelect.bind(this);
         this.loadDeviceData = this.loadDeviceData.bind(this);
         this.loadStatusData = this.loadStatusData.bind(this);
         this.handleSaveClick = this.handleSaveClick.bind(this);
@@ -73,9 +74,6 @@ export default class Device extends React.Component {
                 <FormRow label="Estado actual:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.device_status_name}
                 </FormRow>
-                <FormRow label="Tipo de Baja:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                    {this.state.device.device_status_name}
-                </FormRow>
                 {this.renderFormControls()}
             </div>
         )
@@ -87,6 +85,9 @@ export default class Device extends React.Component {
                 <div>
                     <FormRow label="Cambiar estado:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                         {this.renderDeviceStatusSelect()}
+                    </FormRow>
+                    <FormRow label="Tipo de Baja:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                        {this.renderDeviceEndStatusSelect()}
                     </FormRow>
                     <FormRow>
                         <a onClick={this.handleSaveClick} id="save" className="btn btn-ternary btn-block">
@@ -114,6 +115,16 @@ export default class Device extends React.Component {
             </select>
         )
     }
+
+    renderDeviceEndStatusSelect(){
+        return (
+            <select className='form-control' name='new_device_end_status'>
+                    <option>Seleccione...</option>
+            </select>
+        )
+    }
+
+
 
     loadDeviceData(){
         $.ajax({
