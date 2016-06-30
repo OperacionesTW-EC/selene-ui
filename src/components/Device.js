@@ -11,20 +11,23 @@ export default class Device extends React.Component {
     constructor(props){
         super(props);
         this.END_STATUS = 'Dado de baja';
-        this.state = {device :{}, deviceStatus:[], new_device_status:''};
+        this.state = {device :{}, deviceStatus:[], new_device_status:'', deviceEndStatusType:[], new_device_end_status_type: ''};
         this.renderDeviceInfo = this.renderDeviceInfo.bind(this);
         this.renderDeviceStatusSelect = this.renderDeviceStatusSelect.bind(this);
-        this.renderDeviceEndStatusSelect = this.renderDeviceEndStatusSelect.bind(this);
+        this.renderDeviceEndStatusTypeSelect = this.renderDeviceEndStatusTypeSelect.bind(this);
         this.loadDeviceData = this.loadDeviceData.bind(this);
         this.loadStatusData = this.loadStatusData.bind(this);
+        this.loadEndStatusTypeData = this.loadEndStatusTypeData.bind(this);
         this.handleSaveClick = this.handleSaveClick.bind(this);
         this.handleStatusChange = this.handleStatusChange.bind(this);
+        this.handleEndStatusTypeChange = this.handleEndStatusTypeChange.bind(this);
         this.redirectToDeviceList = this.redirectToDeviceList.bind(this);
     }
 
     componentDidMount(){
         this.loadDeviceData();
         this.loadStatusData();
+        this.loadEndStatusTypeData();
     }
 
     render() {
@@ -87,7 +90,7 @@ export default class Device extends React.Component {
                         {this.renderDeviceStatusSelect()}
                     </FormRow>
                     <FormRow label="Tipo de Baja:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                        {this.renderDeviceEndStatusSelect()}
+                            {this.renderDeviceEndStatusTypeSelect()}
                     </FormRow>
                     <FormRow>
                         <a onClick={this.handleSaveClick} id="save" className="btn btn-ternary btn-block">
@@ -116,10 +119,18 @@ export default class Device extends React.Component {
         )
     }
 
-    renderDeviceEndStatusSelect(){
+    renderDeviceEndStatusTypeSelect(){
         return (
-            <select className='form-control' name='new_device_end_status'>
+            <select className='form-control' name='new_device_end_status_type' onChange={this.handleEndStatusTypeChange}
+                   value={this.state.new_device_end_status_type}>
                     <option>Seleccione...</option>
+                    {
+                        this.state.deviceEndStatusType.map(function (endStatusType) {
+                            return (
+                                <option key={endStatusType.id} value={endStatusType.id}>{endStatusType.name}</option>
+                            )
+                        })
+                    }
             </select>
         )
     }
@@ -150,8 +161,24 @@ export default class Device extends React.Component {
         });
     }
 
+    loadEndStatusTypeData(){
+        $.ajax({
+            type: 'GET',
+            datatype: 'json',
+            url: Constants.BACKEND_URL +'/device_end_status_type'
+        }).done((data) => {
+            this.setState({deviceEndStatusType: data.results});
+        }).fail(() => {
+            this.setState({deviceEndStatusType:[]})
+        });
+    }
+
     handleStatusChange(event){
         this.setState({new_device_status: event.target.value})
+    }
+
+    handleEndStatusTypeChange(event){
+        this.setState({new_device_end_status_type: event.target.value})
     }
 
     handleSaveClick() {
