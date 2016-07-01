@@ -189,6 +189,8 @@ describe('Devices Component', () => {
             component = mount(<Devices type="device_assignment_table" filterBy="Disponible"/>);
             expect(component.find('.device-chk').length).toBe(1)
         });
+
+
         it('should show a message if no devices are shown', () => {
             devices = {results:[{
                 device_type_name:'some_name',
@@ -205,6 +207,47 @@ describe('Devices Component', () => {
             }
             ]};
             component = mount(<Devices type="device_assignment_table" filterBy="Disponible"/>);
+            expect(component.find('.device-chk').length).toBe(0)
+            expect(component.find('tr.data-row').nodes[0].innerHTML).toContain('No hay dispositivos')
+        });
+
+
+        it('should show only dado de baja devices', () => {
+            devices = {results:[{
+                device_type_name:'some_name',
+                full_code:'some_code',
+                purchase_date:'01/01/2016',
+                ownership:'TW',
+                device_status_name:'Disponible'
+            }, {
+                device_type_name:'some_name',
+                full_code:'some_code',
+                purchase_date:'01/01/2016',
+                ownership:'TW',
+                device_status_name:'Dado de Baja'
+            }
+            ]};
+            component = mount(<Devices type="device_assignment_table" filterBy="Dado de Baja"/>);
+            expect(component.find('.device-chk').length).toBe(1)
+        });
+
+
+        it('should show a message if no devices are shown', () => {
+            devices = {results:[{
+                device_type_name:'some_name',
+                full_code:'some_code',
+                purchase_date:'01/01/2016',
+                ownership:'TW',
+                device_status_name:'Disponible'
+            }, {
+                device_type_name:'some_name',
+                full_code:'some_code',
+                purchase_date:'01/01/2016',
+                ownership:'TW',
+                device_status_name:'Disponible'
+            }
+            ]};
+            component = mount(<Devices type="device_assignment_table" filterBy="Mantenimiento"/>);
             expect(component.find('.device-chk').length).toBe(0)
             expect(component.find('tr.data-row').nodes[0].innerHTML).toContain('No hay dispositivos')
         });

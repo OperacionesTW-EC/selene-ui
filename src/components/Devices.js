@@ -16,6 +16,7 @@ export default class Devices extends React.Component{
             callback : props.callback,
             filterBy: props.filterBy
         };
+
         this.renderRows = this.renderRows.bind(this);
         this.renderTable = this.renderTable.bind(this);
         this.selectTableType = this.selectTableType.bind(this);
@@ -33,6 +34,11 @@ export default class Devices extends React.Component{
             this.state.message.buildErrorMessage();
             this.setState({devices:[]})
         });
+    }
+
+
+    componentWillReceiveProps(){
+        this.setState({filterBy:this.props.filterBy})
     }
 
     render(){
@@ -72,7 +78,7 @@ export default class Devices extends React.Component{
             <tbody>
             {
                 this.state.devices.map((device) => {
-                    if(!context.props.filterBy || device.device_status_name==context.props.filterBy){
+                    if(!context.props.filterBy || device.device_status_name==context.state.filterBy){
                         cont++;
                         { return context.renderDataRow(device) }
                     }

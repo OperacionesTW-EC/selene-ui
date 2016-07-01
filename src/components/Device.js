@@ -135,8 +135,6 @@ export default class Device extends React.Component {
         )
     }
 
-
-
     loadDeviceData(){
         $.ajax({
             type: 'GET',

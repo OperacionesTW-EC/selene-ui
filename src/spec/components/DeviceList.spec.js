@@ -26,10 +26,16 @@ describe('DeviceList Component', () => {
             expect(deviceComponent!=null).toBeTruthy()
         });
 
+         it('should render a select list', () => {
+            var deviceComponent = TestUtils.findRenderedDOMComponentWithTag(renderResult, 'select');
+            expect(deviceComponent!=null).toBeTruthy()
+        });
+
         it('should render header', () => {
             var heading = TestUtils.scryRenderedDOMComponentsWithClass(renderResult, 'main-header');
             expect(heading.length).toBe(1);
         });
+
 
         describe('with message parameter', () => {
 

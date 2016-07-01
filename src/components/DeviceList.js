@@ -24,7 +24,6 @@
             this.renderPanelHeader = this.renderPanelHeader.bind(this);
             this.handleChangeStatus = this.handleChangeStatus.bind(this);
             this.updateFilterFromEvent = this.updateFilterFromEvent.bind(this);
-            this.handleSearchClick = this.handleSearchClick.bind(this);
             this.loadStatusData = this.loadStatusData.bind(this);
         }
 
@@ -43,10 +42,6 @@
             this.loadStatusData(this.state.filters);
         }
 
-        handleSearchClick(event) {
-
-        }
-
         loadStatusData(){
             $.ajax({
                 type: 'GET',
@@ -58,7 +53,6 @@
                 this.setState({deviceStatus:[]})
             });
         }
-
 
 
         render() {
@@ -87,7 +81,7 @@
                     <div className="col-md-9">
                             <form className="flex-form" onSubmit={this.blockSubmit}>
                                 <label for="device_status">Filtrar por estado:</label>
-                                <select name="device_status" type="search" onChange={this.handleChangeStatus}>
+                                <select class="form-control" name="device_status" type="search" onChange={this.handleChangeStatus}>
                                     <option value="" defaultValue>Todos</option>
                                     { this.state.deviceStatus.map((device_status) => {
                                         return (<option key={device_status.id} value={device_status.name}>{device_status.name }</option>);
