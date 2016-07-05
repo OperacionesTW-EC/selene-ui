@@ -68,78 +68,80 @@ describe('DeviceList Component', () => {
         });
     });
 
-    describe('device status filter', () => {
-      let select_status_device;
-      let devices;
-      let sandbox;
-      let component;
+    describe ('events with device status filter', () => {
+        let devices;
+        let sandbox;
+        let component;
+        let props;
 
-      beforeEach(() => {
-        let props =  {location:{query:{}}};
-        sandbox = Sinon.sandbox.create();
-        sandbox.spy(DeviceList.prototype,"handleChangeStatus");
-        sandbox.spy($, "ajax");
-        component = mount(<DeviceList {...props}/>);
-        select_status_device = component.find("[name='device_status']");
-      });
+        beforeEach(() => {
+            sandbox = Sinon.sandbox.create();
+            props =  {location:{query:{}}};
+         });
 
-      afterEach(function (){
-        sandbox.restore();
-      });
+         afterEach(function (){
+             sandbox.restore();
+         });
 
-      it('should call handleChangeStatus when filter change', () => {
-        select_status_device.simulate('change');
-        expect(DeviceList.prototype.handleChangeStatus.calledOnce).toEqual(true);
-      });
+        describe('device status filter changes', () => {
+            let select_status_device;
 
-      it('should change device_status when filter change', () => {
-        select_status_device.simulate('change', {target : {name:'device_status', value: 'Asignado'}});
-        expect(component.state()['filters']['device_status']).toEqual('Asignado');
-      });
+            beforeEach(() => {
+                sandbox.spy(DeviceList.prototype,"handleChangeStatus");
+                sandbox.spy($, "ajax");
+                component = mount(<DeviceList {...props}/>);
+                select_status_device = component.find("[name='device_status']");
+            });
 
-    });
+            it('should call handleChangeStatus', () => {
+                select_status_device.simulate('change');
+                expect(DeviceList.prototype.handleChangeStatus.calledOnce).toEqual(true);
+            });
 
-    describe ('load data from backend', () => {
-      let sandbox;
-      let component;
-      let deviceStatus = {
-        results: [{
-          "id": 1,
-          "name": "Disponible"
-      },
-      {
-          "id": 2,
-          "name": "Asignado"
-      },
-      {
-          "id": 3,
-          "name": "Mantenimiento"
-      },
-      {
-          "id": 4,
-          "name": "Dado de baja"
-      }]};
+            it('should update device_status', () => {
+                select_status_device.simulate('change', {target : {name:'device_status', value: 'Asignado'}});
+                expect(component.state()['filters']['device_status']).toEqual('Asignado');
+            });
 
-      beforeEach(() => {
-        let props =  {location:{query:{}}};
-        sandbox = Sinon.sandbox.create();
-        sandbox.stub($, 'ajax').returns({
-          done: (callback) => {
-            callback(deviceStatus);
-            return {
-              fail: (callback) => {}
-            }
-          }
         });
-        component = mount(<DeviceList {...props}/>);
-      });
 
-      afterEach(function (){
-        sandbox.restore();
-      });
+        describe ('load data from backend', () => {
+          let deviceStatus;
 
-      it ('should load status devices from backend', () => {
-        expect(component.state('deviceStatus')).toEqual(deviceStatus.results);
-      });
-    });
+          beforeEach(() => {
+           deviceStatus = {
+            results: [{
+              "id": 1,
+              "name": "Disponible"
+            },
+            {
+              "id": 2,
+              "name": "Asignado"
+            },
+            {
+              "id": 3,
+              "name": "Mantenimiento"
+            },
+            {
+              "id": 4,
+              "name": "Dado de baja"
+            }]};
+            sandbox.stub($, 'ajax').returns({
+              done: (callback) => {
+                callback(deviceStatus);
+                return {
+                  fail: (callback) => {}
+                }
+              }
+            });
+            component = mount(<DeviceList {...props}/>);
+          });
+
+
+          it ('should update state', () => {
+            expect(component.state('deviceStatus')).toEqual(deviceStatus.results);
+          });
+        });
+
+        });
 });
