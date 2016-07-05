@@ -8,6 +8,7 @@ import stubRouterContext from './../stubRouterContext';
 import Devices from './../../components/Devices';
 import { mount } from 'enzyme';
 import Sinon from 'sinon';
+import $ from 'jquery';
 
 describe('DeviceList Component', () => {
     let renderResult;
@@ -77,6 +78,7 @@ describe('DeviceList Component', () => {
         let props =  {location:{query:{}}};
         sandbox = Sinon.sandbox.create();
         sandbox.spy(DeviceList.prototype,"handleChangeStatus");
+        sandbox.spy($, "ajax");
         component = mount(<DeviceList {...props}/>);
         select_status_device = component.find("[name='device_status']");
       });
@@ -94,6 +96,50 @@ describe('DeviceList Component', () => {
         select_status_device.simulate('change', {target : {name:'device_status', value: 'Asignado'}});
         expect(component.state()['filters']['device_status']).toEqual('Asignado');
       });
+
     });
 
+    describe ('load data from backend', () => {
+      let sandbox;
+      let component;
+      let deviceStatus = {
+        results: [{
+          "id": 1,
+          "name": "Disponible"
+      },
+      {
+          "id": 2,
+          "name": "Asignado"
+      },
+      {
+          "id": 3,
+          "name": "Mantenimiento"
+      },
+      {
+          "id": 4,
+          "name": "Dado de baja"
+      }]};
+
+      beforeEach(() => {
+        let props =  {location:{query:{}}};
+        sandbox = Sinon.sandbox.create();
+        sandbox.stub($, 'ajax').returns({
+          done: (callback) => {
+            callback(deviceStatus);
+            return {
+              fail: (callback) => {}
+            }
+          }
+        });
+        component = mount(<DeviceList {...props}/>);
+      });
+
+      afterEach(function (){
+        sandbox.restore();
+      });
+
+      it ('should load status devices from backend', () => {
+        expect(component.state('deviceStatus')).toEqual(deviceStatus.results);
+      });
+    });
 });

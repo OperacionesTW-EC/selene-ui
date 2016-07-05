@@ -39,14 +39,13 @@
 
         handleChangeStatus(event){
             this.updateFilterFromEvent(event);
-            this.loadStatusData(this.state.filters);
         }
 
         loadStatusData(){
             $.ajax({
                 type: 'GET',
                 datatype: 'json',
-                url: Constants.BACKEND_URL +'/device_status'
+                url: Constants.BACKEND_URL +'/device_status_all'
             }).done((data) => {
                 this.setState({deviceStatus: data.results});
             }).fail(() => {
@@ -98,7 +97,4 @@
                 </div>
             )
         }
-
-
     }
-
