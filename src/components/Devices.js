@@ -37,8 +37,8 @@ export default class Devices extends React.Component{
     }
 
 
-    componentWillReceiveProps(){
-        this.setState({filterBy:this.props.filterBy})
+    componentWillReceiveProps(nextProps){
+        this.setState({filterBy:nextProps.filterBy})
     }
 
     render(){
