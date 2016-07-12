@@ -128,12 +128,6 @@ describe('Device Component', () => {
             expect(html).toContain('05-31-2019');
         });
 
-        it('should render the new device status field', () => {
-            device = {results:[]};
-            component = mount(<Device params={{id: 1}}/>);
-            expect(component.find('[name="new_device_status"]').length).toBe(1);
-        });
-
         it('should render save button', () => {
             device = {results:[]};
             component = mount(<Device params={{id: 1}}/>);
@@ -144,7 +138,30 @@ describe('Device Component', () => {
             device = {device_status_name:'Dado de baja',results:[]};
             component = mount(<Device params={{id: 1}}/>);
             expect(component.find('[name="new_device_status"]').length).toBe(0);
+            expect(component.find('[name="new_device_end_status_type"]').length).toBe(0);
+            expect(component.find('[name="new_device_end_status_description"]').length).toBe(0);
         });
+
+        it('should render end device status options if current state is not Dado de baja', () => {
+            device = {device_status_name:'Disponible',results:[]};
+            component = mount(<Device params={{id: 1}}/>);
+            expect(component.find('[name="new_device_status"]').length).toBe(1);
+            expect(component.find('[name="new_device_end_status_type"]').length).toBe(0);
+            expect(component.find('[name="new_device_end_status_comment"]').length).toBe(0);
+        });
+
+        it('should render end device status descriptios if new state is Dado de baja', () => {
+            device = {device_status_name:'Disponible',results:[]};
+            component = mount(<Device params={{id: 1}}/>);
+            let select_status_device = component.find("[name='new_device_status']");
+            select_status_device.simulate('change', {target : {name:'new_device_status', value: '4'}});
+
+            expect(component.find('[name="new_device_status"]').length).toBe(1);
+            expect(component.find('[name="new_device_end_status_type"]').length).toBe(1);
+            expect(component.find('[name="new_device_end_status_comment"]').length).toBe(1);
+        });
+
+
 
     });
 
