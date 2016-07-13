@@ -176,6 +176,10 @@ describe('Device Component', () => {
             sandbox.stub($, "ajax").returns({
                 done: (callback) => {
                     callback({});
+                    return {
+                        fail: (callback) => {
+                        }
+                    }
                 }
             });
         });
@@ -224,6 +228,40 @@ describe('Device Component', () => {
                 expect($.ajax.calledOnce).toEqual(false);
             });
 
+        });
+
+
+
+    });
+
+    describe('error message', () => {
+        let isMounted = false;
+        beforeEach(function () {
+            sandbox = Sinon.sandbox.create();
+			sandbox.stub($, 'ajax').returns({
+					done: (callback) => {
+						if (!isMounted) callback(device);
+						return {
+							fail: (callback) => {
+								if (isMounted) callback();
+							}
+						}
+					}
+			});
+            device = {id:1, full_code: 'TWAL001', device_status:1, device_status_name:"Disponible", results:[]};
+            component = mount(<Device params={{id: 1}}/>);
+        });
+
+        afterEach(function () {
+            sandbox.restore();
+        });
+
+        it('should show error message when end status type is empty', () => {
+            let select_status_device = component.find("[name='new_device_status']");
+            select_status_device.simulate('change', {target : {name:'new_device_status', value: '4'}});
+            isMounted = true;
+            component.find("#save").simulate('click');
+            expect(component.find('.error-message').length).toBe(1);
         });
 
 

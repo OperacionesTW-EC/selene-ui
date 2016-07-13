@@ -3,6 +3,7 @@ import $ from 'jquery';
 import Constants from './../config/Constants';
 import FormRow from './helpers/FormRow';
 import PageTitle from './layout/PageTitle';
+import MessageHelper from './helpers/MessageHelper';
 import DateHelper from './helpers/DateHelper';
 import Icon from './helpers/Icon';
 
@@ -12,7 +13,8 @@ export default class Device extends React.Component {
         super(props);
         this.END_STATUS = 'Dado de baja';
         this.state = {
-          device :{}, deviceStatus:[], new_device_status:'', deviceEndStatusType:[], new_device_end_status_type: '', new_device_end_status_comment:''};
+            message: new MessageHelper(),
+            device :{}, deviceStatus:[], new_device_status:'', deviceEndStatusType:[], new_device_end_status_type: '', new_device_end_status_comment:''};
         this.renderDeviceInfo = this.renderDeviceInfo.bind(this);
         this.renderDeviceStatusSelect = this.renderDeviceStatusSelect.bind(this);
         this.renderDeviceEndStatusTypeSelect = this.renderDeviceEndStatusTypeSelect.bind(this);
@@ -22,6 +24,7 @@ export default class Device extends React.Component {
         this.handleSaveClick = this.handleSaveClick.bind(this);
         this.handleStatusChange = this.handleStatusChange.bind(this);
         this.handleEndStatusTypeChange = this.handleEndStatusTypeChange.bind(this);
+        this.handleEndStatusCommentChange = this.handleEndStatusCommentChange.bind(this);
         this.redirectToDeviceList = this.redirectToDeviceList.bind(this);
         this.renderEndStatusType = this.renderEndStatusType.bind(this);
         this.renderDeviceEndStatusComment = this.renderDeviceEndStatusComment.bind(this);
@@ -37,6 +40,7 @@ export default class Device extends React.Component {
         return(
             <div>
                 <PageTitle content="Dispositivo" />
+                {this.state.message.renderMessage()}
                 <div className="container">
                     <section className="form-card paper white medium">
                         {this.renderDeviceInfo()}
@@ -154,8 +158,8 @@ export default class Device extends React.Component {
 
     renderDeviceEndStatusComment(){
       return (
-          <input className='form-control' name = 'new_device_end_status_comment'
-          value={this.state.new_device_end_status_comment}></input>
+          <input type='text' className='form-control' name = 'new_device_end_status_comment'
+          value={this.state.new_device_end_status_comment} onChange={this.handleEndStatusCommentChange}/>
           )
     }
 
@@ -203,6 +207,10 @@ export default class Device extends React.Component {
         this.setState({new_device_end_status_type: event.target.value})
     }
 
+    handleEndStatusCommentChange(event){
+        this.setState({new_device_end_status_comment: event.target.value})
+    }
+
     handleSaveClick() {
         let component = this;
         if(this.state.new_device_status != ''){
@@ -210,11 +218,15 @@ export default class Device extends React.Component {
                 type: 'patch',
                 datatype: 'json',
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({id:this.state.device.id, new_device_status: this.state.new_device_status }),
+                data: JSON.stringify({id:this.state.device.id, new_device_status: this.state.new_device_status,
+                new_device_end_status_type: this.state.new_device_end_status_type, 'new_device_end_status_comment': this.state.new_device_end_status_comment}),
                 url: Constants.BACKEND_URL +'/devices/change_status'
             }).done((response) => {
                 component.redirectToDeviceList(response);
-            })
+            }).fail(() => {
+            this.state.message.buildErrorMessage('Error, no se pudo guardar el dispositivo');
+            this.setState({});
+        })
         }
     }
 
