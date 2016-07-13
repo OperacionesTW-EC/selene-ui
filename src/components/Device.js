@@ -108,6 +108,7 @@ export default class Device extends React.Component {
                     <FormRow label="Cambiar estado:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                         {this.renderDeviceStatusSelect()}
                     </FormRow>
+                    {this.renderEndStatusType()}
                     <FormRow>
                         <a onClick={this.handleSaveClick} id="save" className="btn btn-ternary btn-block">
                             <Icon icon="save"/> Guardar

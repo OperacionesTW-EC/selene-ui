@@ -151,7 +151,7 @@ describe('Device Component', () => {
         });
 
 
-        xit('should render end device status descriptios if new state is Dado de baja', () => {
+        it('should render end device status descriptios if new state is Dado de baja', () => {
             device = {device_status_name:'Disponible',results:[]};
             component = mount(<Device params={{id: 1}}/>);
             let select_status_device = component.find("[name='new_device_status']");
