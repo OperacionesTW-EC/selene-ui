@@ -232,7 +232,7 @@ export default class Device extends React.Component {
                 datatype: 'json',
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({id:this.state.device.id, new_device_status: this.state.new_device_status,
-                new_device_end_status_type: this.state.new_device_end_status_type, 'new_device_end_status_comment': this.state.new_device_end_status_comment}),
+                new_device_end_status_type: this.state.new_device_end_status_type, new_device_end_status_comment: this.state.new_device_end_status_comment}),
                 url: Constants.BACKEND_URL +'/devices/change_status'
             }).done((response) => {
                 component.redirectToDeviceList(response);
