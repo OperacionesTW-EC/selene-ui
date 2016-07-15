@@ -121,8 +121,21 @@ export default class Device extends React.Component {
                 </div>
             )
         }
+        else{
+            return(
+                <div>
+                    <FormRow label="Tipo de baja:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                           {this.state.device.device_end_status_type_name}
+                    </FormRow>
+                    <FormRow label="Observaciones:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                           {this.state.device.device_end_status_comment}
+                    </FormRow>
+                </div>
+                 )
+        }
 
     }
+
 
     renderDeviceStatusSelect(){
         return (

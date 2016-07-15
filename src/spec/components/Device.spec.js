@@ -151,7 +151,7 @@ describe('Device Component', () => {
         });
 
 
-        it('should render end device status descriptios if new state is Dado de baja', () => {
+        it('should render end device status description if new state is Dado de baja', () => {
             device = {device_status_name:'Disponible',results:[]};
             component = mount(<Device params={{id: 1}}/>);
             let select_status_device = component.find("[name='new_device_status']");
@@ -162,6 +162,13 @@ describe('Device Component', () => {
             expect(component.find('[name="new_device_end_status_comment"]').length).toBe(1);
         });
 
+        it('should render end device status type if current state is Dado de baja', () => {
+            device = {device_status_name:'Dado de baja', device_end_status_type:'1', device_end_status_type_name:'Dañado', device_end_status_comment:'Comentarios', results:[]};
+            component = mount(<Device params={{id: 1}}/>);
+            let html = component.find('.form-card').node.innerHTML;
+            expect(html).toContain(device.device_end_status_type_name);
+            expect(html).toContain(device.device_end_status_comment);
+        });
 
 
     });
