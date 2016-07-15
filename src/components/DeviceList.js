@@ -79,8 +79,8 @@
                     <div className="row">
                     <div className="col-md-9">
                             <form className="flex-form" onSubmit={this.blockSubmit}>
-                                <label for="device_status">Filtrar por estado:</label>
-                                <select class="form-control" name="device_status" type="search" onChange={this.handleChangeStatus}>
+                                <label htmlFor="device_status">Filtrar por estado:</label>
+                                <select name="device_status" type="search" onChange={this.handleChangeStatus}>
                                     <option value="" defaultValue>Todos</option>
                                     { this.state.deviceStatus.map((device_status) => {
                                         return (<option key={device_status.id} value={device_status.name}>{device_status.name }</option>);

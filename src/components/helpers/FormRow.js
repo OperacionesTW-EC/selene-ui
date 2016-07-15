@@ -13,6 +13,10 @@ export default class FormRow extends React.Component{
         this.renderLabel = this.renderLabel.bind(this);
     }
 
+    componentWillReceiveProps(nextProps){
+        this.setState({label:nextProps.label})
+    }
+
     render(){
         return (
             <div className={'row '+this.state.rowClass}>
