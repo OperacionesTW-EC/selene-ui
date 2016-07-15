@@ -118,7 +118,7 @@ export default class AssignedDeviceList extends React.Component{
                     <div className="col-md-9">
                         <form className="flex-form" onSubmit={this.blockSubmit}>
                             <input placeholder="Buscar responsable" type="search" name="assignee" onKeyPress={this.handleAssigneeKeyPress} onChange={this.handleChangeAssignee}/>
-                            <label for="from">en</label>
+                            <label htmlFor="from">en</label>
                             <select name="project" onChange={this.handleChangeProject} >
                                 <option value="" defaultValue>Todos</option>
                                 <option value="0"> Ninguno </option>
