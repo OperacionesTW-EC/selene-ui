@@ -169,5 +169,5 @@ export default class AssignDevice extends React.Component{
 }
 
 AssignDevice.contextTypes = {
-    router:  function() { return React.PropTypes.func.isRequired; }
-};
+    router: React.PropTypes.object
+}

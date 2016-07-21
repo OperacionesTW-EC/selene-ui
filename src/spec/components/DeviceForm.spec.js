@@ -37,8 +37,8 @@ describe('DeviceForm', () => {
 				it('should load device types from backend', () => {
 					deviceTypes = {
 						results: [{
-							name: 'some_name',
-							code: 'some_code'
+							id: 'some_id',
+							name: 'some_name'
 						}]
 					};
 
@@ -69,6 +69,7 @@ describe('DeviceForm', () => {
 				it('should load device brands from backend', () => {
 					deviceBrands = {
 						results: [{
+							id: 'some_id',
 							name: 'some_name'
 						}]
 					};

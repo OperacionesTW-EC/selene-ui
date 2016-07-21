@@ -23,6 +23,7 @@ describe('Assign device Component', () => {
         beforeEach(function () {
             sandbox = Sinon.sandbox.create();
             devices = {results:[{
+                id:'some_id',
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
@@ -145,6 +146,7 @@ describe('Assign device Component', () => {
                 ajaxCount = 0;
                 projects = {results:[{id:'1', name:'some name'}]};
                 devices = {results:[{
+                    id:'some_id',
                     device_type_name:'some_name',
                     full_code:'some_code',
                     purchase_date:'01/01/2016',

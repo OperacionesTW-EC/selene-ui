@@ -51,12 +51,13 @@ describe('Devices Component', () => {
 
             it('should show required field with formatted dates', () => {
                 devices = {results:[{
-                  device_type_name:'some_name',
-                  full_code:'some_code',
-                   purchase_date:'2016-02-28T14:11:22.590810Z',
-                   device_brand_name:'TW',
-                   life_start_date_or_assignment_date:'2016-05-26T14:11:22.590810Z',
-                   life_end_date:'2019-05-21T14:11:22.590810Z'
+                    id:'some_id',
+                    device_type_name:'some_name',
+                    full_code:'some_code',
+                    purchase_date:'2016-02-28T14:11:22.590810Z',
+                    device_brand_name:'TW',
+                    life_start_date_or_assignment_date:'2016-05-26T14:11:22.590810Z',
+                    life_end_date:'2019-05-21T14:11:22.590810Z'
                  }]};
                 component = mount(<Devices/>);
                 var row = component.find('tr.data-row').nodes[0];
@@ -68,15 +69,23 @@ describe('Devices Component', () => {
             });
 
             it('should render rows with 8 tds', () => {
-                devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',device_brand_name:'TW'}]};
+                devices = {results:[{id:'some_id', device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',device_brand_name:'TW'}]};
                 component = mount(<Devices/>);
                 var tds = component.find('tr.data-row').find('td').nodes;
                 expect(tds.length).toEqual(8);
             });
 
             it('should render a link to device info', () => {
-                devices = {results:[{device_type_name:'some_name',full_code:'some_code', purchase_date:'01/01/2016',device_brand_name:'TW', id:1}]};
-                let expectedRoute = '/device/1';
+                devices = {results:[{
+                    id:'some_id',
+                    device_type_name:'some_name',
+                    full_code:'some_code',
+                    purchase_date:'2016-02-28T14:11:22.590810Z',
+                    device_brand_name:'TW',
+                    life_start_date_or_assignment_date:'2016-05-26T14:11:22.590810Z',
+                    life_end_date:'2019-05-21T14:11:22.590810Z'
+                 }]};
+                let expectedRoute = '/device/some_id';
                 let Subject = stubRouterContext(Devices, {}, {
                     createHref: (link) => {
                         return link;
@@ -129,6 +138,7 @@ describe('Devices Component', () => {
         beforeEach(function () {
             checkboxCallback = Sinon.spy();
             devices = {results:[{
+                id: 'some_id',
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
@@ -173,12 +183,14 @@ describe('Devices Component', () => {
 
         it('should show only available devices', () => {
             devices = {results:[{
+                id:'some_id',
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
                 ownership:'TW',
                 device_status_name:'Disponible'
             }, {
+                id:'some_other_id',
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
@@ -193,12 +205,14 @@ describe('Devices Component', () => {
 
         it('should show a message if no devices are shown', () => {
             devices = {results:[{
+                id:'some_id',
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
                 ownership:'TW',
                 device_status_name:'No Disponible'
             }, {
+                id:'some_other_id',
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
@@ -214,12 +228,14 @@ describe('Devices Component', () => {
 
         it('should show only dado de baja devices', () => {
             devices = {results:[{
+                id:'some_id',
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
                 ownership:'TW',
                 device_status_name:'Disponible'
             }, {
+                id:'some_other_id',
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
@@ -234,12 +250,14 @@ describe('Devices Component', () => {
 
         it('should show a message if no devices are shown', () => {
             devices = {results:[{
+                id:'some_id',
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
                 ownership:'TW',
                 device_status_name:'Disponible'
             }, {
+                id:'some_other_id',
                 device_type_name:'some_name',
                 full_code:'some_code',
                 purchase_date:'01/01/2016',
