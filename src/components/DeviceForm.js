@@ -55,6 +55,7 @@ export default class DeviceForm extends React.Component{
     }
 
     handleFormChanges(event){
+        event.preventDefault();
         let data = {device:this.state.device};
         data.device[event.target.name] = event.target.value;
         this.setState(data);
@@ -80,10 +81,10 @@ export default class DeviceForm extends React.Component{
                                         </FormRow>
                                         <FormRow label="Activo">
                                             <div className="btn-group">
-                                                <a value='1' name="asset" onClick={this.handleFormChanges}
-                                                    className={"btn btn-default asset-chk " + (this.state.device.asset ==1 ? "selected" : "") }> Si </a>
-                                                <a value='0' name="asset" onClick={this.handleFormChanges}
-                                                    className={"btn btn-default asset-chk " + (this.state.device.asset ==0 ? "selected" : "")}> No </a>
+                                                <button value='1' name="asset" onClick={this.handleFormChanges}
+                                                    className={"btn btn-default asset-chk " + (this.state.device.asset ==1 ? "selected" : "") }> Si </button>
+                                                <button value='0' name="asset" onClick={this.handleFormChanges}
+                                                    className={"btn btn-default asset-chk " + (this.state.device.asset ==0 ? "selected" : "")}> No </button>
                                             </div>
                                         </FormRow>
                                         <FormRow label="Serial">
