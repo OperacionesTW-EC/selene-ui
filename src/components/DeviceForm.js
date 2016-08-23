@@ -4,6 +4,8 @@ import Constants from './../config/Constants';
 import PageTitle from './layout/PageTitle';
 import MessageHelper from './helpers/MessageHelper';
 import FormRow from './helpers/FormRow';
+import FormRow1 from './helpers/FormRow1';
+import ControlAssetDevice from './helpers/ControlAssetDevice';
 import $ from 'jquery';
 
 export default class DeviceForm extends React.Component{
@@ -73,40 +75,53 @@ export default class DeviceForm extends React.Component{
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="form">
-                                        <FormRow label="Tipo">
+
+                                        <FormRow1
+                                            label ="Tipo">
                                             {this.renderDeviceTypeSelect()}
-                                        </FormRow>
-                                        <FormRow label="Marca">
+                                        </FormRow1>
+
+                                        <FormRow1
+                                            label ="Marca">
                                             {this.renderDeviceBrandSelect()}
-                                        </FormRow>
-                                        <FormRow label="Activo">
-                                            <div className="btn-group">
-                                                <button value='1' name="asset" onClick={this.handleFormChanges}
-                                                    className={"btn btn-default asset-chk " + (this.state.device.asset ==1 ? "selected" : "") }> Si </button>
-                                                <button value='0' name="asset" onClick={this.handleFormChanges}
-                                                    className={"btn btn-default asset-chk " + (this.state.device.asset ==0 ? "selected" : "")}> No </button>
-                                            </div>
-                                        </FormRow>
-                                        <FormRow label="Serial">
+                                        </FormRow1>
+                                        <FormRow1/>
+                                        <FormRow1
+                                            label ="Activo">
+                                            <ControlAssetDevice asset={this.state.device.asset} handleFormChanges={this.handleFormChanges}/>
+                                        </FormRow1>
+
+                                        <FormRow1
+                                            label ="Serial">
                                             <input className="form-control" value={this.state.device.serial_number}  type="text" name='serial_number'/>
-                                        </FormRow>
-                                        <FormRow label="Descripción">
+                                        </FormRow1>
+
+                                        <FormRow1
+                                            label ="Descripción">
                                             <input className="form-control" value={this.state.device.description}  type="text" name='description'/>
-                                        </FormRow>
-                                        <FormRow label="Modelo">
+                                        </FormRow1>
+
+                                        <FormRow1
+                                            label ="Modelo">
                                             <input className="form-control" value={this.state.device.model}  type="text" name='model'/>
-                                        </FormRow>
-                                        <FormRow label="Fecha de Compra">
+                                        </FormRow1>
+
+                                        <FormRow1
+                                            label ="Fecha de Compra">
                                             <input type='text' className="form-control" value={this.state.device.purchase_date} name='purchase_date'/>
-                                        </FormRow>
-                                        <FormRow label="Propiedad">
-                                            {this.renderOwnershipSelect()}
-                                        </FormRow>
-                                        <FormRow>
+                                        </FormRow1>
+
+                                        <FormRow1
+                                            label ="Propiedad">
+                                              {this.renderOwnershipSelect()}
+                                        </FormRow1>
+
+                                        <FormRow1 label="">
                                             <a  id="save" onClick={this.handleSaveClick} className="btn btn-ternary btn-block">
                                                 <Icon icon="save"/> Guardar
                                             </a>
-                                        </FormRow>
+                                        </FormRow1>
+
                                     </div>
                                 </div>
                             </div>
@@ -144,6 +159,15 @@ export default class DeviceForm extends React.Component{
             this.state.message.buildErrorMessage('Error, no se pudo guardar el dispositivo');
             this.setState({});
         })
+    }
+
+    renderDeviceAssetButtons(){
+        <div className="btn-group">
+            <button value='1' name="asset" onClick={this.handleFormChanges}
+            className={"btn btn-default asset-chk " + (this.state.device.asset ==1 ? "selected" : "") }> Si </button>
+            <button value='0' name="asset" onClick={this.handleFormChanges}
+            className={"btn btn-default asset-chk " + (this.state.device.asset ==0 ? "selected" : "")}> No </button>
+        </div>
     }
 
     renderDeviceTypeSelect(){

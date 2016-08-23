@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import Constants from './../config/Constants';
-import FormRow from './helpers/FormRow';
+import FormRow1 from './helpers/FormRow1';
 import PageTitle from './layout/PageTitle';
 import MessageHelper from './helpers/MessageHelper';
 import DateHelper from './helpers/DateHelper';
@@ -54,36 +54,36 @@ export default class Device extends React.Component {
     renderDeviceInfo(){
         return(
             <div>
-                <FormRow label="Código:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                <FormRow1 label="Código:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.full_code}
-                </FormRow>
-                <FormRow label="Marca:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                </FormRow1>
+                <FormRow1 label="Marca:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.device_brand_name}
-                </FormRow>
-                <FormRow label="Tipo:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                </FormRow1>
+                <FormRow1 label="Tipo:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.device_type_name}
-                </FormRow>
-                <FormRow label="Modelo:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                </FormRow1>
+                <FormRow1 label="Modelo:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.model}
-                </FormRow>
-                <FormRow label="Serial:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                </FormRow1>
+                <FormRow1 label="Serial:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.serial_number}
-                </FormRow>
-                <FormRow label="Descripción:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                </FormRow1>
+                <FormRow1 label="Descripción:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.description}
-                </FormRow>
-                <FormRow label="Fecha de compra:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                </FormRow1>
+                <FormRow1 label="Fecha de compra:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {DateHelper(this.state.device.purchase_date)}
-                </FormRow>
-                <FormRow label="Fecha de asignación:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                </FormRow1>
+                <FormRow1 label="Fecha de asignación:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {DateHelper(this.state.device.life_start_date_or_assignment_date)}
-                </FormRow>
-                <FormRow label="Fecha de finalización:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                </FormRow1>
+                <FormRow1 label="Fecha de finalización:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {DateHelper(this.state.device.life_end_date)}
-                </FormRow>
-                <FormRow label="Estado actual:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                </FormRow1>
+                <FormRow1 label="Estado actual:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.device_status_name}
-                </FormRow>
+                </FormRow1>
                 {this.renderFormControls()}
             </div>
         )
@@ -93,12 +93,12 @@ export default class Device extends React.Component {
       if(this.state.new_device_status==4) {
             return(
               <div>
-                <FormRow label="Tipo de Baja:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                <FormRow1 label="Tipo de Baja:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                             {this.renderDeviceEndStatusTypeSelect()}
-                </FormRow>
-                <FormRow label="Observaciones:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                </FormRow1>
+                <FormRow1 label="Observaciones:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                             {this.renderDeviceEndStatusComment()}
-                </FormRow>
+                </FormRow1>
               </div>
           )
         }
@@ -109,27 +109,27 @@ export default class Device extends React.Component {
 
             return(
                 <div>
-                    <FormRow label="Cambiar estado:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                    <FormRow1 label="Cambiar estado:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                         {this.renderDeviceStatusSelect()}
-                    </FormRow>
+                    </FormRow1>
                     {this.renderEndStatusType()}
-                    <FormRow>
+                    <FormRow1>
                         <a onClick={this.handleSaveClick} id="save" className="btn btn-ternary btn-block">
                             <Icon icon="save"/> Guardar
                         </a>
-                    </FormRow>
+                    </FormRow1>
                 </div>
             )
         }
         else{
             return(
                 <div>
-                    <FormRow label="Tipo de baja:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                    <FormRow1 label="Tipo de baja:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                            {this.state.device.device_end_status_type_name}
-                    </FormRow>
-                    <FormRow label="Observaciones:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                    </FormRow1>
+                    <FormRow1 label="Observaciones:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                            {this.state.device.device_end_status_comment}
-                    </FormRow>
+                    </FormRow1>
                 </div>
                  )
         }
