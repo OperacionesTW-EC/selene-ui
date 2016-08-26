@@ -2,7 +2,7 @@ import React from 'react';
 
 const ControlAssetDevice = (props)=> {
     let rowClass = props.rowClass || 'margin';
-    let fieldColumnClass = props.fieldColumnClass || 'col-md-12 ';
+    let fieldColumnClass = props.fieldColumnClass || 'col-md-0 ';
     let buttonSiClass = props.asset ==1 ? "selected" : ""
     let buttonNoClass = props.asset ==0 ? "selected" : ""
 

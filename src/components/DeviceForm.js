@@ -82,13 +82,18 @@ export default class DeviceForm extends React.Component{
                                         </FormRow1>
 
                                         <FormRow1
+                                            label ="Activo">
+                                            <ControlAssetDevice asset={this.state.device.asset} handleFormChanges={this.handleFormChanges}/>
+                                        </FormRow1>
+
+                                        <FormRow1
                                             label ="Marca">
                                             {this.renderDeviceBrandSelect()}
                                         </FormRow1>
-                                        <FormRow1/>
+
                                         <FormRow1
-                                            label ="Activo">
-                                            <ControlAssetDevice asset={this.state.device.asset} handleFormChanges={this.handleFormChanges}/>
+                                            label ="Modelo">
+                                            <input className="form-control" value={this.state.device.model}  type="text" name='model'/>
                                         </FormRow1>
 
                                         <FormRow1
@@ -99,11 +104,6 @@ export default class DeviceForm extends React.Component{
                                         <FormRow1
                                             label ="Descripción">
                                             <input className="form-control" value={this.state.device.description}  type="text" name='description'/>
-                                        </FormRow1>
-
-                                        <FormRow1
-                                            label ="Modelo">
-                                            <input className="form-control" value={this.state.device.model}  type="text" name='model'/>
                                         </FormRow1>
 
                                         <FormRow1
@@ -118,7 +118,7 @@ export default class DeviceForm extends React.Component{
 
                                         <FormRow1 label="">
                                             <a  id="save" onClick={this.handleSaveClick} className="btn btn-ternary btn-block">
-                                                <Icon icon="save"/> Guardar
+                                                <Icon icon="save"/>Guardar
                                             </a>
                                         </FormRow1>
 

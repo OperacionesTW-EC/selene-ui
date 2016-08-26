@@ -6,6 +6,7 @@ import PageTitle from './layout/PageTitle';
 import MessageHelper from './helpers/MessageHelper';
 import DateHelper from './helpers/DateHelper';
 import Icon from './helpers/Icon';
+import ControlAssetDevice from './helpers/ControlAssetDevice';
 
 export default class Device extends React.Component {
 
@@ -15,9 +16,9 @@ export default class Device extends React.Component {
         this.state = {
             message: new MessageHelper(),
             device :{}, deviceStatus:[], new_device_status:'', deviceEndStatusType:[], new_device_end_status_type: '', new_device_end_status_comment:''};
-        this.renderDeviceInfo = this.renderDeviceInfo.bind(this);
-        this.renderDeviceStatusSelect = this.renderDeviceStatusSelect.bind(this);
-        this.renderDeviceEndStatusTypeSelect = this.renderDeviceEndStatusTypeSelect.bind(this);
+        this._renderDeviceInfo = this._renderDeviceInfo.bind(this);
+        this._renderDeviceStatusSelect = this._renderDeviceStatusSelect.bind(this);
+        this._renderDeviceEndStatusTypeSelect = this._renderDeviceEndStatusTypeSelect.bind(this);
         this.loadDeviceData = this.loadDeviceData.bind(this);
         this.loadStatusData = this.loadStatusData.bind(this);
         this.loadEndStatusTypeData = this.loadEndStatusTypeData.bind(this);
@@ -26,8 +27,8 @@ export default class Device extends React.Component {
         this.handleEndStatusTypeChange = this.handleEndStatusTypeChange.bind(this);
         this.handleEndStatusCommentChange = this.handleEndStatusCommentChange.bind(this);
         this.redirectToDeviceList = this.redirectToDeviceList.bind(this);
-        this.renderEndStatusType = this.renderEndStatusType.bind(this);
-        this.renderDeviceEndStatusComment = this.renderDeviceEndStatusComment.bind(this);
+        this._renderEndStatusType = this._renderEndStatusType.bind(this);
+        this._renderDeviceEndStatusComment = this._renderDeviceEndStatusComment.bind(this);
     }
 
     componentDidMount(){
@@ -43,7 +44,7 @@ export default class Device extends React.Component {
                 {this.state.message.renderMessage()}
                 <div className="container">
                     <section className="form-card paper white medium">
-                        {this.renderDeviceInfo()}
+                        {this._renderDeviceInfo()}
                     </section>
                 </div>
             </div>
@@ -51,17 +52,20 @@ export default class Device extends React.Component {
         )
     }
 
-    renderDeviceInfo(){
+    _renderDeviceInfo(){
         return(
             <div>
                 <FormRow1 label="Código:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.full_code}
                 </FormRow1>
-                <FormRow1 label="Marca:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                    {this.state.device.device_brand_name}
-                </FormRow1>
                 <FormRow1 label="Tipo:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.device_type_name}
+                </FormRow1>
+                <FormRow1 label="Activo:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                    {this._renderDeviceAsset()}
+                </FormRow1>
+                <FormRow1 label="Marca:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
+                    {this.state.device.device_brand_name}
                 </FormRow1>
                 <FormRow1 label="Modelo:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.model}
@@ -84,38 +88,38 @@ export default class Device extends React.Component {
                 <FormRow1 label="Estado actual:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
                     {this.state.device.device_status_name}
                 </FormRow1>
-                {this.renderFormControls()}
+                {this._renderFormControls()}
             </div>
         )
     }
 
-    renderEndStatusType(){
+    _renderEndStatusType(){
       if(this.state.new_device_status==4) {
             return(
               <div>
                 <FormRow1 label="Tipo de Baja:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                            {this.renderDeviceEndStatusTypeSelect()}
+                            {this._renderDeviceEndStatusTypeSelect()}
                 </FormRow1>
                 <FormRow1 label="Observaciones:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                            {this.renderDeviceEndStatusComment()}
+                            {this._renderDeviceEndStatusComment()}
                 </FormRow1>
               </div>
           )
         }
     }
 
-    renderFormControls(){
+    _renderFormControls(){
         if(this.state.device.device_status_name != this.END_STATUS) {
 
             return(
                 <div>
                     <FormRow1 label="Cambiar estado:" labelColumnClass="col-md-4" fieldColumnClass="col-md-8">
-                        {this.renderDeviceStatusSelect()}
+                        {this._renderDeviceStatusSelect()}
                     </FormRow1>
-                    {this.renderEndStatusType()}
-                    <FormRow1>
+                    {this._renderEndStatusType()}
+                    <FormRow1 label="">
                         <a onClick={this.handleSaveClick} id="save" className="btn btn-ternary btn-block">
-                            <Icon icon="save"/> Guardar
+                            <Icon icon="save"/>Guardar
                         </a>
                     </FormRow1>
                 </div>
@@ -136,8 +140,15 @@ export default class Device extends React.Component {
 
     }
 
+    _renderDeviceAsset(){
+        if (this.state.device.asset === 1){
+            return (<div>Si</div>)}
+        else{
+            return((<div>No</div>))}
+    }
 
-    renderDeviceStatusSelect(){
+
+    _renderDeviceStatusSelect(){
         return (
             <select className='form-control' name='new_device_status' onChange={this.handleStatusChange}
                     value={this.state.new_device_status}>
@@ -153,7 +164,7 @@ export default class Device extends React.Component {
         )
     }
 
-    renderDeviceEndStatusTypeSelect(){
+    _renderDeviceEndStatusTypeSelect(){
         return (
             <select className='form-control' name='new_device_end_status_type' onChange={this.handleEndStatusTypeChange}
                    value={this.state.new_device_end_status_type}>
@@ -169,7 +180,7 @@ export default class Device extends React.Component {
         )
     }
 
-    renderDeviceEndStatusComment(){
+    _renderDeviceEndStatusComment(){
       return (
           <input type='text' className='form-control' name = 'new_device_end_status_comment'
           value={this.state.new_device_end_status_comment} onChange={this.handleEndStatusCommentChange}/>
